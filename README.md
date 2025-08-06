@@ -48,43 +48,60 @@ StockVibePredictor/
 
 ## 🧰 Setup Instructions
 
-🔻 Clone the Repo
+#### 🔻 Clone the Repo
+
+```
 git clone https://github.com/your-username/StockVibePredictor.git
 cd StockVibePredictor
+```
 
 ⚙️ Backend Setup (Django)
 
 ### Create virtual environment
 
+```
 python -m venv venv
+```
 
 ### Activate environment
 
 ### On Mac/Linux:
 
+```
 source venv/bin/activate
+```
 
 ### On Windows:
 
+```
 venv\Scripts\activate
+```
 
 ### Install dependencies
 
+```
 pip install -r requirements.txt
+```
 
 ### Navigate to Django project
 
+```
 cd stockpredictor
+```
 
 ### Run development server
 
+```
 python manage.py runserver
+```
 
 💻 Frontend Setup (React)
 
 ### Go to frontend folder
 
+```
 cd frontend
+```
 
 ### Install node dependencies
 
@@ -92,13 +109,17 @@ npm install
 
 ### Run the React app
 
+```
 npm start
+```
 
 🧠 Train the ML Model
 
 ### From root directory
 
+```
 python train_model.py
+```
 
 This creates a file called stock_model.pkl.
 Then move it to the Django app folder:
