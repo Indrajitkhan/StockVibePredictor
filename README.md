@@ -36,6 +36,7 @@ Built with:
 
 ```
 /StockVibePrediction/              # INFO: Root directory
+│
 │── /Backend/                    # INFO: Backend (Django)
 │   │── /StockVibePrediction/             # INFO: Main Django project folder
 │   │   │── __init__.py
