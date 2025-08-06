@@ -194,7 +194,7 @@ pip install -r requirements.txt
 ### Navigate to Django project
 
 ```
-cd stockpredictor
+cd StockVibePredictor
 ```
 
 ### Run development server
@@ -307,7 +307,7 @@ migrations/: Environment-specific, prevents merge conflicts.
 .env: May contain sensitive keys.
 Others: Editor files (.vscode/), OS files (.DS_Store), or test outputs (.coverage) are irrelevant to the repo.
 
-Team Tips
+Team Tips :
 
 Verify Setup: After cloning, run git status to ensure ignored files don’t appear.
 Regenerate Locally: Each team member must recreate venv, node_modules, and stock_model.pkl locally.
