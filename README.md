@@ -46,7 +46,7 @@ StockVibePredictor/
 
 ---
 
-🧰 Setup Instructions
+## 🧰 Setup Instructions
 
 🔻 Clone the Repo
 git clone https://github.com/your-username/StockVibePredictor.git
