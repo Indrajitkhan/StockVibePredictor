@@ -7,7 +7,7 @@ Built with:
 
 - 🧠 Machine Learning (Random Forest)
 - ⚙️ Django (Backend + API)
-- 🎨 React (Frontend)
+- 🎨 React & Next (Frontend)
 
 ---
 
