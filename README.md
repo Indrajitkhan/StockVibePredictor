@@ -35,13 +35,121 @@ Built with:
 ## 📦 Project Structure
 
 ```
-StockVibePredictor/
-├── frontend/              # React frontend
-├── stockpredictor/        # Django project
-│   └── stock_model.pkl    # Trained ML model
-├── train_model.py         # Script to train the model
-├── requirements.txt       # Python dependencies
-└── README.md              # This file
+/StockVibePrediction/              # INFO: Root directory
+│── /backend/                    # INFO: Backend (Django)
+│   │── /my_project/             # INFO: Main Django project folder
+│   │   │── __init__.py
+│   │   │── settings.py          # INFO: Django settings
+│   │   │── urls.py              # INFO: Main URL config
+│   │   │── asgi.py
+│   │   │── wsgi.py
+│   │   │── middleware.py        # INFO: Custom middleware (optional)
+│   │   │── schema.graphql       # INFO: GraphQL Schema (if using GraphQL)
+|   |
+│   │── /apps/                   # INFO: Custom Django apps (Modular)
+│   │   │── /users/              # INFO: User management app
+│   │   │   │── migrations/      # INFO: Migrations for the app
+│   │   │   │── __init__.py
+│   │   │   │── models.py        # INFO: User models
+│   │   │   │── views.py         # INFO: User views (API)
+│   │   │   │── serializers.py   # INFO: DRF Serializers
+│   │   │   │── urls.py          # INFO: App-specific URLs
+│   │   │   │── admin.py         # INFO: Django admin
+│   │   │   │── forms.py         # INFO: Django forms
+│   │   │   │── tests.py         # INFO: Unit tests
+│   │   │   │── permissions.py   # INFO: Custom permissions (DRF)
+│   │   │   │── tasks.py         # INFO: Celery tasks (if using)
+│   │   │   │── signals.py       # INFO: Django signals
+|   |   |
+│   │   │── /store/              # INFO: Example app (e.g., eCommerce)
+│   │   │── /blog/               # INFO: Blog module
+|   |
+│   │── /templates/              # INFO: Global HTML templates (Jinja)
+│   │   │── base.html            # INFO: Base template
+│   │   │── index.html           # INFO: Homepage
+|   |
+│   │── /static/                 # INFO: Global static files (CSS, JS)
+|   |   |
+│   │   │── /css/
+│   │   │── /js/
+│   │   │── /images/
+|   |
+│   │── /media/                  # INFO: Uploaded media files
+|   |
+│   │── /config/                 # INFO: Additional settings (optional)
+│   │   │── celery.py            # INFO: Celery config (if using)
+│   │   │── logging.py           # INFO: Logging settings
+│   │   │── permissions.py       # INFO: Global API permissions (if using DRF)
+|   |
+│   │── /utils/                  # INFO: Utility functions
+|   |
+│   │── /scripts/                # INFO: Management scripts (e.g., backup, cronjobs)
+│   │   │── backup_db.py         # INFO: Script to backup database
+│   │   │── cron_jobs.py         # INFO: Automate scheduled tasks
+|   |
+│   │── manage.py                 # INFO: Django CLI tool
+│   │── requirements.txt          # INFO: Python dependencies
+│   │── requirements-dev.txt      # INFO: Dev-only dependencies
+│   │── requirements-prod.txt     # INFO: Production-only dependencies
+│   │── Dockerfile                # INFO: Docker config (optional)
+│   │── docker-compose.yml        # INFO: Docker Compose (optional)
+│   │── .env                      # INFO: Environment variables
+│   │── .gitignore                # INFO: Git ignore file
+│
+│── /frontend/                    # INFO: Frontend (React, Vue, etc.)
+│   │── /src/                     # INFO: Source code
+│   │   │── /components/          # INFO: Reusable UI components
+│   │   │── /pages/               # INFO: Page components
+│   │   │── /services/            # INFO: API service handlers
+│   │   │── /redux/               # INFO: Redux store (if using Redux)
+│   │   │── App.js                # INFO: Main app component
+│   │   │── index.js              # INFO: Entry point
+│   │   │── hooks.js              # INFO: Custom React hooks
+|   |
+│   │── /public/                  # INFO: Public assets
+│   │── package.json              # INFO: Frontend dependencies
+│   │── package-lock.json         # INFO: Dependency lock file
+│   │── webpack.config.js         # INFO: Webpack config (if using)
+│   │── vite.config.js            # INFO: Vite config (if using)
+│
+│── /tests/                       # INFO: Global test directory
+│   │── /unit/                    # INFO: Unit tests
+│   │── /integration/             # INFO: Integration tests
+│   │── /e2e/                     # INFO: End-to-end tests
+│
+│── /docs/                        # INFO: Documentation
+│   │── API.md                    # INFO: API Docs
+│   │── README.md                  # INFO: Project documentation
+│   │── CHANGELOG.md               # INFO: Changelog (if needed)
+│   │── architecture.md            # INFO: Architecture documentation
+│
+│── /deployment/                   # INFO: Deployment configs
+│   │── nginx.conf                 # INFO: Nginx reverse proxy settings
+│   │── gunicorn.conf.py           # INFO: Gunicorn settings
+│   │── supervisor.conf            # INFO: Process manager config
+│   │── aws_deploy.sh              # INFO: AWS Deployment script
+│
+│── /security/                     # INFO: Security-related files
+│   │── .htaccess                  # INFO: Apache security config (if needed)
+│   │── security.txt               # INFO: Security policies
+│
+│── /ci-cd/                        # INFO: CI/CD Pipeline setup
+│   │── .github/                   # INFO: GitHub Actions workflows
+│   │── .gitlab-ci.yml             # INFO: GitLab CI/CD config (if using GitLab)
+│   │── jenkinsfile                # INFO: Jenkins config (if using Jenkins)
+│   │── docker-hub.yml             # INFO: Docker Hub auto-builds
+│
+│── README.md                      # INFO: Project documentation
+│── LICENSE                         # INFO: License file (if needed)
+│── .pre-commit-config.yaml         # INFO: Pre-commit hooks config
+│── .editorconfig                   # INFO: Code formatting rules
+│── .flake8                         # INFO: Python linting config
+│── .pylintrc                       # INFO: Pylint config
+│── .babelrc                        # INFO: Babel config (if using Babel)
+│── .eslintrc.json                  # INFO: ESLint config (for frontend)
+│── .stylelintrc                    # INFO: Stylelint config (for frontend)
+│── .gitignore                      # INFO: Git ignore file
+│── .dockerignore                   # INFO: Docker ignore file
 ```
 
 ---
