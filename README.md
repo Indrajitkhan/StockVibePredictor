@@ -54,49 +54,49 @@ cd StockVibePredictor
 
 ⚙️ Backend Setup (Django)
 
-# Create virtual environment
+### Create virtual environment
 
 python -m venv venv
 
-# Activate environment
+### Activate environment
 
-# On Mac/Linux:
+### On Mac/Linux:
 
 source venv/bin/activate
 
-# On Windows:
+### On Windows:
 
 venv\Scripts\activate
 
-# Install dependencies
+### Install dependencies
 
 pip install -r requirements.txt
 
-# Navigate to Django project
+### Navigate to Django project
 
 cd stockpredictor
 
-# Run development server
+### Run development server
 
 python manage.py runserver
 
 💻 Frontend Setup (React)
 
-# Go to frontend folder
+### Go to frontend folder
 
 cd frontend
 
-# Install node dependencies
+### Install node dependencies
 
 npm install
 
-# Run the React app
+### Run the React app
 
 npm start
 
 🧠 Train the ML Model
 
-# From root directory
+### From root directory
 
 python train_model.py
 
