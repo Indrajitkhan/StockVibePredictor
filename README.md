@@ -276,7 +276,7 @@ No manual action needed.
 frontend/build/, frontend/dist/: React build output for deployment.
 
 ```
-cd frontend
+cd Frontend
 npm run build
 ```
 
