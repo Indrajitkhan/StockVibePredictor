@@ -13,7 +13,7 @@ Backend: Django + Django REST Framework (Python)
 ML: scikit-learn (Random Forest Classifier)
 Front-end: React + Chart.js
 Data: yfinance API
-Deployment (Optional) : Heroku (backend), Vercel (front-end)
+Deployment: Heroku (backend), Vercel (front-end)
 
 Setup
 
