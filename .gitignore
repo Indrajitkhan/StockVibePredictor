@@ -1,0 +1,69 @@
+# Python/Django
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+*.env
+*.env.*
+.env
+.env.*
+*.db
+*.sqlite3
+migrations/
+*.log
+stock_model.pkl
+
+# Node.js/React
+node_modules/
+Frontend/node_modules/
+Frontend/build/
+Frontend/.cache/
+Frontend/dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Build and Dependency Files
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Testing and Coverage
+.coverage
+coverage.xml
+*.cover
+*.pytest_cache/
+htmlcov/
+
+# Misc
+*.bak
+*.backup
+*.tmp
+temp/
+tmp/
+
+# Project-specific
+*.pkl
+*.h5
+*.cbm
+*.tflite
