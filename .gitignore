@@ -18,7 +18,7 @@ migrations/
 stock_model.pkl
 
 # Node.js/React
-node_modules/
+**/node_modules/
 Frontend/node_modules/
 Frontend/build/
 Frontend/.cache/
