@@ -241,17 +241,23 @@ Ignored Files and How to Recreate Them
 
 venv/: Python virtual environment for Django and ML dependencies.
 
-Recreate:python -m venv venv
+### Recreate:
+
+```
+python -m venv venv
 source venv/bin/activate # Mac/Linux
 venv\Scripts\activate # Windows
 pip install -r requirements.txt
+```
 
 This sets up the environment and installs all Python dependencies (e.g., django, scikit-learn, yfinance).
 
 node_modules/, frontend/node_modules/: Node.js dependencies for the React front-end.
 
-Recreate:cd frontend
+```
+cd Frontend
 npm install
+```
 
 This regenerates node_modules based on package.json.
 
@@ -269,8 +275,10 @@ No manual action needed.
 
 frontend/build/, frontend/dist/: React build output for deployment.
 
-Recreate:cd frontend
+```
+cd frontend
 npm run build
+```
 
 Generates the production-ready front-end files.
 
@@ -282,22 +290,26 @@ Generate a Django secret key using a tool like djecrety.ir if required.
 
 migrations/: Django migration files.
 
-Recreate:cd stockpredictor
+```
+cd StockVibePredictor
 python manage.py makemigrations
 python manage.py migrate
+```
 
 This generates and applies migrations for your Django app.
 
 _.sqlite3, _.db: Local SQLite database.
 
-Recreate:cd stockpredictor
+```
+cd StockVibePredictor
 python manage.py migrate
+```
 
 Creates a fresh SQLite database if needed (not used in this project unless you add models).
 
 Other Ignored Files: Files like .DS_Store, .vscode/, .coverage, etc., are user-specific or temporary and don’t need recreation.
 
-Why These Files Are Ignored
+### Why These Files Are Ignored ??
 
 node_modules/: Huge folder, regenerated with npm install.
 venv/: User-specific, avoids conflicts across machines.
