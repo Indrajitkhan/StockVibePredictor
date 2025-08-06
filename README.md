@@ -36,8 +36,8 @@ Built with:
 
 ```
 /StockVibePrediction/              # INFO: Root directory
-│── /backend/                    # INFO: Backend (Django)
-│   │── /my_project/             # INFO: Main Django project folder
+│── /Backend/                    # INFO: Backend (Django)
+│   │── /StockVibePrediction/             # INFO: Main Django project folder
 │   │   │── __init__.py
 │   │   │── settings.py          # INFO: Django settings
 │   │   │── urls.py              # INFO: Main URL config
@@ -46,8 +46,8 @@ Built with:
 │   │   │── middleware.py        # INFO: Custom middleware (optional)
 │   │   │── schema.graphql       # INFO: GraphQL Schema (if using GraphQL)
 |   |
-│   │── /apps/                   # INFO: Custom Django apps (Modular)
-│   │   │── /users/              # INFO: User management app
+│   │── /Apps/                   # INFO: Custom Django apps (Modular)
+│   │   │── /Users/              # INFO: User management app
 │   │   │   │── migrations/      # INFO: Migrations for the app
 │   │   │   │── __init__.py
 │   │   │   │── models.py        # INFO: User models
@@ -61,29 +61,29 @@ Built with:
 │   │   │   │── tasks.py         # INFO: Celery tasks (if using)
 │   │   │   │── signals.py       # INFO: Django signals
 |   |   |
-│   │   │── /store/              # INFO: Example app (e.g., eCommerce)
-│   │   │── /blog/               # INFO: Blog module
+│   │   │── /Store/              # INFO: Example app (e.g., eCommerce)
+│   │   │── /Blog/               # INFO: Blog module
 |   |
-│   │── /templates/              # INFO: Global HTML templates (Jinja)
+│   │── /Templates/              # INFO: Global HTML templates (Jinja)
 │   │   │── base.html            # INFO: Base template
 │   │   │── index.html           # INFO: Homepage
 |   |
-│   │── /static/                 # INFO: Global static files (CSS, JS)
+│   │── /Static/                 # INFO: Global static files (CSS, JS)
 |   |   |
-│   │   │── /css/
-│   │   │── /js/
-│   │   │── /images/
+│   │   │── /Css/
+│   │   │── /Js/
+│   │   │── /Images/
 |   |
-│   │── /media/                  # INFO: Uploaded media files
+│   │── /Media/                  # INFO: Uploaded media files
 |   |
-│   │── /config/                 # INFO: Additional settings (optional)
+│   │── /Config/                 # INFO: Additional settings (optional)
 │   │   │── celery.py            # INFO: Celery config (if using)
 │   │   │── logging.py           # INFO: Logging settings
 │   │   │── permissions.py       # INFO: Global API permissions (if using DRF)
 |   |
-│   │── /utils/                  # INFO: Utility functions
+│   │── /Utils/                  # INFO: Utility functions
 |   |
-│   │── /scripts/                # INFO: Management scripts (e.g., backup, cronjobs)
+│   │── /Scripts/                # INFO: Management scripts (e.g., backup, cronjobs)
 │   │   │── backup_db.py         # INFO: Script to backup database
 │   │   │── cron_jobs.py         # INFO: Automate scheduled tasks
 |   |
@@ -96,40 +96,40 @@ Built with:
 │   │── .env                      # INFO: Environment variables
 │   │── .gitignore                # INFO: Git ignore file
 │
-│── /frontend/                    # INFO: Frontend (React, Vue, etc.)
-│   │── /src/                     # INFO: Source code
-│   │   │── /components/          # INFO: Reusable UI components
-│   │   │── /pages/               # INFO: Page components
-│   │   │── /services/            # INFO: API service handlers
-│   │   │── /redux/               # INFO: Redux store (if using Redux)
-│   │   │── App.js                # INFO: Main app component
+│── /Frontend/                    # INFO: Frontend (React, Vue, etc.)
+│   │── /Src/                     # INFO: Source code
+│   │   │── /Components/          # INFO: Reusable UI components
+│   │   │── /Pages/               # INFO: Page components
+│   │   │── /Services/            # INFO: API service handlers
+│   │   │── /Redux/               # INFO: Redux store (if using Redux)
+│   │   │── app.js                # INFO: Main app component
 │   │   │── index.js              # INFO: Entry point
 │   │   │── hooks.js              # INFO: Custom React hooks
 |   |
-│   │── /public/                  # INFO: Public assets
+│   │── /Public/                  # INFO: Public assets
 │   │── package.json              # INFO: Frontend dependencies
 │   │── package-lock.json         # INFO: Dependency lock file
 │   │── webpack.config.js         # INFO: Webpack config (if using)
 │   │── vite.config.js            # INFO: Vite config (if using)
 │
-│── /tests/                       # INFO: Global test directory
-│   │── /unit/                    # INFO: Unit tests
-│   │── /integration/             # INFO: Integration tests
+│── /Tests/                       # INFO: Global test directory
+│   │── /Unit/                    # INFO: Unit tests
+│   │── /Integration/             # INFO: Integration tests
 │   │── /e2e/                     # INFO: End-to-end tests
 │
-│── /docs/                        # INFO: Documentation
+│── /Docs/                        # INFO: Documentation
 │   │── API.md                    # INFO: API Docs
 │   │── README.md                  # INFO: Project documentation
 │   │── CHANGELOG.md               # INFO: Changelog (if needed)
 │   │── architecture.md            # INFO: Architecture documentation
 │
-│── /deployment/                   # INFO: Deployment configs
+│── /Deployment/                   # INFO: Deployment configs
 │   │── nginx.conf                 # INFO: Nginx reverse proxy settings
 │   │── gunicorn.conf.py           # INFO: Gunicorn settings
 │   │── supervisor.conf            # INFO: Process manager config
 │   │── aws_deploy.sh              # INFO: AWS Deployment script
 │
-│── /security/                     # INFO: Security-related files
+│── /Security/                     # INFO: Security-related files
 │   │── .htaccess                  # INFO: Apache security config (if needed)
 │   │── security.txt               # INFO: Security policies
 │
