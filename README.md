@@ -307,7 +307,7 @@ migrations/: Environment-specific, prevents merge conflicts.
 .env: May contain sensitive keys.
 Others: Editor files (.vscode/), OS files (.DS_Store), or test outputs (.coverage) are irrelevant to the repo.
 
-Team Tips :
+### Team Tips :
 
 Verify Setup: After cloning, run git status to ensure ignored files don’t appear.
 Regenerate Locally: Each team member must recreate venv, node_modules, and stock_model.pkl locally.
@@ -318,11 +318,12 @@ git add stock_model.pkl
 git commit -m "Track ML model with Git LFS"
 git push origin main
 
-Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to avoid dependency issues.
+### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to avoid dependency issues.
 
 🚨 Pro Tip: Run pip freeze > requirements.txt after installing dependencies to keep requirements.txt updated for the team.
 
-🔧 Additional Setup Instructions
+### 🔧 Additional Setup Instructions :
+
 Testing the Setup
 
 Backend: Test the API with Postman or curl:curl -X POST -H "Content-Type: application/json" -d '{"ticker":"AAPL"}' http://localhost:8000/api/predict/
@@ -330,14 +331,14 @@ Backend: Test the API with Postman or curl:curl -X POST -H "Content-Type: applic
 Front-end: Open http://localhost:3000, enter a ticker (e.g., TSLA), and check for a chart and prediction.
 ML Model: Verify stock_model.pkl works by running the API and checking predictions.
 
-Common Issues and Fixes
+### Common Issues and Fixes
 
 Missing stock_model.pkl: Run python train_model.py and move the file to stockpredictor/.
 Dependency Errors: Ensure requirements.txt and package.json are up-to-date. Re-run pip install or npm install.
 CORS Issues: Verify django-cors-headers is installed and configured in stockpredictor/settings.py.
 Git Conflicts: Pull latest changes (git pull origin main) and resolve conflicts in VS Code or git mergetool.
 
-Deployment (Optional)
+### Deployment (Optional)
 
 Backend (Heroku):heroku create stock-vibe-predictor
 git push heroku main
