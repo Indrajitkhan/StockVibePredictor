@@ -173,13 +173,13 @@ python -m venv venv
 
 #### Activate environment :
 
-#### On Mac/Linux: :
+#### On Mac/Linux :
 
 ```
 source venv/bin/activate
 ```
 
-#### On Windows: :
+#### On Windows :
 
 ```
 venv\Scripts\activate
