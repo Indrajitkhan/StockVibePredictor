@@ -369,11 +369,21 @@ After the installation of dependencies to keep requirements.txt updated for the 
 
 ## 🔧 Additional Setup Instructions :
 
-Testing the Setup
+### Testing the Setup :
 
-Backend: Test the API with Postman or curl:curl -X POST -H "Content-Type: application/json" -d '{"ticker":"AAPL"}' http://localhost:8000/api/predict/
+#### Backend : Test the API with Postman or curl :
 
-Front-end: Open http://localhost:3000, enter a ticker (e.g., TSLA), and check for a chart and prediction.
+```
+curl -X POST -H "Content-Type: application/json" -d '{"ticker":"AAPL"}'
+```
+
+http://localhost:8000/api/predict/
+
+#### Frontend :
+
+http://localhost:3000
+
+Enter a ticker (e.g., TSLA), and check for a chart and prediction.
 ML Model: Verify stock_model.pkl works by running the API and checking predictions.
 
 ### Common Issues and Fixes :
