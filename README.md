@@ -333,6 +333,8 @@ git push origin main
 
 #### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to :avoid dependency issues.
 
+---
+
 🚨 Pro Tip :
 
 Run :
