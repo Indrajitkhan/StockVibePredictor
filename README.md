@@ -240,8 +240,9 @@ mv stock_model.pkl stockpredictor/
 
 ## 📂 Regenerating Ignored Files (.gitignore) :
 
-Our .gitignore file keeps the repo clean by excluding files like node_modules, venv, and stock_model.pkl. When you clone the repo, you’ll need to recreate these files locally. Here’s how:
-Ignored Files and How to Recreate Them
+Our .gitignore file keeps the repo clean by excluding files like node_modules, venv, and stock_model.pkl. When you clone the repo, you’ll need to recreate these files locally.
+
+### Ignored files and how to Recreate them :
 
 venv/: Python virtual environment for Django and ML dependencies.
 
@@ -311,9 +312,9 @@ python manage.py migrate
 
 Creates a fresh SQLite database if needed (not used in this project unless you add models).
 
-Other Ignored Files: Files like .DS_Store, .vscode/, .coverage, etc., are user-specific or temporary and don’t need recreation.
+Other Ignored Files : Files like .DS_Store, .vscode/, .coverage, etc., are user-specific or temporary and don’t need recreation.
 
-#### Why These Files Are Ignored ??
+### Why These Files Are Ignored ??
 
 node_modules/: Huge folder, regenerated with npm install.
 venv/: User-specific, avoids conflicts across machines.
@@ -323,7 +324,7 @@ migrations/: Environment-specific, prevents merge conflicts.
 .env: May contain sensitive keys.
 Others: Editor files (.vscode/), OS files (.DS_Store), or test outputs (.coverage) are irrelevant to the repo.
 
-#### Team Tips :
+### Team Tips :
 
 Verify Setup: After cloning, run git status to ensure ignored files don’t appear.
 Regenerate Locally: Each team member must recreate venv, node_modules, and stock_model.pkl locally.
