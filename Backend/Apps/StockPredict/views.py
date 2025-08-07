@@ -13,7 +13,7 @@ import pickle
 import logging
 from pathlib import Path
 from django.core.cache import cache
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -119,15 +119,16 @@ def predict_stock_trend(request):
     else:
         try:
             logger.info(f"Fetching stock data for {ticker}")
-            from asgiref.sync import async_to_sync
-
             data = async_to_sync(fetch_stock_data)(ticker)
-            if data is None:
+            if data is None or data.empty:
                 logger.error(f"Couldn’t grab stock data for {ticker}")
                 return Response(
                     {"error": "No stock data found, try another ticker"},
                     status=status.HTTP_404_NOT_FOUND,
                 )
+            logger.debug(f"DataFrame columns: {list(data.columns)}")
+            logger.debug(f"DataFrame index: {data.index}")
+            logger.debug(f"DataFrame head: {data.head().to_dict()}")
             cache.set(cache_key, data.to_dict(), timeout=3600)
             logger.info(f"Cached stock data for {ticker}, good to go")
         except Exception as e:
@@ -141,14 +142,24 @@ def predict_stock_trend(request):
     confidence = 0.82
 
     try:
-        data.columns = data.columns.astype(str)
+        data.columns = [str(col) for col in data.columns]
         if isinstance(data.index, pd.MultiIndex):
-            data.index = data.index.map(str)
+            data.index = [str(idx) for idx in data.index]
+        else:
+            data.index = data.index.astype(str)
+        data = data.replace([np.nan, np.inf, -np.inf], None)
         history = data.to_dict(orient="records")
+        for record in history:
+            for key, value in record.items():
+                if not isinstance(value, (str, int, float, bool, type(None))):
+                    logger.warning(f"Non-JSON-serializable value in {key}: {value}")
+                    record[key] = str(value)
     except Exception as e:
         logger.error(f"Error converting DataFrame to dict: {str(e)}")
+        logger.error(f"DataFrame dtypes: {data.dtypes}")
+        logger.error(f"DataFrame sample: {data.head().to_dict()}")
         return Response(
-            {"error": "Failed to process stock history, blame the data"},
+            {"error": "Failed to process stock history, data’s too wild"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
