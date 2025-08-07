@@ -424,11 +424,11 @@ Team Task: Assign one member to handle deployment and test the live app.
 
 ## 🔮 Future Improvements :
 
-- 📊 Add confidence scores to ML predictions
-- 📈 Support multiple stocks in parallel
+- 📊 Add confidence scores to ML predictions ...
+- 📈 Support multiple stocks in parallel ...
 - 🧠 Include advanced indicators like MACD, Bollinger Bands, etc.
-- ☁️ Save and track predictions over time
-- 🔐 Add user login & personalized dashboards
+- ☁️ Save and track predictions over time ...
+- 🔐 Add user login & personalized dashboards ...
 
 ---
 
