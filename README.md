@@ -376,14 +376,14 @@ Backend: Test the API with Postman or curl:curl -X POST -H "Content-Type: applic
 Front-end: Open http://localhost:3000, enter a ticker (e.g., TSLA), and check for a chart and prediction.
 ML Model: Verify stock_model.pkl works by running the API and checking predictions.
 
-#### Common Issues and Fixes :
+### Common Issues and Fixes :
 
 Missing stock_model.pkl: Run python train_model.py and move the file to StockVibePredictor/.
 Dependency Errors: Ensure requirements.txt and package.json are up-to-date. Re-run pip install or npm install.
 CORS Issues: Verify django-cors-headers is installed and configured in StockVibePredictor/settings.py.
 Git Conflicts: Pull latest changes (git pull origin main) and resolve conflicts in VS Code or git mergetool.
 
-#### Deployment (OPTIONAL) :
+### Deployment (OPTIONAL) :
 
 Backend (Heroku):heroku create stock-vibe-predictor
 git push heroku main
@@ -396,8 +396,8 @@ Team Task: Assign one member to handle deployment and test the live app.
 
 ## 🚀 Running the App :
 
-- 🔌 **Backend API**: [http://localhost:8000/api/predict/](http://localhost:8000/api/predict/)
-- 🌐 **Frontend UI**: [http://localhost:3000](http://localhost:3000)
+- 🔌 **Backend API** : [http://localhost:8000/api/predict/](http://localhost:8000/api/predict/)
+- 🌐 **Frontend UI** : [http://localhost:3000](http://localhost:3000)
 
 ---
 
