@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './App.css';
-import StockChart from './components/StockChart';
-import StockInput from './components/StockInput';
-import PredictionResult from './components/PredictionResult';
-import LoadingSpinner from './components/LoadingSpinner';
+import React, { useState } from "react";
+import axios from "axios";
+import "./App.css";
+import StockChart from "./Components/StockChart";
+import StockInput from "./Components/StockInput";
+import PredictionResult from "./Components/PredictionResult";
+import LoadingSpinner from "./Components/LoadingSpinner";
+
+// TODO: Note : Need to make more pictures and emojis for the app
 
 function App() {
   const [stockData, setStockData] = useState(null);
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [currentTicker, setCurrentTicker] = useState('');
+  const [currentTicker, setCurrentTicker] = useState("");
 
   // Base URL for Django backend API
-  const API_BASE_URL = 'http://localhost:8000/api';
+  const API_BASE_URL = "http://localhost:8000/api";
 
   const fetchStockData = async (ticker) => {
     if (!ticker.trim()) {
-      setError('Please enter a valid stock ticker');
+      setError("Please enter a valid stock ticker");
       return;
     }
 
@@ -29,16 +31,16 @@ function App() {
     try {
       // Call Django backend API for stock data and prediction
       const response = await axios.post(`${API_BASE_URL}/predict/`, {
-        ticker: ticker.toUpperCase()
+        ticker: ticker.toUpperCase(),
       });
 
       setStockData(response.data.stock_data);
       setPrediction(response.data.prediction);
     } catch (err) {
-      console.error('Error fetching stock data:', err);
+      console.error("Error fetching stock data:", err);
       setError(
-        err.response?.data?.error || 
-        'Failed to fetch stock data. Please check if the backend server is running.'
+        err.response?.data?.error ||
+          "Failed to fetch stock data. Please check if the backend server is running."
       );
     } finally {
       setLoading(false);
@@ -49,28 +51,24 @@ function App() {
     setStockData(null);
     setPrediction(null);
     setError(null);
-    setCurrentTicker('');
+    setCurrentTicker("");
   };
 
   return (
     <div className="App">
       <header className="app-header">
-        <h1 className="app-title">
-          📊 StockVibePredictor
-        </h1>
-        <p className="app-subtitle">
-          AI-Powered Stock Market Predictions
-        </p>
+        <h1 className="app-title">StockVibePredictor</h1>
+        <p className="app-subtitle">AI-Powered Stock Market Predictions</p>
       </header>
 
       <main className="app-main">
         <div className="container">
-          <StockInput 
-            onSubmit={fetchStockData} 
+          <StockInput
+            onSubmit={fetchStockData}
             loading={loading}
             onReset={handleReset}
           />
-          
+
           {error && (
             <div className="error-message">
               <span className="error-icon">⚠️</span>
@@ -81,17 +79,11 @@ function App() {
           {loading && <LoadingSpinner />}
 
           {prediction && !loading && (
-            <PredictionResult 
-              prediction={prediction}
-              ticker={currentTicker}
-            />
+            <PredictionResult prediction={prediction} ticker={currentTicker} />
           )}
 
           {stockData && !loading && (
-            <StockChart 
-              data={stockData}
-              ticker={currentTicker}
-            />
+            <StockChart data={stockData} ticker={currentTicker} />
           )}
         </div>
       </main>
