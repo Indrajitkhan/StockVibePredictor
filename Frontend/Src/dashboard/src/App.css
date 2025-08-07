@@ -1,7 +1,7 @@
 .App {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .app-header {
@@ -57,9 +57,16 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 .error-icon {
@@ -86,19 +93,19 @@
   .app-header {
     padding: 1.5rem 1rem;
   }
-  
+
   .app-title {
     font-size: 2rem;
   }
-  
+
   .app-subtitle {
     font-size: 1rem;
   }
-  
+
   .app-main {
     padding: 1rem 0;
   }
-  
+
   .container {
     padding: 0 0.5rem;
   }
