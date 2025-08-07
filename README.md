@@ -439,6 +439,6 @@ Feel free to fork, remix, and use — just don’t forget to credit. 😎
 
 ---
 
-### ☕ Made with Passion, deployed with Precision, and maintained with stubborn Optimism.
+### ☕ Made with Passion, deployed with Precision, and maintained with stubborn Optimism ☕
 
 ---
