@@ -232,7 +232,7 @@ python train_model.py
 
 This creates a file called stock_model.pkl.
 Then move it to the Django app folder:
-mv stock_model.pkl stockpredictor/
+mv stock_model.pkl StockVibePredictor/
 
 📦 The backend will load this file to make predictions.
 
@@ -272,7 +272,7 @@ Recreate:
 
 ```
 python train_model.py
-mv stock_model.pkl stockpredictor/
+mv stock_model.pkl StockVibePredictor/
 ```
 
 Runs the training script to generate the Random Forest model and moves it to the Django folder.
@@ -293,7 +293,7 @@ Generates the production-ready front-end files.
 
 .env, _.env._ : Environment files for sensitive settings (e.g., API keys) ...
 
-#### If needed, create a .env file in stockpredictor/ with your settings (e.g., SECRET_KEY for Django) :
+#### If needed, create a .env file in StockVibePredictor/ with your settings (e.g., SECRET_KEY for Django) :
 
 ```
 echo "SECRET_KEY=your-django-secret-key" > StockVibePredictor/.env
@@ -378,9 +378,9 @@ ML Model: Verify stock_model.pkl works by running the API and checking predictio
 
 #### Common Issues and Fixes :
 
-Missing stock_model.pkl: Run python train_model.py and move the file to stockpredictor/.
+Missing stock_model.pkl: Run python train_model.py and move the file to StockVibePredictor/.
 Dependency Errors: Ensure requirements.txt and package.json are up-to-date. Re-run pip install or npm install.
-CORS Issues: Verify django-cors-headers is installed and configured in stockpredictor/settings.py.
+CORS Issues: Verify django-cors-headers is installed and configured in StockVibePredictor/settings.py.
 Git Conflicts: Pull latest changes (git pull origin main) and resolve conflicts in VS Code or git mergetool.
 
 #### Deployment (OPTIONAL) :
@@ -388,7 +388,7 @@ Git Conflicts: Pull latest changes (git pull origin main) and resolve conflicts 
 Backend (Heroku):heroku create stock-vibe-predictor
 git push heroku main
 
-Ensure stock_model.pkl is in stockpredictor/ or regenerated during deployment.
+Ensure stock_model.pkl is in StockVibePredictor/ or regenerated during deployment.
 Front-end (Vercel):Push frontend/ to a GitHub repo, connect to Vercel, and update App.js with the Heroku API URL.
 Team Task: Assign one member to handle deployment and test the live app.
 
