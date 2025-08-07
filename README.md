@@ -335,7 +335,7 @@ git push origin main
 
 ---
 
-🚨 Pro Tip :
+## 🚨 Pro Tip :
 
 Run :
 
