@@ -244,9 +244,9 @@ Our .gitignore file keeps the repo clean by excluding files like node_modules, v
 
 ### Ignored files and how to Recreate them :
 
-venv/: Python virtual environment for Django and ML dependencies.
+venv/ : Python virtual environment for Django and ML dependencies.
 
-#### Recreate :
+### Recreate :
 
 ```
 python -m venv venv
@@ -273,12 +273,12 @@ mv stock_model.pkl stockpredictor/
 
 Runs the training script to generate the Random Forest model and moves it to the Django folder.
 
-**pycache**/, _.pyc, _.pyo, \*.pyd: Compiled Python files.
+**pycache**/, _.pyc, _.pyo, \*.pyd : Compiled Python files.
 
 Recreate: Automatically generated when you run Python scripts (e.g., python manage.py runserver).
 No manual action needed.
 
-frontend/build/, frontend/dist/: React build output for deployment.
+frontend/build/, frontend/dist/ : React build output for deployment.
 
 ```
 cd Frontend
@@ -287,13 +287,17 @@ npm run build
 
 Generates the production-ready front-end files.
 
-.env, _.env._: Environment files for sensitive settings (e.g., API keys).
+.env, _.env._ : Environment files for sensitive settings (e.g., API keys).
 
-Recreate: If needed, create a .env file in stockpredictor/ with your settings (e.g., SECRET_KEY for Django).echo "SECRET_KEY=your-django-secret-key" > stockpredictor/.env
+#### If needed, create a .env file in stockpredictor/ with your settings (e.g., SECRET_KEY for Django) :
 
-Generate a Django secret key using a tool like djecrety.ir if required.
+```
+echo "SECRET_KEY=your-django-secret-key" > stockpredictor/.env
+```
 
-migrations/: Django migration files.
+Generate a Django secret key using a tool like " djecrety.ir " if required.
+
+migrations/ : Django migration files.
 
 ```
 cd StockVibePredictor
@@ -303,7 +307,7 @@ python manage.py migrate
 
 This generates and applies migrations for your Django app.
 
-_.sqlite3, _.db: Local SQLite database.
+_.sqlite3, _.db : Local SQLite database.
 
 ```
 cd StockVibePredictor
@@ -328,14 +332,18 @@ Others: Editor files (.vscode/), OS files (.DS_Store), or test outputs (.coverag
 
 Verify Setup: After cloning, run git status to ensure ignored files don’t appear.
 Regenerate Locally: Each team member must recreate venv, node_modules, and stock_model.pkl locally.
-Large Files: If you need to include stock_model.pkl in the repo (e.g., for deployment), remove it from .gitignore and use Git LFS:git lfs install
+Large Files: If you need to include stock_model.pkl in the repo (e.g., for deployment), remove it from .gitignore and use Git LFS :
+
+```
+git lfs install
 git lfs track "\*.pkl"
 git add .gitattributes
 git add stock_model.pkl
 git commit -m "Track ML model with Git LFS"
 git push origin main
+```
 
-#### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to :avoid dependency issues.
+#### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to avoid dependency issues.
 
 ---
 
