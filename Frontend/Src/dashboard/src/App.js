@@ -1,23 +1,104 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
+import StockChart from './components/StockChart';
+import StockInput from './components/StockInput';
+import PredictionResult from './components/PredictionResult';
+import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
+  const [stockData, setStockData] = useState(null);
+  const [prediction, setPrediction] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [currentTicker, setCurrentTicker] = useState('');
+
+  // Base URL for Django backend API
+  const API_BASE_URL = 'http://localhost:8000/api';
+
+  const fetchStockData = async (ticker) => {
+    if (!ticker.trim()) {
+      setError('Please enter a valid stock ticker');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    setCurrentTicker(ticker.toUpperCase());
+
+    try {
+      // Call Django backend API for stock data and prediction
+      const response = await axios.post(`${API_BASE_URL}/predict/`, {
+        ticker: ticker.toUpperCase()
+      });
+
+      setStockData(response.data.stock_data);
+      setPrediction(response.data.prediction);
+    } catch (err) {
+      console.error('Error fetching stock data:', err);
+      setError(
+        err.response?.data?.error || 
+        'Failed to fetch stock data. Please check if the backend server is running.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setStockData(null);
+    setPrediction(null);
+    setError(null);
+    setCurrentTicker('');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+      <header className="app-header">
+        <h1 className="app-title">
+          📊 StockVibePredictor
+        </h1>
+        <p className="app-subtitle">
+          AI-Powered Stock Market Predictions
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+
+      <main className="app-main">
+        <div className="container">
+          <StockInput 
+            onSubmit={fetchStockData} 
+            loading={loading}
+            onReset={handleReset}
+          />
+          
+          {error && (
+            <div className="error-message">
+              <span className="error-icon">⚠️</span>
+              {error}
+            </div>
+          )}
+
+          {loading && <LoadingSpinner />}
+
+          {prediction && !loading && (
+            <PredictionResult 
+              prediction={prediction}
+              ticker={currentTicker}
+            />
+          )}
+
+          {stockData && !loading && (
+            <StockChart 
+              data={stockData}
+              ticker={currentTicker}
+            />
+          )}
+        </div>
+      </main>
+
+      <footer className="app-footer">
+        <p>Built with React + Django + Machine Learning</p>
+      </footer>
     </div>
   );
 }

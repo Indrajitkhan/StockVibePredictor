@@ -1,0 +1,223 @@
+.loading-spinner-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  margin: 2rem 0;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.spinner-ring {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid transparent;
+  border-top: 8px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.spinner-ring:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.spinner-ring:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.spinner-ring:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  text-align: center;
+}
+
+.loading-text h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.loading-text p {
+  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.loading-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.step-icon {
+  font-size: 1.2rem;
+  min-width: 24px;
+}
+
+.step-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.loading-progress {
+  margin-top: 2rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: progressMove 2s ease-in-out infinite;
+  width: 100%;
+}
+
+@keyframes progressMove {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.progress-text {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .loading-spinner-container {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .loading-content {
+    gap: 1.5rem;
+  }
+  
+  .spinner {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .spinner-ring {
+    width: 48px;
+    height: 48px;
+    border-width: 6px;
+  }
+  
+  .loading-text h3 {
+    font-size: 1.5rem;
+  }
+  
+  .loading-text p {
+    font-size: 1rem;
+  }
+  
+  .loading-steps {
+    max-width: 280px;
+    gap: 0.75rem;
+  }
+  
+  .step {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .step-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Pulse animation for the container */
+.loading-spinner-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  border-radius: 22px;
+  z-index: -1;
+  animation: glow 2s ease-in-out infinite alternate;
+  opacity: 0.3;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+  }
+}
