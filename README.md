@@ -335,7 +335,9 @@ git push origin main
 
 🚨 Pro Tip: Run pip freeze > requirements.txt after installing dependencies to keep requirements.txt updated for the team.
 
-#### 🔧 Additional Setup Instructions :
+---
+
+## 🔧 Additional Setup Instructions :
 
 Testing the Setup
 
