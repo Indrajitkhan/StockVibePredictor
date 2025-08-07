@@ -333,7 +333,15 @@ git push origin main
 
 #### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to :avoid dependency issues.
 
-🚨 Pro Tip: Run pip freeze > requirements.txt after installing dependencies to keep requirements.txt updated for the team.
+🚨 Pro Tip :
+
+Run :
+
+```
+pip freeze > requirements.txt
+```
+
+After the installation of dependencies to keep requirements.txt updated for the team.
 
 ---
 
