@@ -35,10 +35,10 @@ Built with:
 ## 📦 Project Structure
 
 ```
-/StockVibePrediction/              # INFO: Root directory
+/StockVibePredictor/              # INFO: Root directory
 │
 │── /Backend/                    # INFO: Backend (Django)
-│   │── /StockVibePrediction/             # INFO: Main Django project folder
+│   │── /StockVibePredictor/             # INFO: Main Django project folder
 │   │   │── __init__.py
 │   │   │── settings.py          # INFO: Django settings
 │   │   │── urls.py              # INFO: Main URL config
@@ -250,8 +250,8 @@ venv/ : Python virtual environment for Django and ML dependencies.
 
 ```
 python -m venv venv
-source venv/bin/activate # Mac/Linux
-venv\Scripts\activate # Windows
+source venv/bin/activate                # Mac/Linux
+venv\Scripts\activate                   # Windows
 pip install -r requirements.txt
 ```
 
@@ -268,12 +268,16 @@ This regenerates node_modules based on package.json.
 
 stock_model.pkl: The trained ML model for stock predictions.
 
-Recreate:python train_model.py
+Recreate:
+
+```
+python train_model.py
 mv stock_model.pkl stockpredictor/
+```
 
 Runs the training script to generate the Random Forest model and moves it to the Django folder.
 
-**pycache**/, _.pyc, _.pyo, \*.pyd : Compiled Python files.
+**pycache**/, _.pyc, _.pyo, \*.pyd : Compiled Python files ...
 
 Recreate: Automatically generated when you run Python scripts (e.g., python manage.py runserver).
 No manual action needed.
@@ -287,17 +291,17 @@ npm run build
 
 Generates the production-ready front-end files.
 
-.env, _.env._ : Environment files for sensitive settings (e.g., API keys).
+.env, _.env._ : Environment files for sensitive settings (e.g., API keys) ...
 
 #### If needed, create a .env file in stockpredictor/ with your settings (e.g., SECRET_KEY for Django) :
 
 ```
-echo "SECRET_KEY=your-django-secret-key" > stockpredictor/.env
+echo "SECRET_KEY=your-django-secret-key" > StockVibePredictor/.env
 ```
 
 Generate a Django secret key using a tool like " djecrety.ir " if required.
 
-migrations/ : Django migration files.
+migrations/ : Django migration files ...
 
 ```
 cd StockVibePredictor
@@ -318,6 +322,8 @@ Creates a fresh SQLite database if needed (not used in this project unless you a
 
 Other Ignored Files : Files like .DS_Store, .vscode/, .coverage, etc., are user-specific or temporary and don’t need recreation.
 
+---
+
 ### Why These Files Are Ignored ??
 
 node_modules/: Huge folder, regenerated with npm install.
@@ -327,6 +333,8 @@ migrations/: Environment-specific, prevents merge conflicts.
 **pycache**/, \*.pyc: Temporary compiled files.
 .env: May contain sensitive keys.
 Others: Editor files (.vscode/), OS files (.DS_Store), or test outputs (.coverage) are irrelevant to the repo.
+
+---
 
 ### Team Tips :
 
