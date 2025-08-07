@@ -236,7 +236,10 @@ mv stock_model.pkl stockpredictor/
 
 📦 The backend will load this file to make predictions.
 
-📂 Regenerating Ignored Files (.gitignore)
+---
+
+## 📂 Regenerating Ignored Files (.gitignore) :
+
 Our .gitignore file keeps the repo clean by excluding files like node_modules, venv, and stock_model.pkl. When you clone the repo, you’ll need to recreate these files locally. Here’s how:
 Ignored Files and How to Recreate Them
 
