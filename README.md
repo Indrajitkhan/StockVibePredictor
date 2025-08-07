@@ -362,6 +362,8 @@ Ensure stock_model.pkl is in stockpredictor/ or regenerated during deployment.
 Front-end (Vercel):Push frontend/ to a GitHub repo, connect to Vercel, and update App.js with the Heroku API URL.
 Team Task: Assign one member to handle deployment and test the live app.
 
+---
+
 ## 🚀 Running the App :
 
 - 🔌 **Backend API**: [http://localhost:8000/api/predict/](http://localhost:8000/api/predict/)
@@ -397,4 +399,6 @@ Feel free to fork, remix, and use — just don’t forget to credit. 😎
 
 ---
 
-> ☕ Made with Passion, deployed with Precision, and maintained with stubborn Optimism.
+☕ Made with Passion, deployed with Precision, and maintained with stubborn Optimism.
+
+---
