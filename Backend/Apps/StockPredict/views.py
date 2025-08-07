@@ -98,15 +98,15 @@ def redis_check(request):
 def predict_stock_trend(request):
     ticker = request.data.get("ticker")
     if not ticker:
-        logger.error("No ticker provided, yo")
+        logger.error("No ticker provided ...")
         return Response(
-            {"error": "Gimme a ticker symbol, bro"}, status=status.HTTP_400_BAD_REQUEST
+            {"error": "Gimme a ticker symbol"}, status=status.HTTP_400_BAD_REQUEST
         )
 
     if not isinstance(ticker, str) or not ticker.isalnum() or len(ticker) > 10:
         logger.error(f"Sketchy ticker format: {ticker}")
         return Response(
-            {"error": "Ticker’s gotta be uppercase letters/numbers, 1-10 chars, fam"},
+            {"error": "Ticker’s gotta be uppercase letters/numbers, 1-10 chars ..."},
             status=status.HTTP_400_BAD_REQUEST,
         )
     ticker = ticker.upper()
@@ -123,7 +123,7 @@ def predict_stock_trend(request):
             if data is None or data.empty:
                 logger.error(f"Couldn’t grab stock data for {ticker}")
                 return Response(
-                    {"error": "No stock data found, try another ticker"},
+                    {"error": "No stock data found, try another ticker ..."},
                     status=status.HTTP_404_NOT_FOUND,
                 )
             logger.debug(f"DataFrame columns: {list(data.columns)}")
