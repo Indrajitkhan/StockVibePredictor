@@ -196,6 +196,7 @@ pip install -r requirements.txt
 
 ```
 cd StockVibePredictor
+cd Backend
 ```
 
 #### Run development server :
@@ -210,6 +211,8 @@ python manage.py runserver
 
 ```
 cd Frontend
+cd Src
+cd dashboard
 ```
 
 #### Install node dependencies :
@@ -224,9 +227,11 @@ npm start
 
 🧠 Train the ML Model
 
-#### From root directory :
+#### From Scripts directory :
 
 ```
+cd Backend
+cd Scripts
 python train_model.py
 ```
 
@@ -272,7 +277,6 @@ Recreate:
 
 ```
 python train_model.py
-mv stock_model.pkl StockVibePredictor/
 ```
 
 Runs the training script to generate the Random Forest model and moves it to the Django folder.
