@@ -217,7 +217,9 @@ cd dashboard
 
 #### Install node dependencies :
 
+```
 npm install
+```
 
 #### Run the React app :
 
