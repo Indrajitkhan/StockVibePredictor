@@ -1,1 +1,0 @@
-print("Just for fun")
