@@ -3,11 +3,11 @@ import "./PredictionResult.css";
 
 const PredictionResult = ({ prediction, ticker }) => {
   const getPredictionIcon = () => {
-    return prediction?.direction === "UP" ? "📈" : "📉";
+    return prediction.direction === "UP" ? "📈" : "📉";
   };
 
   const getPredictionColor = () => {
-    return prediction?.direction === "UP" ? "#4ade80" : "#f87171";
+    return prediction.direction === "UP" ? "#4ade80" : "#f87171";
   };
 
   const getConfidenceColor = (confidence) => {
@@ -30,11 +30,11 @@ const PredictionResult = ({ prediction, ticker }) => {
           <div className="prediction-icon">{getPredictionIcon()}</div>
           <div className="prediction-text">
             <h3 className="prediction-direction">
-              {prediction?.direction === "UP" ? "BULLISH" : "BEARISH"}
+              {prediction.direction === "UP" ? "BULLISH" : "BEARISH"}
             </h3>
             <p className="prediction-subtitle">
               Price Expected to go{" "}
-              <strong>{prediction?.direction === "UP" ? "UP" : "DOWN"}</strong>{" "}
+              <strong>{prediction.direction === "UP" ? "UP" : "DOWN"}</strong>{" "}
               tomorrow
             </p>
           </div>
@@ -45,9 +45,9 @@ const PredictionResult = ({ prediction, ticker }) => {
             <div className="detail-label">Confidence</div>
             <div
               className="detail-value"
-              style={{ color: getConfidenceColor(prediction?.confidence || 0) }}
+              style={{ color: getConfidenceColor(prediction.confidence) }}
             >
-              {prediction?.confidence
+              {prediction.confidence
                 ? `${prediction.confidence.toFixed(1)}%`
                 : "N/A"}
             </div>
@@ -55,10 +55,8 @@ const PredictionResult = ({ prediction, ticker }) => {
               <div
                 className="confidence-fill"
                 style={{
-                  width: `${prediction?.confidence || 0}%`,
-                  backgroundColor: getConfidenceColor(
-                    prediction?.confidence || 0
-                  ),
+                  width: `${prediction.confidence}%`,
+                  backgroundColor: getConfidenceColor(prediction.confidence),
                 }}
               />
             </div>
@@ -68,7 +66,7 @@ const PredictionResult = ({ prediction, ticker }) => {
             <div className="detail-label">Current Price</div>
             <div className="detail-value">
               $
-              {prediction?.current_price
+              {prediction.current_price
                 ? prediction.current_price.toFixed(2)
                 : "N/A"}
             </div>
@@ -80,7 +78,7 @@ const PredictionResult = ({ prediction, ticker }) => {
               className="detail-value"
               style={{ color: getPredictionColor() }}
             >
-              {prediction?.predicted_change
+              {prediction.predicted_change
                 ? `${
                     prediction.predicted_change > 0 ? "+" : ""
                   }${prediction.predicted_change.toFixed(2)}%`
@@ -89,7 +87,7 @@ const PredictionResult = ({ prediction, ticker }) => {
           </div>
         </div>
 
-        {prediction?.features && (
+        {prediction.features && (
           <div className="features-summary">
             <h4>📊 Key Technical Indicators</h4>
             <div className="features-grid">
@@ -109,7 +107,7 @@ const PredictionResult = ({ prediction, ticker }) => {
 
         <div className="disclaimer">
           <p>
-            ⚠️ <strong>Disclaimer:</strong>Stock market investments carry
+            ⚠️ <strong>Disclaimer:</strong> Stock market investments carry
             inherent risks. Always do your own research and consider consulting
             with a financial advisor before making investment decisions.
           </p>

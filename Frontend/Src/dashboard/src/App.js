@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import StockChart from "./Components/StockChart";
 import StockInput from "./Components/StockInput";
 import PredictionResult from "./Components/PredictionResult";
+import StockChart from "./Components/StockChart";
 import LoadingSpinner from "./Components/LoadingSpinner";
-
-// TODO: Note : Need to make more pictures and emojis for the app
 
 function App() {
   const [stockData, setStockData] = useState(null);
@@ -15,12 +13,13 @@ function App() {
   const [error, setError] = useState(null);
   const [currentTicker, setCurrentTicker] = useState("");
 
-  // Base URL for Django backend API
   const API_BASE_URL = "http://localhost:8000/api";
 
   const fetchStockData = async (ticker) => {
     if (!ticker.trim()) {
-      setError("Please enter a valid stock ticker");
+      setError("Gimme a ticker, bro! 😎");
+      setStockData(null);
+      setPrediction(null);
       return;
     }
 
@@ -29,19 +28,20 @@ function App() {
     setCurrentTicker(ticker.toUpperCase());
 
     try {
-      // Call Django backend API for stock data and prediction
       const response = await axios.post(`${API_BASE_URL}/predict/`, {
         ticker: ticker.toUpperCase(),
       });
 
-      setStockData(response.data.stock_data);
+      setStockData(response.data.history);
       setPrediction(response.data.prediction);
     } catch (err) {
-      console.error("Error fetching stock data:", err);
+      console.error("Error fetching stock data, yo:", err);
       setError(
         err.response?.data?.error ||
-          "Failed to fetch stock data. Please check if the backend server is running."
+          "Sh*t broke, fam! Check if the backend’s running. 🛠️"
       );
+      setStockData(null);
+      setPrediction(null);
     } finally {
       setLoading(false);
     }
@@ -57,8 +57,8 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
-        <h1 className="app-title">StockVibePredictor</h1>
-        <p className="app-subtitle">AI-Powered Stock Market Predictions</p>
+        <h1 className="app-title">StockVibePredictor 🚀</h1>
+        <p className="app-subtitle">AI-Powered Stock Market Predictions 💸</p>
       </header>
 
       <main className="app-main">
@@ -89,7 +89,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Built with React + Django + Machine Learning</p>
+        <p>Built with React + Django + Machine Learning 🔥</p>
       </footer>
     </div>
   );
