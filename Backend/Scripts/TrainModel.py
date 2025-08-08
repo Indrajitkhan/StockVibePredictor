@@ -10,7 +10,7 @@ import logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(levelname)s %(asctime)s %(message)s",
-    handlers=[logging.FileHandler("Logs/stockpredict.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler("../Logs/stockpredict.log"), logging.StreamHandler()],
 )
 logger = logging.getLogger(__name__)
 

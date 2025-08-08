@@ -1,0 +1,23 @@
+INFO 2025-08-08 13:03:43,627 Fetching data for AAPL
+INFO 2025-08-08 13:03:46,091 Cross-validation scores: [0.5257732  0.39175258 0.4375     0.46875    0.5625    ]
+INFO 2025-08-08 13:03:46,091 Mean CV accuracy: 47.73%
+INFO 2025-08-08 13:03:46,095 Test accuracy: 55.67%
+INFO 2025-08-08 13:03:46,099 Model saved as stock_model.pkl
+INFO 2025-08-08 07:36:29,646 views Stock prediction model loaded successfully
+INFO 2025-08-08 07:36:44,128 views Redis connection successful
+INFO 2025-08-08 07:36:53,207 views Fetching stock data for AAPL
+INFO 2025-08-08 07:36:55,274 views Cached stock data for AAPL, good to go
+INFO 2025-08-08 07:37:44,469 views Fetching stock data for TSLA
+INFO 2025-08-08 07:37:44,973 views Cached stock data for TSLA, good to go
+INFO 2025-08-08 13:10:47,116 Fetching data for AAPL
+INFO 2025-08-08 13:10:49,148 Cross-validation scores: [0.5257732  0.39175258 0.4375     0.46875    0.55208333]
+INFO 2025-08-08 13:10:49,148 Mean CV accuracy: 47.52%
+INFO 2025-08-08 13:10:49,153 Test accuracy: 55.67%
+INFO 2025-08-08 13:10:49,156 Model saved as stock_model.pkl
+ERROR 2025-08-08 07:41:46,562 views Failed to load stock prediction model: [Errno 2] No such file or directory: '/Users/dibakar/Documents/Code/Git & Github/Repo/StockVibePredictor/Backend/stock_model.pkl'
+ERROR 2025-08-08 07:41:46,562 views Failed to load stock prediction model: [Errno 2] No such file or directory: '/Users/dibakar/Documents/Code/Git & Github/Repo/StockVibePredictor/Backend/stock_model.pkl'
+ERROR 2025-08-08 07:42:41,781 views Failed to load stock prediction model: [Errno 2] No such file or directory: '/Users/dibakar/Documents/Code/Git & Github/Repo/StockVibePredictor/Backend/Scripts.stock_model.pkl'
+ERROR 2025-08-08 07:42:41,781 views Failed to load stock prediction model: [Errno 2] No such file or directory: '/Users/dibakar/Documents/Code/Git & Github/Repo/StockVibePredictor/Backend/Scripts.stock_model.pkl'
+INFO 2025-08-08 07:44:48,644 views Stock prediction model loaded successfully
+INFO 2025-08-08 07:44:54,028 views Got cached data for TSLA, sweet!
+INFO 2025-08-08 07:45:05,897 views Got cached data for TSLA, sweet!

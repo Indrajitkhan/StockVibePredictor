@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 logger = logging.getLogger("apps.stockpredict")
 
 try:
-    with open(os.path.join(BASE_DIR, "stock_model.pkl"), "rb") as f:
+    with open(os.path.join(BASE_DIR, "Scripts", "stock_model.pkl"), "rb") as f:
         model = pickle.load(f)
     logger.info("Stock prediction model loaded successfully")
 except Exception as e:
