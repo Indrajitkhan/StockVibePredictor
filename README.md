@@ -41,122 +41,145 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 ## 📦 Project Architecture
 
 ```py
-/StockVibePredictor/              # INFO: Root directory
+/StockVibePredictor/                              # INFO: Root directory
 │
-│── /Backend/                    # INFO: Backend (Django)
-│   │── /StockVibePredictor/             # INFO: Main Django project folder
+│── /Backend/                                     # INFO: Backend (Django)
+│   │── /StockVibePredictor/                      # INFO: Main Django project folder
 │   │   │── __init__.py
-│   │   │── settings.py          # INFO: Django settings
-│   │   │── urls.py              # INFO: Main URL config
+│   │   │── settings.py                           # INFO: Django settings
+│   │   │── urls.py                               # INFO: Main URL config
 │   │   │── asgi.py
 │   │   │── wsgi.py
-│   │   │── middleware.py        # INFO: Custom middleware (optional)
-│   │   │── schema.graphql       # INFO: GraphQL Schema (if using GraphQL)
+│   │   │── middleware.py                         # INFO: Custom middleware (optional)
+│   │   │── schema.graphql                        # INFO: GraphQL Schema (if using GraphQL)
 |   |
-│   │── /Apps/                   # INFO: Custom Django apps (Modular)
-│   │   │── /Users/              # INFO: User management app
-│   │   │   │── migrations/      # INFO: Migrations for the app
+│   │── /Apps/                                    # INFO: Custom Django apps (Modular)
+│   │   │── /StockPredict/                        # INFO: Stock Prediction backend app
+│   │   │   │── migrations/                       # INFO: Migrations for the app
 │   │   │   │── __init__.py
-│   │   │   │── models.py        # INFO: User models
-│   │   │   │── views.py         # INFO: User views (API)
-│   │   │   │── serializers.py   # INFO: DRF Serializers
-│   │   │   │── urls.py          # INFO: App-specific URLs
-│   │   │   │── admin.py         # INFO: Django admin
-│   │   │   │── forms.py         # INFO: Django forms
-│   │   │   │── tests.py         # INFO: Unit tests
-│   │   │   │── permissions.py   # INFO: Custom permissions (DRF)
-│   │   │   │── tasks.py         # INFO: Celery tasks (if using)
-│   │   │   │── signals.py       # INFO: Django signals
+│   │   │   │── models.py                         # INFO: Stock models
+│   │   │   │── views.py                          # INFO: Stock views (API)
+│   │   │   │── serializers.py                    # INFO: DRF Serializers
+│   │   │   │── urls.py                           # INFO: App-specific URLs
+│   │   │   │── admin.py                          # INFO: Django admin
+│   │   │   │── forms.py                          # INFO: Django forms
+│   │   │   │── tests.py                          # INFO: Unit tests
+│   │   │   │── permissions.py                    # INFO: Custom permissions (DRF)
+│   │   │   │── tasks.py                          # INFO: Celery tasks (if using)
+│   │   │   │── signals.py                        # INFO: Django signals
 |   |   |
-│   │   │── /Store/              # INFO: Example app (e.g., eCommerce)
-│   │   │── /Blog/               # INFO: Blog module
+│   │   │── /Store/                               # INFO: Example apps
+│   │   │── /Blog/                                # INFO: Other Apps
 |   |
-│   │── /Templates/              # INFO: Global HTML templates (Jinja)
-│   │   │── base.html            # INFO: Base template
-│   │   │── index.html           # INFO: Homepage
+│   │── /Logs/
+│   │   │── /stockpredict.log/                    # INFO: Logs messages of Backend
 |   |
-│   │── /Static/                 # INFO: Global static files (CSS, JS)
+│   │── /Scripts/
+│   │   │── /TrainModel.py/                      # INFO: Python Model for ML training
+│   │   │── /stock_model.pkl/                    # INFO: Actual Model
+|   |
+│   │── /Templates/                               # INFO: Global HTML templates (Jinja)
+│   │   │── base.html                             # INFO: Base template
+│   │   │── index.html                            # INFO: Homepage
+|   |
+│   │── /Static/                                  # INFO: Global static files (CSS, JS)
 |   |   |
 │   │   │── /Css/
 │   │   │── /Js/
 │   │   │── /Images/
 |   |
-│   │── /Media/                  # INFO: Uploaded media files
+│   │── /Media/                                   # INFO: Uploaded media files
 |   |
-│   │── /Config/                 # INFO: Additional settings (optional)
-│   │   │── celery.py            # INFO: Celery config (if using)
-│   │   │── logging.py           # INFO: Logging settings
-│   │   │── permissions.py       # INFO: Global API permissions (if using DRF)
+│   │── /Config/                                  # INFO: Additional settings (optional)
+│   │   │── celery.py                             # INFO: Celery config (if using)
+│   │   │── logging.py                            # INFO: Logging settings
+│   │   │── permissions.py                        # INFO: Global API permissions (if using DRF)
 |   |
-│   │── /Utils/                  # INFO: Utility functions
+│   │── /Utils/                                   # INFO: Utility functions
 |   |
-│   │── /Scripts/                # INFO: Management scripts (e.g., backup, cronjobs)
-│   │   │── backup_db.py         # INFO: Script to backup database
-│   │   │── cron_jobs.py         # INFO: Automate scheduled tasks
+│   │── /Scripts/                                 # INFO: Management scripts (e.g., backup, cronjobs)
+│   │   │── backup_db.py                          # INFO: Script to backup database
+│   │   │── cron_jobs.py                          # INFO: Automate scheduled tasks
 |   |
-│   │── manage.py                 # INFO: Django CLI tool
-│   │── requirements.txt          # INFO: Python dependencies
-│   │── requirements-dev.txt      # INFO: Dev-only dependencies
-│   │── requirements-prod.txt     # INFO: Production-only dependencies
-│   │── Dockerfile                # INFO: Docker config (optional)
-│   │── docker-compose.yml        # INFO: Docker Compose (optional)
-│   │── .env                      # INFO: Environment variables
-│   │── .gitignore                # INFO: Git ignore file
+│   │── manage.py                                 # INFO: Django CLI tool
+│   │── package-lock.json                         # INFO: Dependency lock file
+│   │── package.json                              # INFO: Backend dependencies
+│   │── requirements.txt                          # INFO: Python dependencies
+│   │── requirements-dev.txt                      # INFO: Dev-only dependencies
+│   │── requirements-prod.txt                     # INFO: Production-only dependencies
+│   │── Dockerfile                                # INFO: Docker config (optional)
+│   │── docker-compose.yml                        # INFO: Docker Compose (optional)
+│   │── .env                                      # INFO: Environment variables
 │
-│── /Frontend/                    # INFO: Frontend (React, Vue, etc.)
-│   │── /Src/                     # INFO: Source code
-│   │   │── /Components/          # INFO: Reusable UI components
-│   │   │── /Pages/               # INFO: Page components
-│   │   │── /Services/            # INFO: API service handlers
-│   │   │── /Redux/               # INFO: Redux store (if using Redux)
-│   │   │── app.js                # INFO: Main app component
-│   │   │── index.js              # INFO: Entry point
-│   │   │── hooks.js              # INFO: Custom React hooks
+│── /Frontend/                                    # INFO: Frontend (React, Vue, etc.)
+│   │── /Src/                                     # INFO: Source code
+│   │   │── /App1/                                # INFO: Dashboard App
+|   |   |   |-- /public/
+|   |   |   |-- /src/
+|   |   |   |   |-- Components
+|   |   |   |   |   |-- Other components          # INFO: Like CSS and JS files
+|   |   |   |   |
+|   |   |   |   |-- Tests
+|   |   |   |   |   |-- App.test.js               # INFO: Test Files
+|   |   |   |
+|   |   |   |-- package.lock.json
+|   |   |   |-- package.json
+|   |   |   |-- README.md
+|   |   |
+│   │   │── /Components/                          # INFO: Reusable UI components
+│   │   │── /Pages/                               # INFO: Page components
+│   │   │── /Services/                            # INFO: API service handlers
+│   │   │── /Redux/                               # INFO: Redux store (if using Redux)
+│   │   │── app.css                               # INFO: Main app styles
+│   │   │── app.js                                # INFO: Main app component
+│   │   │── index.js                              # INFO: Entry point
+│   │   │── index.css                             # INFO: Entry styles
+│   │   │── hooks.js                              # INFO: Custom React hooks
 |   |
-│   │── /Public/                  # INFO: Public assets
-│   │── package.json              # INFO: Frontend dependencies
-│   │── package-lock.json         # INFO: Dependency lock file
-│   │── webpack.config.js         # INFO: Webpack config (if using)
-│   │── vite.config.js            # INFO: Vite config (if using)
+│   │── /Public/                                  # INFO: Public assets
+│   │── package.json                              # INFO: Frontend dependencies
+│   │── package-lock.json                         # INFO: Dependency lock file
+│   │── webpack.config.js                         # INFO: Webpack config (if using)
+│   │── vite.config.js                            # INFO: Vite config (if using)
 │
-│── /Tests/                       # INFO: Global test directory
-│   │── /Unit/                    # INFO: Unit tests
-│   │── /Integration/             # INFO: Integration tests
-│   │── /e2e/                     # INFO: End-to-end tests
+│── /Tests/                                       # INFO: Global test directory
+│   │── /Unit/                                    # INFO: Unit tests
+│   │── /Integration/                             # INFO: Integration tests
+│   │── /e2e/                                     # INFO: End-to-end tests
 │
-│── /Docs/                        # INFO: Documentation
-│   │── API.md                    # INFO: API Docs
-│   │── README.md                  # INFO: Project documentation
-│   │── CHANGELOG.md               # INFO: Changelog (if needed)
-│   │── architecture.md            # INFO: Architecture documentation
+│── /Docs/                                        # INFO: Documentation
+│   │── API.md                                    # INFO: API Docs
+│   │── README.md                                 # INFO: Project documentation
+│   │── CHANGELOG.md                              # INFO: Changelog (if needed)
+│   │── architecture.md                           # INFO: Architecture documentation
 │
-│── /Deployment/                   # INFO: Deployment configs
-│   │── nginx.conf                 # INFO: Nginx reverse proxy settings
-│   │── gunicorn.conf.py           # INFO: Gunicorn settings
-│   │── supervisor.conf            # INFO: Process manager config
-│   │── aws_deploy.sh              # INFO: AWS Deployment script
+│── /Deployment/                                  # INFO: Deployment configs
+│   │── nginx.conf                                # INFO: Nginx reverse proxy settings
+│   │── gunicorn.conf.py                          # INFO: Gunicorn settings
+│   │── supervisor.conf                           # INFO: Process manager config
+│   │── aws_deploy.sh                             # INFO: AWS Deployment script
 │
-│── /Security/                     # INFO: Security-related files
-│   │── .htaccess                  # INFO: Apache security config (if needed)
-│   │── security.txt               # INFO: Security policies
+│── /Security/                                    # INFO: Security-related files
+│   │── .htaccess                                 # INFO: Apache security config (if needed)
+│   │── security.txt                              # INFO: Security policies
 │
-│── /ci-cd/                        # INFO: CI/CD Pipeline setup
-│   │── .github/                   # INFO: GitHub Actions workflows
-│   │── .gitlab-ci.yml             # INFO: GitLab CI/CD config (if using GitLab)
-│   │── jenkinsfile                # INFO: Jenkins config (if using Jenkins)
-│   │── docker-hub.yml             # INFO: Docker Hub auto-builds
+│── /ci-cd/                                       # INFO: CI/CD Pipeline setup
+│   │── .github/                                  # INFO: GitHub Actions workflows
+│   │── .gitlab-ci.yml                            # INFO: GitLab CI/CD config (if using GitLab)
+│   │── jenkinsfile                               # INFO: Jenkins config (if using Jenkins)
+│   │── docker-hub.yml                            # INFO: Docker Hub auto-builds
 │
-│── README.md                      # INFO: Project documentation
-│── LICENSE                         # INFO: License file (if needed)
-│── .pre-commit-config.yaml         # INFO: Pre-commit hooks config
-│── .editorconfig                   # INFO: Code formatting rules
-│── .flake8                         # INFO: Python linting config
-│── .pylintrc                       # INFO: Pylint config
-│── .babelrc                        # INFO: Babel config (if using Babel)
-│── .eslintrc.json                  # INFO: ESLint config (for frontend)
-│── .stylelintrc                    # INFO: Stylelint config (for frontend)
-│── .gitignore                      # INFO: Git ignore file
-│── .dockerignore                   # INFO: Docker ignore file
+│── README.md                                     # INFO: Project documentation
+│── LICENSE                                       # INFO: License file (if needed)
+│── .pre-commit-config.yaml                       # INFO: Pre-commit hooks config
+│── .editorconfig                                 # INFO: Code formatting rules
+│── .flake8                                       # INFO: Python linting config
+│── .pylintrc                                     # INFO: Pylint config
+│── .babelrc                                      # INFO: Babel config (if using Babel)
+│── .eslintrc.json                                # INFO: ESLint config (for frontend)
+│── .stylelintrc                                  # INFO: Stylelint config (for frontend)
+│── .gitignore                                    # INFO: Git ignore file
+│── .dockerignore                                 # INFO: Docker ignore file
 ```
 
 ---
