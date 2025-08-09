@@ -1,65 +1,368 @@
-# Python/Django
-**/__pycache__/
+# Byte-compiled / optimized / DLL files
 __pycache__/
+**/__pycache__/
 *.py[cod]
+*$py.class
 *.pyc
 *.pyo
 *.pyd
 .Python
-venv/
-env/
-*.env
-*.env.*
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.whl
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+# *.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*.db
+*.sqlite
+*.sqlite3
 .env
 .env.*
-*.db
-*.sqlite3
-migrations/
-stock_model.pkl
+*.env
+*.env.*
 
-# Node.js/React
+# Django migrations (uncomment if you want to ignore them)
+# */migrations/*
+# !*/migrations/__init__.py
+
+# Django static files (if collected)
+staticfiles/
+static_root/
+media_root/
+media/
+
+# Django secret key
+.secret_key
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+Pipfile.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+poetry.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/#use-with-ide
+.pdm.toml
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Snyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Node.js/React/Frontend
 **/node_modules/
 Frontend/node_modules/
+frontend/node_modules/
+client/node_modules/
+static/node_modules/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Frontend build outputs
 Frontend/build/
-Frontend/.cache/
 Frontend/dist/
+frontend/build/
+frontend/dist/
+client/build/
+client/dist/
+static/build/
+static/dist/
+build/
+dist/
+
+# Frontend cache and temporary files
+Frontend/.cache/
+frontend/.cache/
+client/.cache/
+.cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+
+# Package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # IDE and Editor Files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.project
+.metadata
+.settings/
 *.sublime-project
 *.sublime-workspace
-*.swp
-*~
+*.komodoproject
+.komodotools
+.brackets.json
 
 # OS Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Thumbs.db:encryptable
+desktop.ini
+$RECYCLE.BIN/
 
-# Build and Dependency Files
-pip-wheel-metadata/
-*.egg-info/
-dist/
-build/
-*.egg
-*.whl
+# Redis
+*.rdb
+dump.rdb
+appendonly.aof
 
-# Testing and Coverage
-.coverage
-coverage.xml
-*.cover
-*.pytest_cache/
-htmlcov/
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.s3db
+*.sl3
+db.json
 
-# Misc
+# Log files
+# *.log
+# *.log.*
+# logs/
+# log/
+
+# Backup files
 *.bak
 *.backup
 *.tmp
+*.temp
+*~
+.#*
+#*#
+
+# Temporary directories
 temp/
 tmp/
+.tmp/
+.temp/
 
-# Project-specific
+# Cache directories
+.cache/
+cache/
+.sass-cache/
+
+# Machine Learning / AI models
 *.pkl
+*.pickle
 *.h5
+*.hdf5
+*.pt
+*.pth
+*.ckpt
+*.model
 *.cbm
 *.tflite
+*.pb
+*.onnx
+models/
+checkpoints/
+
+# Jupyter Notebooks (if you want to ignore them)
+# *.ipynb
+
+# Configuration files with sensitive data
+config.ini
+settings.ini
+secrets.json
+credentials.json
+
+# Docker
+.dockerignore
+Dockerfile.prod
+docker-compose.override.yml
+
+# Monitoring and profiling
+.prof
+*.prof
+
+# Local development files
+local/
+.local/
+dev/
+development/
+
+# Webpack
+.webpack/
+
+# ESLint
+.eslintcache
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Project-specific ignores
+stock_model.pkl
+migrations/
+
+# Uncomment the line below if you want to track migration files
+# !*/migrations/__init__.py
