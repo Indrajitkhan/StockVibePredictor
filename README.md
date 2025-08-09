@@ -280,7 +280,7 @@ python TrainModel.py
 
 ---
 
-## Usage
+## ML Usage :
 
 Access the Application: Navigate to http://localhost:3000 <br />
 Enter Stock Symbol: Input a valid ticker symbol (e.g., AAPL, TSLA, GOOGL) <br />
@@ -303,7 +303,7 @@ venv/ : Python virtual environment for Django and ML dependencies.
 
 ### Recreate :
 
-```
+```bash
 python -m venv venv
 source venv/bin/activate                # Mac/Linux
 venv\Scripts\activate                   # Windows
