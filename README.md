@@ -510,10 +510,8 @@ Team Task: Assign one member to handle deployment and test the live app. <br />
 
 - Add confidence scoring for predictions.
 - Implement portfolio tracking.
-- Support for cryptocurrency analysis.
 - Advanced technical indicators (MACD, Bollinger Bands).
 - User authentication and personalized dashboards.
-- Mobile application.
 - Real-time WebSocket updates.
 
   ***
