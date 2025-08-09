@@ -41,160 +41,144 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 ## 📦 Project Architecture
 
 ```py
-/StockVibePredictor/                              # INFO: Root directory
+/StockVibePredictor/
 │
-│── /Backend/                                     # INFO: Backend (Django)
-│   │── /StockVibePredictor/                      # INFO: Main Django project folder
+│── /Backend/
+│   │── /StockVibePredictor/
 │   │   │── __init__.py
-│   │   │── settings.py                           # INFO: Django settings
-│   │   │── urls.py                               # INFO: Main URL config
+│   │   │── settings.py
+│   │   │── urls.py
 │   │   │── asgi.py
 │   │   │── wsgi.py
-│   │   │── middleware.py                         # INFO: Custom middleware (optional)
-│   │   │── schema.graphql                        # INFO: GraphQL Schema (if using GraphQL)
+│   │   │── middleware.py
+│   │   │── schema.graphql
 |   |
-│   │── /Apps/                                    # INFO: Custom Django apps (Modular)
-│   │   │── /StockPredict/                        # INFO: Stock Prediction backend app
-│   │   │   │── migrations/                       # INFO: Migrations for the app
+│   │── /Apps/
+│   │   │── /StockPredict/
+│   │   │   │── migrations/
 │   │   │   │── __init__.py
-│   │   │   │── models.py                         # INFO: Stock models
-│   │   │   │── views.py                          # INFO: Stock views (API)
-│   │   │   │── serializers.py                    # INFO: DRF Serializers
-│   │   │   │── urls.py                           # INFO: App-specific URLs
-│   │   │   │── admin.py                          # INFO: Django admin
-│   │   │   │── forms.py                          # INFO: Django forms
-│   │   │   │── tests.py                          # INFO: Unit tests
-│   │   │   │── permissions.py                    # INFO: Custom permissions (DRF)
-│   │   │   │── tasks.py                          # INFO: Celery tasks (if using)
-│   │   │   │── signals.py                        # INFO: Django signals
+│   │   │   │── models.py
+│   │   │   │── views.py
+│   │   │   │── serializers.py
+│   │   │   │── urls.py
+│   │   │   │── admin.py
+│   │   │   │── forms.py
+│   │   │   │── tests.py
+│   │   │   │── permissions.py
+│   │   │   │── tasks.py
+│   │   │   │── signals.py
 |   |   |
-│   │   │── /Store/                               # INFO: Example apps
-│   │   │── /Blog/                                # INFO: Other Apps
+│   │   │── /Store/
+│   │   │── /Blog/
 |   |
 │   │── /Logs/
-│   │   │── /stockpredict.log/                    # INFO: Logs messages of Backend
+│   │   │── /stockpredict.log/
 |   |
 │   │── /Scripts/
-│   │   │── /TrainModel.py/                      # INFO: Python Model for ML training
-│   │   │── /stock_model.pkl/                    # INFO: Actual Model
+│   │   │── /TrainModel.py/
+│   │   │── /stock_model.pkl/
 |   |
-│   │── /Templates/                               # INFO: Global HTML templates (Jinja)
-│   │   │── base.html                             # INFO: Base template
-│   │   │── index.html                            # INFO: Homepage
+│   │── /Templates/
+│   │   │── base.html
+│   │   │── index.html
 |   |
-│   │── /Static/                                  # INFO: Global static files (CSS, JS)
+│   │── /Static/
 |   |   |
 │   │   │── /Css/
 │   │   │── /Js/
 │   │   │── /Images/
 |   |
-│   │── /Media/                                   # INFO: Uploaded media files
+│   │── /Media/
 |   |
-│   │── /Config/                                  # INFO: Additional settings (optional)
-│   │   │── celery.py                             # INFO: Celery config (if using)
-│   │   │── logging.py                            # INFO: Logging settings
-│   │   │── permissions.py                        # INFO: Global API permissions (if using DRF)
+│   │── /Config/
+│   │   │── celery.py
+│   │   │── logging.py
+│   │   │── permissions.py
 |   |
-│   │── /Utils/                                   # INFO: Utility functions
+│   │── /Utils/
 |   |
-│   │── /Scripts/                                 # INFO: Management scripts (e.g., backup, cronjobs)
-│   │   │── backup_db.py                          # INFO: Script to backup database
-│   │   │── cron_jobs.py                          # INFO: Automate scheduled tasks
+│   │── /Scripts/
+│   │   │── backup_db.py
+│   │   │── cron_jobs.py
 |   |
-│   │── manage.py                                 # INFO: Django CLI tool
-│   │── package-lock.json                         # INFO: Dependency lock file
-│   │── package.json                              # INFO: Backend dependencies
-│   │── requirements.txt                          # INFO: Python dependencies
-│   │── requirements-dev.txt                      # INFO: Dev-only dependencies
-│   │── requirements-prod.txt                     # INFO: Production-only dependencies
-│   │── Dockerfile                                # INFO: Docker config (optional)
-│   │── docker-compose.yml                        # INFO: Docker Compose (optional)
-│   │── .env                                      # INFO: Environment variables
+│   │── manage.py
+│   │── package-lock.json
+│   │── package.json
+│   │── requirements.txt
+│   │── requirements-dev.txt
+│   │── requirements-prod.txt
+│   │── Dockerfile
+│   │── docker-compose.yml
+│   │── .env
 │
-│── /Frontend/                                    # INFO: Frontend (React, Vue, etc.)
+│── /Frontend/
 |   |
-│   │── /Apps/                                    # INFO: Apps Folder
+│   │── /Apps/
 |   |   |
-│   │   │── /Dashboard/                           # INFO: Dashboard App
+│   │   │── /Dashboard/
 |   |   |   |
 |   |   |   |-- package.lock.json
 |   |   |   |-- package.json
 |   |   |   |-- README.md
-|   |   |
-|   |   |
-|   |-- /Components/
-|   |   |
-|   |   |-- LoadingSpinner.css
-|   |   |-- LoadingSpinner.js
-|   |   |-- logo.svg
-|   |   |-- PredictionResult.css
-|   |   |-- PredictionResult.js
-|   |   |-- reportWebVitals.js
-|   |   |-- setupTests.js
-|   |   |-- StockChart.css
-|   |   |-- StockChart.js
-|   |   |-- StockInput.css
-|   |   |-- StockInput.js
 |   |
 |   |-- /Public/
-|   |   |
 |   |   |-- favicon.ico
 |   |   |-- index.html
-|   |   |-- logo192.png
-|   |   |-- logo152.png
-|   |   |-- manifest.json
-|   |   |-- robots.txt
+|   |   |-- other essentials ...
 |   |
 |   |-- /Src/
+|   |   |-- /Components/
+|   |   |   |-- logo.svg
+|   |   |   |-- Other essential components ...
 |   |   |
 |   |   |-- App.css
 |   |   |-- App.js
 |   |   |-- index.css
 |   |   |-- index.js
 |   |
-│   │── package.json                              # INFO: Frontend dependencies
-│   │── package-lock.json                         # INFO: Dependency lock file
-│   │── webpack.config.js                         # INFO: Webpack config (if using)
-│   │── vite.config.js                            # INFO: Vite config (if using)
+│   │── package.json
+│   │── package-lock.json
+│   │── webpack.config.js
+│   │── vite.config.js
 │
-│── /Tests/                                       # INFO: Global test directory
-│   │── /Unit/                                    # INFO: Unit tests
-│   │── /Integration/                             # INFO: Integration tests
-│   │── /e2e/                                     # INFO: End-to-end tests
+│── /Tests/
+│   │── /Unit/
+│   │── /Integration/
+│   │── /e2e/
 │
-│── /Docs/                                        # INFO: Documentation
-│   │── API.md                                    # INFO: API Docs
-│   │── README.md                                 # INFO: Project documentation
-│   │── CHANGELOG.md                              # INFO: Changelog (if needed)
-│   │── architecture.md                           # INFO: Architecture documentation
+│── /Docs/
+│   │── API.md
+│   │── README.md
+│   │── CHANGELOG.md
+│   │── architecture.md
 │
-│── /Deployment/                                  # INFO: Deployment configs
-│   │── nginx.conf                                # INFO: Nginx reverse proxy settings
-│   │── gunicorn.conf.py                          # INFO: Gunicorn settings
-│   │── supervisor.conf                           # INFO: Process manager config
-│   │── aws_deploy.sh                             # INFO: AWS Deployment script
+│── /Deployment/
+│   │── nginx.conf
+│   │── gunicorn.conf.py
+│   │── supervisor.conf
+│   │── aws_deploy.sh
 │
-│── /Security/                                    # INFO: Security-related files
-│   │── .htaccess                                 # INFO: Apache security config (if needed)
-│   │── security.txt                              # INFO: Security policies
+│── /Security/
+│   │── .htaccess
+│   │── security.txt
 │
-│── /ci-cd/                                       # INFO: CI/CD Pipeline setup
-│   │── .github/                                  # INFO: GitHub Actions workflows
-│   │── .gitlab-ci.yml                            # INFO: GitLab CI/CD config (if using GitLab)
-│   │── jenkinsfile                               # INFO: Jenkins config (if using Jenkins)
-│   │── docker-hub.yml                            # INFO: Docker Hub auto-builds
+│── /ci-cd/
+│   │── .github/
+│   │── .gitlab-ci.yml
+│   │── jenkinsfile
+│   │── docker-hub.yml
 │
-│── README.md                                     # INFO: Project documentation
-│── LICENSE                                       # INFO: License file (if needed)
-│── .pre-commit-config.yaml                       # INFO: Pre-commit hooks config
-│── .editorconfig                                 # INFO: Code formatting rules
-│── .flake8                                       # INFO: Python linting config
-│── .pylintrc                                     # INFO: Pylint config
-│── .babelrc                                      # INFO: Babel config (if using Babel)
-│── .eslintrc.json                                # INFO: ESLint config (for frontend)
-│── .stylelintrc                                  # INFO: Stylelint config (for frontend)
-│── .gitignore                                    # INFO: Git ignore file
-│── .dockerignore                                 # INFO: Docker ignore file
+│── README.md
+│── LICENSE
+│── .pre-commit-config.yaml
+│── .editorconfig
+│── .flake8
+│── .pylintrc
+│── .babelrc
+│── .eslintrc.json
+│── .stylelintrc
+│── .gitignore
+│── .dockerignore
 ```
 
 ---
@@ -282,8 +266,6 @@ python manage.py runserver
 
 ```bash
 cd Frontend
-cd Src
-cd dashboard
 ```
 
 #### Install node dependencies :
