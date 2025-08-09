@@ -40,7 +40,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ## 📦 Project Architecture
 
-```json
+```py
 /StockVibePredictor/              # INFO: Root directory
 │
 │── /Backend/                    # INFO: Backend (Django)
@@ -326,7 +326,7 @@ stock_model.pkl: The trained ML model for stock predictions.
 Recreate:
 
 ```bash
-python train_model.py
+python TrainModel.py
 ```
 
 Runs the training script to generate the Random Forest model and moves it to the Django folder.
