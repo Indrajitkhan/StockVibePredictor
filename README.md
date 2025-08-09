@@ -112,31 +112,46 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 │   │── .env                                      # INFO: Environment variables
 │
 │── /Frontend/                                    # INFO: Frontend (React, Vue, etc.)
-│   │── /Src/                                     # INFO: Source code
-│   │   │── /App1/                                # INFO: Dashboard App
-|   |   |   |-- /public/
-|   |   |   |-- /src/
-|   |   |   |   |-- Components
-|   |   |   |   |   |-- Other components          # INFO: Like CSS and JS files
-|   |   |   |   |
-|   |   |   |   |-- Tests
-|   |   |   |   |   |-- App.test.js               # INFO: Test Files
+|   |
+│   │── /Apps/                                    # INFO: Apps Folder
+|   |   |
+│   │   │── /Dashboard/                           # INFO: Dashboard App
 |   |   |   |
 |   |   |   |-- package.lock.json
 |   |   |   |-- package.json
 |   |   |   |-- README.md
 |   |   |
-│   │   │── /Components/                          # INFO: Reusable UI components
-│   │   │── /Pages/                               # INFO: Page components
-│   │   │── /Services/                            # INFO: API service handlers
-│   │   │── /Redux/                               # INFO: Redux store (if using Redux)
-│   │   │── app.css                               # INFO: Main app styles
-│   │   │── app.js                                # INFO: Main app component
-│   │   │── index.js                              # INFO: Entry point
-│   │   │── index.css                             # INFO: Entry styles
-│   │   │── hooks.js                              # INFO: Custom React hooks
+|   |   |
+|   |-- /Components/
+|   |   |
+|   |   |-- LoadingSpinner.css
+|   |   |-- LoadingSpinner.js
+|   |   |-- logo.svg
+|   |   |-- PredictionResult.css
+|   |   |-- PredictionResult.js
+|   |   |-- reportWebVitals.js
+|   |   |-- setupTests.js
+|   |   |-- StockChart.css
+|   |   |-- StockChart.js
+|   |   |-- StockInput.css
+|   |   |-- StockInput.js
 |   |
-│   │── /Public/                                  # INFO: Public assets
+|   |-- /Public/
+|   |   |
+|   |   |-- favicon.ico
+|   |   |-- index.html
+|   |   |-- logo192.png
+|   |   |-- logo152.png
+|   |   |-- manifest.json
+|   |   |-- robots.txt
+|   |
+|   |-- /Src/
+|   |   |
+|   |   |-- App.css
+|   |   |-- App.js
+|   |   |-- index.css
+|   |   |-- index.js
+|   |
 │   │── package.json                              # INFO: Frontend dependencies
 │   │── package-lock.json                         # INFO: Dependency lock file
 │   │── webpack.config.js                         # INFO: Webpack config (if using)

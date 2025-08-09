@@ -38,7 +38,7 @@ function App() {
       console.error("Error fetching stock data, yo:", err);
       setError(
         err.response?.data?.error ||
-          "Sh*t broke, fam! Check if the backend’s running. 🛠️"
+          "Sh*t broke, fam! Check if the backend's running. 🛠️"
       );
       setStockData(null);
       setPrediction(null);
