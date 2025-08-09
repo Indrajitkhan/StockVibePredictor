@@ -116,3 +116,22 @@ INFO 2025-08-08 19:09:30,576 views Fetched 251 rows for AAPL
 INFO 2025-08-08 19:09:30,586 views Cached stock data for AAPL, good to go
 INFO 2025-08-08 19:09:30,586 views Data rows for AAPL: 251
 INFO 2025-08-08 19:09:30,614 views Prediction for AAPL: UP, Confidence: 0.5196967496979958
+INFO 2025-08-09 10:48:32,725 Fetching data for AAPL
+INFO 2025-08-09 10:48:34,675 Cross-validation scores: [0.50515464 0.37113402 0.47916667 0.5        0.51041667]
+INFO 2025-08-09 10:48:34,676 Mean CV accuracy: 47.32%
+INFO 2025-08-09 10:48:34,680 Test accuracy: 50.52%
+INFO 2025-08-09 10:48:34,686 Model saved as stock_model.pkl
+INFO 2025-08-09 05:19:08,903 views Stock prediction model loaded successfully
+INFO 2025-08-09 05:19:08,903 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-09 05:19:37,477 views Stock prediction model loaded successfully
+INFO 2025-08-09 05:19:37,477 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-09 05:20:42,629 views Fetching stock data for AAPL
+INFO 2025-08-09 05:20:43,873 views Fetched 250 rows for AAPL
+INFO 2025-08-09 05:20:43,879 views Cached stock data for AAPL, good to go
+INFO 2025-08-09 05:20:43,879 views Data rows for AAPL: 250
+INFO 2025-08-09 05:20:43,898 views Prediction for AAPL: UP, Confidence: 0.6133690476190476
+INFO 2025-08-09 05:22:22,023 views Fetching stock data for GOOGL
+INFO 2025-08-09 05:22:22,482 views Fetched 250 rows for GOOGL
+INFO 2025-08-09 05:22:22,486 views Cached stock data for GOOGL, good to go
+INFO 2025-08-09 05:22:22,486 views Data rows for GOOGL: 250
+INFO 2025-08-09 05:22:22,509 views Prediction for GOOGL: UP, Confidence: 0.5421609631665579
