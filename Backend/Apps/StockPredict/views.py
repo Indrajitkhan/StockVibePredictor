@@ -157,7 +157,6 @@ def predict_stock_trend(request):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-    # Fix column names early
     try:
         if isinstance(data.columns, pd.MultiIndex):
             data.columns = [col[0] for col in data.columns]
@@ -178,7 +177,6 @@ def predict_stock_trend(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    # Compute technical indicators
     try:
         logger.info(f"Data rows for {ticker}: {len(data)}")
         if data.empty or len(data) < 50:
@@ -218,7 +216,6 @@ def predict_stock_trend(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    # Prepare features for ML model
     try:
         latest_features = pd.DataFrame(
             {
@@ -278,7 +275,6 @@ def predict_stock_trend(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    # Prepare response data
     try:
         data["Date"] = data.index.strftime("%Y-%m-%d")
         data = data.reset_index(drop=True)
@@ -301,7 +297,6 @@ def predict_stock_trend(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    # Features for PredictionResult.js
     features = {
         "rsi": latest_features["RSI"].iloc[0],
         "macd": latest_features["MACD"].iloc[0],
