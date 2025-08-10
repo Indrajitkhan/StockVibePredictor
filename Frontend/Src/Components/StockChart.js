@@ -5,12 +5,14 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
   Filler,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import zoomPlugin from "chartjs-plugin-zoom";
+import { Line, Bar } from "react-chartjs-2";
 import "./StockChart.css";
 
 ChartJS.register(
@@ -18,57 +20,64 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  zoomPlugin
 );
 
 const StockChart = ({ data, ticker }) => {
-  const chartRef = useRef(null);
+  const priceChartRef = useRef(null);
+  const volumeChartRef = useRef(null);
 
-  const prepareChartData = () => {
+  const preparePriceData = () => {
     if (!data || data.length === 0) {
-      return {
-        labels: [],
-        datasets: [],
-      };
+      return { labels: [], datasets: [] };
     }
 
     return {
       labels: data.map((record) => record.Date),
       datasets: [
         {
-          label: `${ticker} Close Price`,
+          label: `${ticker} Price`,
           data: data.map((record) => record.Close),
-          borderColor: "#00ff88",
-          backgroundColor: "rgba(0, 255, 136, 0.1)",
-          borderWidth: 3,
+          borderColor: "#22c55e",
+          backgroundColor: "rgba(34, 197, 94, 0.05)",
+          borderWidth: 2,
           fill: true,
-          tension: 0.4,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          pointBackgroundColor: "#00ff88",
+          tension: 0.1,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointBackgroundColor: "#22c55e",
           pointBorderColor: "#ffffff",
           pointBorderWidth: 2,
-        },
-        {
-          label: "Volume",
-          data: data.map((record) => record.Volume),
-          borderColor: "#ef4444",
-          backgroundColor: "rgba(239, 68, 68, 0.1)",
-          borderWidth: 2,
-          fill: false,
-          tension: 0.2,
-          yAxisID: "y1",
-          pointRadius: 2,
-          pointHoverRadius: 4,
         },
       ],
     };
   };
 
-  const chartOptions = {
+  const prepareVolumeData = () => {
+    if (!data || data.length === 0) {
+      return { labels: [], datasets: [] };
+    }
+
+    return {
+      labels: data.map((record) => record.Date),
+      datasets: [
+        {
+          label: "Volume",
+          data: data.map((record) => record.Volume),
+          backgroundColor: "#ef4444",
+          borderColor: "#dc2626",
+          borderWidth: 1,
+        },
+      ],
+    };
+  };
+
+  const priceChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     interaction: {
@@ -80,39 +89,63 @@ const StockChart = ({ data, ticker }) => {
         position: "top",
         labels: {
           usePointStyle: true,
-          padding: 20,
+          padding: 15,
           font: {
             size: 12,
-            weight: "bold",
+            weight: "600",
           },
         },
       },
       title: {
         display: true,
-        text: `${ticker} - Historical Price Chart 📊`,
+        text: `${ticker} - Price Chart 📈`,
         font: {
-          size: 18,
+          size: 16,
           weight: "bold",
         },
-        padding: 20,
+        padding: 15,
+        color: "#1f2937",
       },
       tooltip: {
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(17, 24, 39, 0.95)",
         titleColor: "#ffffff",
         bodyColor: "#ffffff",
-        borderColor: "#00ff88",
+        borderColor: "#22c55e",
         borderWidth: 1,
         cornerRadius: 8,
         displayColors: true,
         callbacks: {
           label: (context) => {
             const value = context.parsed.y;
-            if (context.datasetIndex === 0) {
-              return `Price: $${value.toFixed(2)}`;
-            } else {
-              return `Volume: ${(value / 1000000).toFixed(2)}M`;
-            }
+            return `Price: $${value.toFixed(2)}`;
           },
+        },
+      },
+      zoom: {
+        wheel: {
+          enabled: true,
+          speed: 0.1,
+          modifierKey: null,
+        },
+        pinch: {
+          enabled: true,
+        },
+        mode: "x",
+        limits: {
+          x: {min: 'original', max: 'original'},
+        },
+        onZoom: (chart) => {
+          // Prevent page zoom when zooming chart
+          chart.canvas.style.touchAction = 'none';
+        },
+      },
+      pan: {
+        enabled: true,
+        mode: "x",
+        threshold: 10,
+        onPan: (chart) => {
+          // Prevent page pan when panning chart
+          chart.canvas.style.touchAction = 'none';
         },
       },
     },
@@ -123,53 +156,167 @@ const StockChart = ({ data, ticker }) => {
           display: true,
           text: "Date",
           font: {
-            weight: "bold",
+            weight: "600",
+            size: 12,
           },
+          color: "#4b5563",
         },
         grid: {
           display: true,
-          color: "rgba(0, 0, 0, 0.1)",
+          color: "rgba(107, 114, 128, 0.2)",
         },
         ticks: {
-          maxTicksLimit: 10,
+          maxTicksLimit: 8,
+          color: "#6b7280",
+          font: {
+            size: 11,
+          },
         },
       },
       y: {
-        type: "linear",
         display: true,
-        position: "left",
         title: {
           display: true,
           text: "Price ($)",
           font: {
-            weight: "bold",
+            weight: "600",
+            size: 12,
           },
+          color: "#4b5563",
         },
         grid: {
           display: true,
-          color: "rgba(0, 0, 0, 0.1)",
+          color: "rgba(107, 114, 128, 0.2)",
         },
         ticks: {
+          color: "#6b7280",
+          font: {
+            size: 11,
+          },
           callback: function (value) {
             return "$" + value.toFixed(2);
           },
         },
       },
-      y1: {
-        type: "linear",
+    },
+  };
+
+  const volumeChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
+    plugins: {
+      legend: {
+        position: "top",
+        labels: {
+          usePointStyle: true,
+          padding: 15,
+          font: {
+            size: 12,
+            weight: "600",
+          },
+        },
+      },
+      title: {
         display: true,
-        position: "right",
+        text: `${ticker} - Volume Chart 📊`,
+        font: {
+          size: 16,
+          weight: "bold",
+        },
+        padding: 15,
+        color: "#1f2937",
+      },
+      tooltip: {
+        backgroundColor: "rgba(17, 24, 39, 0.95)",
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
+        borderColor: "#ef4444",
+        borderWidth: 1,
+        cornerRadius: 8,
+        displayColors: true,
+        callbacks: {
+          label: (context) => {
+            const value = context.parsed.y;
+            return `Volume: ${(value / 1000000).toFixed(2)}M`;
+          },
+        },
+      },
+      zoom: {
+        wheel: {
+          enabled: true,
+          speed: 0.1,
+          modifierKey: null,
+        },
+        pinch: {
+          enabled: true,
+        },
+        mode: "x",
+        limits: {
+          x: {min: 'original', max: 'original'},
+        },
+        onZoom: (chart) => {
+          // Prevent page zoom when zooming chart
+          chart.canvas.style.touchAction = 'none';
+        },
+      },
+      pan: {
+        enabled: true,
+        mode: "x",
+        threshold: 10,
+        onPan: (chart) => {
+          // Prevent page pan when panning chart
+          chart.canvas.style.touchAction = 'none';
+        },
+      },
+    },
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: "Date",
+          font: {
+            weight: "600",
+            size: 12,
+          },
+          color: "#4b5563",
+        },
+        grid: {
+          display: true,
+          color: "rgba(107, 114, 128, 0.2)",
+        },
+        ticks: {
+          maxTicksLimit: 8,
+          color: "#6b7280",
+          font: {
+            size: 11,
+          },
+        },
+      },
+      y: {
+        display: true,
         title: {
           display: true,
           text: "Volume",
           font: {
-            weight: "bold",
+            weight: "600",
+            size: 12,
           },
+          color: "#4b5563",
         },
         grid: {
-          drawOnChartArea: false,
+          display: true,
+          color: "rgba(107, 114, 128, 0.2)",
         },
         ticks: {
+          color: "#6b7280",
+          font: {
+            size: 11,
+          },
           callback: function (value) {
             return (value / 1000000).toFixed(1) + "M";
           },
@@ -218,7 +365,7 @@ const StockChart = ({ data, ticker }) => {
             >
               <span className="stat-label">Change</span>
               <span className="stat-value">
-                {stats.change >= 0 ? "+" : ""}${stats.change.toFixed(2)}(
+                {stats.change >= 0 ? "+" : ""}${stats.change.toFixed(2)} (
                 {stats.change >= 0 ? "+" : ""}
                 {stats.changePercent.toFixed(2)}%)
               </span>
@@ -233,17 +380,25 @@ const StockChart = ({ data, ticker }) => {
             </div>
           </div>
         )}
+
       </div>
 
-      <div className="chart-wrapper">
-        <Line ref={chartRef} data={prepareChartData()} options={chartOptions} />
+      <div className="charts-grid">
+        <div className="chart-wrapper price-chart">
+          <Line ref={priceChartRef} data={preparePriceData()} options={priceChartOptions} />
+        </div>
+
+        <div className="chart-wrapper volume-chart">
+          <Bar ref={volumeChartRef} data={prepareVolumeData()} options={volumeChartOptions} />
+        </div>
       </div>
 
       <div className="chart-info">
         <p>
-          📊 This chart shows historical stock price data used for prediction
-          analysis. The AI model analyzes patterns, trends, and technical
-          indicators from this data.
+          📊 Professional charts showing separate price and volume analysis. The AI model analyzes patterns, trends, and technical indicators from this historical data.
+        </p>
+        <p className="zoom-instructions">
+          🖱️ <strong>Zoom:</strong> Use mouse wheel to zoom in/out on charts | <strong>Pan:</strong> Click and drag to move around
         </p>
       </div>
     </div>

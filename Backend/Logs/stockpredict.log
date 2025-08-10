@@ -137,3 +137,180 @@ INFO 2025-08-09 05:22:22,486 views Data rows for GOOGL: 250
 INFO 2025-08-09 05:22:22,509 views Prediction for GOOGL: UP, Confidence: 0.5421609631665579
 INFO 2025-08-09 18:03:07,213 views Stock prediction model loaded successfully
 INFO 2025-08-09 18:03:07,213 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+ERROR 2025-08-10 19:58:25,738 views Failed to load stock prediction model: [Errno 2] No such file or directory: 'C:\\Users\\user\\Desktop\\pull\\pull3\\StockVibePredictor\\Backend\\Scripts\\stock_model.pkl'
+ERROR 2025-08-10 19:58:25,740 views Failed to load stock prediction model: [Errno 2] No such file or directory: 'C:\\Users\\user\\Desktop\\pull\\pull3\\StockVibePredictor\\Backend\\Scripts\\stock_model.pkl'
+INFO 2025-08-10 20:02:27,834 Fetching data for AAPL
+INFO 2025-08-10 20:02:35,696 Cross-validation scores: [0.50515464 0.37113402 0.46875    0.48958333 0.5       ]
+INFO 2025-08-10 20:02:35,696 Mean CV accuracy: 46.69%
+INFO 2025-08-10 20:02:35,702 Test accuracy: 50.52%
+INFO 2025-08-10 20:02:35,712 Model saved as stock_model.pkl
+INFO 2025-08-10 20:02:50,107 Fetching data for AAPL
+INFO 2025-08-10 20:02:53,039 Cross-validation scores: [0.50515464 0.37113402 0.47916667 0.5        0.5       ]
+INFO 2025-08-10 20:02:53,039 Mean CV accuracy: 47.11%
+INFO 2025-08-10 20:02:53,045 Test accuracy: 50.52%
+INFO 2025-08-10 20:02:53,051 Model saved as stock_model.pkl
+INFO 2025-08-10 20:16:30,911 views Stock prediction model loaded successfully
+INFO 2025-08-10 20:16:30,912 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 20:19:04,961 views Stock prediction model loaded successfully
+INFO 2025-08-10 20:19:04,961 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 20:19:20,347 views Fetching stock data for NFLX
+INFO 2025-08-10 20:19:21,824 views Fetched 250 rows for NFLX
+INFO 2025-08-10 20:19:21,836 views Cached stock data for NFLX, good to go
+INFO 2025-08-10 20:19:21,837 views Data rows for NFLX: 250
+INFO 2025-08-10 20:19:22,018 views Prediction for NFLX: UP, Confidence: 0.5464993894993896
+INFO 2025-08-10 20:19:27,301 views Fetching stock data for TSLA
+INFO 2025-08-10 20:19:27,642 views Fetched 250 rows for TSLA
+INFO 2025-08-10 20:19:27,659 views Cached stock data for TSLA, good to go
+INFO 2025-08-10 20:19:27,661 views Data rows for TSLA: 250
+INFO 2025-08-10 20:19:27,762 views Prediction for TSLA: UP, Confidence: 0.5662136752136753
+INFO 2025-08-10 20:43:09,009 views Stock prediction model loaded successfully
+INFO 2025-08-10 20:43:09,010 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 20:43:39,452 views Fetching stock data for MSFT
+INFO 2025-08-10 20:43:40,504 views Fetched 250 rows for MSFT
+INFO 2025-08-10 20:43:40,517 views Cached stock data for MSFT, good to go
+INFO 2025-08-10 20:43:40,518 views Data rows for MSFT: 250
+INFO 2025-08-10 20:43:40,596 views Prediction for MSFT: UP, Confidence: 0.5464993894993896
+INFO 2025-08-10 21:01:51,654 views Stock prediction model loaded successfully
+INFO 2025-08-10 21:01:51,654 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 21:05:14,773 views Fetching stock data for GOOGL
+INFO 2025-08-10 21:05:16,245 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 21:05:16,275 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 21:05:16,276 views Data rows for GOOGL: 250
+INFO 2025-08-10 21:05:16,494 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 21:05:50,191 views Fetching stock data for GOOGL
+INFO 2025-08-10 21:05:50,709 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 21:05:50,719 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 21:05:50,719 views Data rows for GOOGL: 250
+INFO 2025-08-10 21:05:50,779 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 21:06:06,454 views Fetching stock data for AAPL
+INFO 2025-08-10 21:06:06,889 views Fetched 250 rows for AAPL
+INFO 2025-08-10 21:06:06,908 views Cached stock data for AAPL, good to go
+INFO 2025-08-10 21:06:06,910 views Data rows for AAPL: 250
+INFO 2025-08-10 21:06:07,016 views Prediction for AAPL: UP, Confidence: 0.6090833333333333
+INFO 2025-08-10 22:03:26,279 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:03:26,280 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:03:55,824 views Fetching stock data for MSFT
+INFO 2025-08-10 22:04:02,437 views Fetched 250 rows for MSFT
+INFO 2025-08-10 22:04:02,461 views Cached stock data for MSFT, good to go
+INFO 2025-08-10 22:04:02,462 views Data rows for MSFT: 250
+INFO 2025-08-10 22:04:02,631 views Prediction for MSFT: UP, Confidence: 0.5464993894993896
+INFO 2025-08-10 22:10:05,640 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:10:05,641 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:11:09,249 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:11:09,249 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:11:25,699 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:11:25,699 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:12:08,474 views Fetching stock data for AAPL
+INFO 2025-08-10 22:12:09,619 views Fetched 250 rows for AAPL
+INFO 2025-08-10 22:12:09,636 views Cached stock data for AAPL, good to go
+INFO 2025-08-10 22:12:09,637 views Data rows for AAPL: 250
+INFO 2025-08-10 22:12:09,816 views Prediction for AAPL: UP, Confidence: 0.6090833333333333
+INFO 2025-08-10 22:12:20,309 views Fetching stock data for TSLA
+INFO 2025-08-10 22:12:20,652 views Fetched 250 rows for TSLA
+INFO 2025-08-10 22:12:20,664 views Cached stock data for TSLA, good to go
+INFO 2025-08-10 22:12:20,665 views Data rows for TSLA: 250
+INFO 2025-08-10 22:12:20,733 views Prediction for TSLA: UP, Confidence: 0.5662136752136753
+INFO 2025-08-10 22:12:24,572 views Fetching stock data for GOOGL
+INFO 2025-08-10 22:12:24,944 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 22:12:24,965 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 22:12:24,967 views Data rows for GOOGL: 250
+INFO 2025-08-10 22:12:25,046 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 22:17:17,691 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:17:17,691 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:17:27,741 views Fetching stock data for GOOGL
+INFO 2025-08-10 22:17:28,797 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 22:17:28,815 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 22:17:28,816 views Data rows for GOOGL: 250
+INFO 2025-08-10 22:17:29,001 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 22:18:45,190 views Fetching stock data for GOOGL
+INFO 2025-08-10 22:18:46,023 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 22:18:46,056 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 22:18:46,057 views Data rows for GOOGL: 250
+INFO 2025-08-10 22:18:46,193 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 22:22:59,986 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:22:59,986 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:23:06,755 views Fetching stock data for GOOGL
+INFO 2025-08-10 22:23:07,842 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 22:23:07,863 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 22:23:07,866 views Data rows for GOOGL: 250
+INFO 2025-08-10 22:23:07,959 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 22:25:32,719 views Fetching stock data for GOOGL
+INFO 2025-08-10 22:25:33,286 views Fetched 250 rows for GOOGL
+INFO 2025-08-10 22:25:33,306 views Cached stock data for GOOGL, good to go
+INFO 2025-08-10 22:25:33,308 views Data rows for GOOGL: 250
+INFO 2025-08-10 22:25:33,400 views Prediction for GOOGL: UP, Confidence: 0.5378752488808436
+INFO 2025-08-10 22:30:36,303 views Fetching stock data for AMZN
+INFO 2025-08-10 22:30:36,661 views Fetched 250 rows for AMZN
+INFO 2025-08-10 22:30:36,683 views Cached stock data for AMZN, good to go
+INFO 2025-08-10 22:30:36,684 views Data rows for AMZN: 250
+INFO 2025-08-10 22:30:36,750 views Prediction for AMZN: UP, Confidence: 0.5788924755799756
+INFO 2025-08-10 22:36:51,917 views Fetching stock data for AMZN
+INFO 2025-08-10 22:36:52,540 views Fetched 250 rows for AMZN
+INFO 2025-08-10 22:36:52,555 views Cached stock data for AMZN, good to go
+INFO 2025-08-10 22:36:52,556 views Data rows for AMZN: 250
+INFO 2025-08-10 22:36:52,752 views Prediction for AMZN: UP, Confidence: 0.5788924755799756
+INFO 2025-08-10 22:37:10,313 views Fetching stock data for NIFTY
+ERROR 2025-08-10 22:37:18,536 views No data found for ticker: NIFTY
+ERROR 2025-08-10 22:37:18,560 views Couldn’t grab stock data for NIFTY
+INFO 2025-08-10 22:46:27,820 views Fetching stock data for AAPL
+INFO 2025-08-10 22:46:28,340 views Fetched 250 rows for AAPL
+INFO 2025-08-10 22:46:28,425 views Cached stock data for AAPL, good to go
+INFO 2025-08-10 22:46:28,426 views Data rows for AAPL: 250
+INFO 2025-08-10 22:46:28,627 views Prediction for AAPL: UP, Confidence: 0.6090833333333333
+INFO 2025-08-10 22:46:43,146 views Fetching stock data for NIFTY
+ERROR 2025-08-10 22:46:46,048 views No data found for ticker: NIFTY
+ERROR 2025-08-10 22:46:46,050 views Couldn’t grab stock data for NIFTY
+INFO 2025-08-10 22:55:36,394 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:55:36,395 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:58:19,086 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:58:19,086 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:59:16,607 views Stock prediction model loaded successfully
+INFO 2025-08-10 22:59:16,608 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 22:59:16,650 enhanced_views Universal fallback model loaded successfully
+INFO 2025-08-10 22:59:51,937 enhanced_views Fetching stock data for TSLA
+INFO 2025-08-10 22:59:52,926 enhanced_views Fetched 250 rows for TSLA
+ERROR 2025-08-10 22:59:53,047 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column MACD
+ERROR 2025-08-10 22:59:53,048 enhanced_views Prediction failed for TSLA: Cannot set a DataFrame with multiple columns to the single column MACD
+INFO 2025-08-10 22:59:57,747 enhanced_views Fetching stock data for META
+INFO 2025-08-10 23:00:00,102 enhanced_views Fetched 250 rows for META
+ERROR 2025-08-10 23:00:00,123 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column MACD
+ERROR 2025-08-10 23:00:00,123 enhanced_views Prediction failed for META: Cannot set a DataFrame with multiple columns to the single column MACD
+INFO 2025-08-10 23:00:01,135 enhanced_views Fetching stock data for AAPL
+INFO 2025-08-10 23:00:01,530 enhanced_views Fetched 250 rows for AAPL
+ERROR 2025-08-10 23:00:01,553 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column MACD
+ERROR 2025-08-10 23:00:01,554 enhanced_views Prediction failed for AAPL: Cannot set a DataFrame with multiple columns to the single column MACD
+INFO 2025-08-10 23:00:03,824 enhanced_views Fetching stock data for AAPL
+INFO 2025-08-10 23:00:04,229 enhanced_views Fetched 250 rows for AAPL
+ERROR 2025-08-10 23:00:04,250 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column MACD
+ERROR 2025-08-10 23:00:04,251 enhanced_views Prediction failed for AAPL: Cannot set a DataFrame with multiple columns to the single column MACD
+INFO 2025-08-10 23:00:12,087 enhanced_views Fetching stock data for NKE
+INFO 2025-08-10 23:00:12,670 enhanced_views Fetched 250 rows for NKE
+ERROR 2025-08-10 23:00:12,698 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column MACD
+ERROR 2025-08-10 23:00:12,699 enhanced_views Prediction failed for NKE: Cannot set a DataFrame with multiple columns to the single column MACD
+INFO 2025-08-10 23:03:06,433 views Stock prediction model loaded successfully
+INFO 2025-08-10 23:03:06,433 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 23:03:06,450 enhanced_views Universal fallback model loaded successfully
+INFO 2025-08-10 23:03:11,606 enhanced_views Fetching stock data for MSFT
+INFO 2025-08-10 23:03:12,560 enhanced_views Fetched 250 rows for MSFT
+ERROR 2025-08-10 23:03:12,579 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column BB_Upper
+ERROR 2025-08-10 23:03:12,579 enhanced_views Prediction failed for MSFT: Cannot set a DataFrame with multiple columns to the single column BB_Upper
+INFO 2025-08-10 23:03:15,192 enhanced_views Fetching stock data for AAPL
+INFO 2025-08-10 23:03:15,622 enhanced_views Fetched 250 rows for AAPL
+ERROR 2025-08-10 23:03:15,651 enhanced_views Error computing features: Cannot set a DataFrame with multiple columns to the single column BB_Upper
+ERROR 2025-08-10 23:03:15,652 enhanced_views Prediction failed for AAPL: Cannot set a DataFrame with multiple columns to the single column BB_Upper
+INFO 2025-08-10 23:04:13,660 views Stock prediction model loaded successfully
+INFO 2025-08-10 23:04:13,661 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-10 23:04:13,683 enhanced_views Universal fallback model loaded successfully
+INFO 2025-08-10 23:04:34,519 enhanced_views Fetching stock data for AMZN
+INFO 2025-08-10 23:04:35,511 enhanced_views Fetched 250 rows for AMZN
+INFO 2025-08-10 23:04:35,572 enhanced_views Loaded specific model for AMZN with accuracy 56.04%
+INFO 2025-08-10 23:04:35,705 enhanced_views Prediction completed for AMZN: UP (56.3%)
+INFO 2025-08-10 23:04:42,062 enhanced_views Fetching stock data for GOOGL
+INFO 2025-08-10 23:04:42,460 enhanced_views Fetched 250 rows for GOOGL
+INFO 2025-08-10 23:04:42,557 enhanced_views Loaded specific model for GOOGL with accuracy 48.35%
+INFO 2025-08-10 23:04:42,687 enhanced_views Prediction completed for GOOGL: DOWN (56.6%)
+INFO 2025-08-10 23:05:00,649 enhanced_views Fetching stock data for NVDA
+INFO 2025-08-10 23:05:01,058 enhanced_views Fetched 250 rows for NVDA
+INFO 2025-08-10 23:05:01,152 enhanced_views Loaded specific model for NVDA with accuracy 54.95%
+INFO 2025-08-10 23:05:01,297 enhanced_views Prediction completed for NVDA: DOWN (50.9%)
+INFO 2025-08-10 23:05:06,973 enhanced_views Returning cached prediction for GOOGL

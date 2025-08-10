@@ -1,0 +1,277 @@
+INFO 2025-08-10 22:56:47,051 Starting batch training for 24 popular stocks...
+INFO 2025-08-10 22:56:47,051 Training model for AAPL...
+INFO 2025-08-10 22:56:47,052 Starting training for AAPL
+INFO 2025-08-10 22:56:47,052 Fetching data for AAPL
+INFO 2025-08-10 22:56:50,318 Prepared 453 rows of data for AAPL
+INFO 2025-08-10 22:56:51,160 Model training completed for AAPL
+INFO 2025-08-10 22:56:51,160 Cross-validation scores: [0.43708609 0.45033113 0.50993377]
+INFO 2025-08-10 22:56:51,161 Mean CV accuracy: 46.58%
+INFO 2025-08-10 22:56:51,161 Train accuracy: 99.72%
+INFO 2025-08-10 22:56:51,161 Test accuracy: 49.45%
+INFO 2025-08-10 22:56:51,165 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\AAPL_model.pkl
+INFO 2025-08-10 22:56:51,187 Training model for GOOGL...
+INFO 2025-08-10 22:56:51,187 Starting training for GOOGL
+INFO 2025-08-10 22:56:51,187 Fetching data for GOOGL
+INFO 2025-08-10 22:56:51,637 Prepared 453 rows of data for GOOGL
+INFO 2025-08-10 22:56:52,450 Model training completed for GOOGL
+INFO 2025-08-10 22:56:52,450 Cross-validation scores: [0.56291391 0.38410596 0.47682119]
+INFO 2025-08-10 22:56:52,451 Mean CV accuracy: 47.46%
+INFO 2025-08-10 22:56:52,451 Train accuracy: 97.79%
+INFO 2025-08-10 22:56:52,452 Test accuracy: 48.35%
+INFO 2025-08-10 22:56:52,459 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\GOOGL_model.pkl
+INFO 2025-08-10 22:56:52,465 Training model for MSFT...
+INFO 2025-08-10 22:56:52,466 Starting training for MSFT
+INFO 2025-08-10 22:56:52,466 Fetching data for MSFT
+INFO 2025-08-10 22:56:52,878 Prepared 453 rows of data for MSFT
+INFO 2025-08-10 22:56:53,746 Model training completed for MSFT
+INFO 2025-08-10 22:56:53,746 Cross-validation scores: [0.56291391 0.44370861 0.45033113]
+INFO 2025-08-10 22:56:53,747 Mean CV accuracy: 48.57%
+INFO 2025-08-10 22:56:53,747 Train accuracy: 99.45%
+INFO 2025-08-10 22:56:53,747 Test accuracy: 53.85%
+INFO 2025-08-10 22:56:53,756 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\MSFT_model.pkl
+INFO 2025-08-10 22:56:53,758 Training model for TSLA...
+INFO 2025-08-10 22:56:53,759 Starting training for TSLA
+INFO 2025-08-10 22:56:53,759 Fetching data for TSLA
+INFO 2025-08-10 22:56:54,173 Prepared 453 rows of data for TSLA
+INFO 2025-08-10 22:56:54,960 Model training completed for TSLA
+INFO 2025-08-10 22:56:54,960 Cross-validation scores: [0.51655629 0.47682119 0.52317881]
+INFO 2025-08-10 22:56:54,960 Mean CV accuracy: 50.55%
+INFO 2025-08-10 22:56:54,960 Train accuracy: 99.45%
+INFO 2025-08-10 22:56:54,961 Test accuracy: 56.04%
+INFO 2025-08-10 22:56:54,966 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\TSLA_model.pkl
+INFO 2025-08-10 22:56:54,967 Training model for AMZN...
+INFO 2025-08-10 22:56:54,967 Starting training for AMZN
+INFO 2025-08-10 22:56:54,967 Fetching data for AMZN
+INFO 2025-08-10 22:56:55,881 Prepared 453 rows of data for AMZN
+INFO 2025-08-10 22:56:56,722 Model training completed for AMZN
+INFO 2025-08-10 22:56:56,722 Cross-validation scores: [0.50993377 0.50331126 0.47682119]
+INFO 2025-08-10 22:56:56,722 Mean CV accuracy: 49.67%
+INFO 2025-08-10 22:56:56,722 Train accuracy: 99.72%
+INFO 2025-08-10 22:56:56,722 Test accuracy: 56.04%
+INFO 2025-08-10 22:56:56,726 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\AMZN_model.pkl
+INFO 2025-08-10 22:56:56,727 Training model for META...
+INFO 2025-08-10 22:56:56,727 Starting training for META
+INFO 2025-08-10 22:56:56,727 Fetching data for META
+INFO 2025-08-10 22:56:57,132 Prepared 453 rows of data for META
+INFO 2025-08-10 22:56:58,006 Model training completed for META
+INFO 2025-08-10 22:56:58,006 Cross-validation scores: [0.55629139 0.49006623 0.43046358]
+INFO 2025-08-10 22:56:58,007 Mean CV accuracy: 49.23%
+INFO 2025-08-10 22:56:58,007 Train accuracy: 99.72%
+INFO 2025-08-10 22:56:58,007 Test accuracy: 51.65%
+INFO 2025-08-10 22:56:58,013 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\META_model.pkl
+INFO 2025-08-10 22:56:58,016 Training model for NFLX...
+INFO 2025-08-10 22:56:58,016 Starting training for NFLX
+INFO 2025-08-10 22:56:58,016 Fetching data for NFLX
+INFO 2025-08-10 22:56:58,430 Prepared 453 rows of data for NFLX
+INFO 2025-08-10 22:56:59,291 Model training completed for NFLX
+INFO 2025-08-10 22:56:59,292 Cross-validation scores: [0.54966887 0.49668874 0.50331126]
+INFO 2025-08-10 22:56:59,292 Mean CV accuracy: 51.66%
+INFO 2025-08-10 22:56:59,292 Train accuracy: 99.72%
+INFO 2025-08-10 22:56:59,292 Test accuracy: 48.35%
+INFO 2025-08-10 22:56:59,302 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\NFLX_model.pkl
+INFO 2025-08-10 22:56:59,305 Training model for NVDA...
+INFO 2025-08-10 22:56:59,306 Starting training for NVDA
+INFO 2025-08-10 22:56:59,306 Fetching data for NVDA
+INFO 2025-08-10 22:57:01,716 Prepared 453 rows of data for NVDA
+INFO 2025-08-10 22:57:02,430 Model training completed for NVDA
+INFO 2025-08-10 22:57:02,431 Cross-validation scores: [0.56291391 0.47019868 0.47019868]
+INFO 2025-08-10 22:57:02,432 Mean CV accuracy: 50.11%
+INFO 2025-08-10 22:57:02,432 Train accuracy: 99.45%
+INFO 2025-08-10 22:57:02,432 Test accuracy: 54.95%
+INFO 2025-08-10 22:57:02,440 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\NVDA_model.pkl
+INFO 2025-08-10 22:57:02,444 Training model for JPM...
+INFO 2025-08-10 22:57:02,444 Starting training for JPM
+INFO 2025-08-10 22:57:02,445 Fetching data for JPM
+INFO 2025-08-10 22:57:03,122 Prepared 453 rows of data for JPM
+INFO 2025-08-10 22:57:03,830 Model training completed for JPM
+INFO 2025-08-10 22:57:03,830 Cross-validation scores: [0.58278146 0.44370861 0.43708609]
+INFO 2025-08-10 22:57:03,830 Mean CV accuracy: 48.79%
+INFO 2025-08-10 22:57:03,831 Train accuracy: 98.90%
+INFO 2025-08-10 22:57:03,831 Test accuracy: 47.25%
+INFO 2025-08-10 22:57:03,836 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\JPM_model.pkl
+INFO 2025-08-10 22:57:03,837 Training model for V...
+INFO 2025-08-10 22:57:03,837 Starting training for V
+INFO 2025-08-10 22:57:03,837 Fetching data for V
+INFO 2025-08-10 22:57:04,403 Prepared 453 rows of data for V
+INFO 2025-08-10 22:57:05,119 Model training completed for V
+INFO 2025-08-10 22:57:05,120 Cross-validation scores: [0.57615894 0.56291391 0.41059603]
+INFO 2025-08-10 22:57:05,120 Mean CV accuracy: 51.66%
+INFO 2025-08-10 22:57:05,120 Train accuracy: 99.45%
+INFO 2025-08-10 22:57:05,121 Test accuracy: 52.75%
+INFO 2025-08-10 22:57:05,129 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\V_model.pkl
+INFO 2025-08-10 22:57:05,133 Training model for JNJ...
+INFO 2025-08-10 22:57:05,133 Starting training for JNJ
+INFO 2025-08-10 22:57:05,133 Fetching data for JNJ
+INFO 2025-08-10 22:57:05,843 Prepared 453 rows of data for JNJ
+INFO 2025-08-10 22:57:06,688 Model training completed for JNJ
+INFO 2025-08-10 22:57:06,689 Cross-validation scores: [0.58940397 0.53642384 0.51655629]
+INFO 2025-08-10 22:57:06,689 Mean CV accuracy: 54.75%
+INFO 2025-08-10 22:57:06,689 Train accuracy: 99.45%
+INFO 2025-08-10 22:57:06,689 Test accuracy: 58.24%
+INFO 2025-08-10 22:57:06,693 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\JNJ_model.pkl
+INFO 2025-08-10 22:57:06,695 Training model for WMT...
+INFO 2025-08-10 22:57:06,695 Starting training for WMT
+INFO 2025-08-10 22:57:06,695 Fetching data for WMT
+INFO 2025-08-10 22:57:07,317 Prepared 453 rows of data for WMT
+INFO 2025-08-10 22:57:08,121 Model training completed for WMT
+INFO 2025-08-10 22:57:08,122 Cross-validation scores: [0.56953642 0.54966887 0.44370861]
+INFO 2025-08-10 22:57:08,122 Mean CV accuracy: 52.10%
+INFO 2025-08-10 22:57:08,122 Train accuracy: 98.90%
+INFO 2025-08-10 22:57:08,122 Test accuracy: 56.04%
+INFO 2025-08-10 22:57:08,129 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\WMT_model.pkl
+INFO 2025-08-10 22:57:08,132 Training model for PG...
+INFO 2025-08-10 22:57:08,132 Starting training for PG
+INFO 2025-08-10 22:57:08,132 Fetching data for PG
+INFO 2025-08-10 22:57:08,823 Prepared 453 rows of data for PG
+INFO 2025-08-10 22:57:09,395 Model training completed for PG
+INFO 2025-08-10 22:57:09,396 Cross-validation scores: [0.46357616 0.49006623 0.49006623]
+INFO 2025-08-10 22:57:09,396 Mean CV accuracy: 48.12%
+INFO 2025-08-10 22:57:09,396 Train accuracy: 99.17%
+INFO 2025-08-10 22:57:09,396 Test accuracy: 48.35%
+INFO 2025-08-10 22:57:09,401 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\PG_model.pkl
+INFO 2025-08-10 22:57:09,402 Training model for HD...
+INFO 2025-08-10 22:57:09,402 Starting training for HD
+INFO 2025-08-10 22:57:09,402 Fetching data for HD
+INFO 2025-08-10 22:57:12,551 Prepared 453 rows of data for HD
+INFO 2025-08-10 22:57:13,406 Model training completed for HD
+INFO 2025-08-10 22:57:13,407 Cross-validation scores: [0.47682119 0.42384106 0.46357616]
+INFO 2025-08-10 22:57:13,408 Mean CV accuracy: 45.47%
+INFO 2025-08-10 22:57:13,408 Train accuracy: 99.72%
+INFO 2025-08-10 22:57:13,409 Test accuracy: 56.04%
+INFO 2025-08-10 22:57:13,415 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\HD_model.pkl
+INFO 2025-08-10 22:57:13,421 Training model for DIS...
+INFO 2025-08-10 22:57:13,421 Starting training for DIS
+INFO 2025-08-10 22:57:13,422 Fetching data for DIS
+INFO 2025-08-10 22:57:14,120 Prepared 453 rows of data for DIS
+INFO 2025-08-10 22:57:15,041 Model training completed for DIS
+INFO 2025-08-10 22:57:15,042 Cross-validation scores: [0.47019868 0.53642384 0.53642384]
+INFO 2025-08-10 22:57:15,042 Mean CV accuracy: 51.43%
+INFO 2025-08-10 22:57:15,042 Train accuracy: 99.45%
+INFO 2025-08-10 22:57:15,043 Test accuracy: 49.45%
+INFO 2025-08-10 22:57:15,050 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\DIS_model.pkl
+INFO 2025-08-10 22:57:15,054 Training model for PYPL...
+INFO 2025-08-10 22:57:15,055 Starting training for PYPL
+INFO 2025-08-10 22:57:15,055 Fetching data for PYPL
+INFO 2025-08-10 22:57:15,576 Prepared 453 rows of data for PYPL
+INFO 2025-08-10 22:57:16,324 Model training completed for PYPL
+INFO 2025-08-10 22:57:16,325 Cross-validation scores: [0.50331126 0.46357616 0.57615894]
+INFO 2025-08-10 22:57:16,325 Mean CV accuracy: 51.43%
+INFO 2025-08-10 22:57:16,325 Train accuracy: 100.00%
+INFO 2025-08-10 22:57:16,326 Test accuracy: 51.65%
+INFO 2025-08-10 22:57:16,334 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\PYPL_model.pkl
+INFO 2025-08-10 22:57:16,338 Training model for SPY...
+INFO 2025-08-10 22:57:16,338 Starting training for SPY
+INFO 2025-08-10 22:57:16,338 Fetching data for SPY
+INFO 2025-08-10 22:57:16,942 Prepared 453 rows of data for SPY
+INFO 2025-08-10 22:57:17,750 Model training completed for SPY
+INFO 2025-08-10 22:57:17,751 Cross-validation scores: [0.59602649 0.52980132 0.50331126]
+INFO 2025-08-10 22:57:17,751 Mean CV accuracy: 54.30%
+INFO 2025-08-10 22:57:17,751 Train accuracy: 98.90%
+INFO 2025-08-10 22:57:17,751 Test accuracy: 53.85%
+INFO 2025-08-10 22:57:17,757 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\SPY_model.pkl
+INFO 2025-08-10 22:57:17,759 Training model for QQQ...
+INFO 2025-08-10 22:57:17,759 Starting training for QQQ
+INFO 2025-08-10 22:57:17,759 Fetching data for QQQ
+INFO 2025-08-10 22:57:20,952 Prepared 453 rows of data for QQQ
+INFO 2025-08-10 22:57:21,735 Model training completed for QQQ
+INFO 2025-08-10 22:57:21,735 Cross-validation scores: [0.58940397 0.48344371 0.43046358]
+INFO 2025-08-10 22:57:21,735 Mean CV accuracy: 50.11%
+INFO 2025-08-10 22:57:21,735 Train accuracy: 98.07%
+INFO 2025-08-10 22:57:21,735 Test accuracy: 53.85%
+INFO 2025-08-10 22:57:21,742 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\QQQ_model.pkl
+INFO 2025-08-10 22:57:21,744 Training model for ARKK...
+INFO 2025-08-10 22:57:21,744 Starting training for ARKK
+INFO 2025-08-10 22:57:21,744 Fetching data for ARKK
+INFO 2025-08-10 22:57:22,289 Prepared 453 rows of data for ARKK
+INFO 2025-08-10 22:57:23,171 Model training completed for ARKK
+INFO 2025-08-10 22:57:23,172 Cross-validation scores: [0.53642384 0.54966887 0.53642384]
+INFO 2025-08-10 22:57:23,172 Mean CV accuracy: 54.08%
+INFO 2025-08-10 22:57:23,172 Train accuracy: 100.00%
+INFO 2025-08-10 22:57:23,172 Test accuracy: 52.75%
+INFO 2025-08-10 22:57:23,181 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\ARKK_model.pkl
+INFO 2025-08-10 22:57:23,188 Training model for ^NSEI...
+INFO 2025-08-10 22:57:23,188 Starting training for ^NSEI
+INFO 2025-08-10 22:57:23,189 Fetching data for ^NSEI
+INFO 2025-08-10 22:57:25,271 Prepared 444 rows of data for ^NSEI
+ERROR 2025-08-10 22:57:25,284 Error training model for ^NSEI: Input X contains infinity or a value too large for dtype('float32').
+INFO 2025-08-10 22:57:25,483 Training model for GME...
+INFO 2025-08-10 22:57:25,483 Starting training for GME
+INFO 2025-08-10 22:57:25,483 Fetching data for GME
+INFO 2025-08-10 22:57:26,061 Prepared 453 rows of data for GME
+INFO 2025-08-10 22:57:27,226 Model training completed for GME
+INFO 2025-08-10 22:57:27,226 Cross-validation scores: [0.53642384 0.52317881 0.54304636]
+INFO 2025-08-10 22:57:27,226 Mean CV accuracy: 53.42%
+INFO 2025-08-10 22:57:27,275 Train accuracy: 99.17%
+INFO 2025-08-10 22:57:27,276 Test accuracy: 49.45%
+INFO 2025-08-10 22:57:27,283 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\GME_model.pkl
+INFO 2025-08-10 22:57:27,287 Training model for AMC...
+INFO 2025-08-10 22:57:27,287 Starting training for AMC
+INFO 2025-08-10 22:57:27,288 Fetching data for AMC
+INFO 2025-08-10 22:57:27,845 Prepared 453 rows of data for AMC
+INFO 2025-08-10 22:57:29,119 Model training completed for AMC
+INFO 2025-08-10 22:57:29,119 Cross-validation scores: [0.52980132 0.53642384 0.50993377]
+INFO 2025-08-10 22:57:29,119 Mean CV accuracy: 52.54%
+INFO 2025-08-10 22:57:29,119 Train accuracy: 99.17%
+INFO 2025-08-10 22:57:29,119 Test accuracy: 56.04%
+INFO 2025-08-10 22:57:29,125 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\AMC_model.pkl
+INFO 2025-08-10 22:57:29,342 Training model for COIN...
+INFO 2025-08-10 22:57:29,374 Starting training for COIN
+INFO 2025-08-10 22:57:29,375 Fetching data for COIN
+INFO 2025-08-10 22:57:29,870 Prepared 453 rows of data for COIN
+INFO 2025-08-10 22:57:31,096 Model training completed for COIN
+INFO 2025-08-10 22:57:31,096 Cross-validation scores: [0.41721854 0.50993377 0.58278146]
+INFO 2025-08-10 22:57:31,097 Mean CV accuracy: 50.33%
+INFO 2025-08-10 22:57:31,097 Train accuracy: 99.45%
+INFO 2025-08-10 22:57:31,149 Test accuracy: 56.04%
+INFO 2025-08-10 22:57:31,239 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\COIN_model.pkl
+INFO 2025-08-10 22:57:31,245 Training model for RBLX...
+INFO 2025-08-10 22:57:31,246 Starting training for RBLX
+INFO 2025-08-10 22:57:31,246 Fetching data for RBLX
+INFO 2025-08-10 22:57:34,283 Prepared 453 rows of data for RBLX
+INFO 2025-08-10 22:57:35,089 Model training completed for RBLX
+INFO 2025-08-10 22:57:35,090 Cross-validation scores: [0.49668874 0.55629139 0.54304636]
+INFO 2025-08-10 22:57:35,090 Mean CV accuracy: 53.20%
+INFO 2025-08-10 22:57:35,090 Train accuracy: 99.45%
+INFO 2025-08-10 22:57:35,090 Test accuracy: 60.44%
+INFO 2025-08-10 22:57:35,093 Model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\RBLX_model.pkl
+INFO 2025-08-10 22:57:35,094 Batch training completed: 23 successful, 1 failed
+INFO 2025-08-10 22:57:35,094 Training universal fallback model...
+INFO 2025-08-10 22:57:35,095 Adding AAPL to universal model...
+INFO 2025-08-10 22:57:35,095 Fetching data for AAPL
+INFO 2025-08-10 22:57:35,493 Prepared 201 rows of data for AAPL
+INFO 2025-08-10 22:57:35,494 Adding GOOGL to universal model...
+INFO 2025-08-10 22:57:35,495 Fetching data for GOOGL
+INFO 2025-08-10 22:57:38,647 Prepared 201 rows of data for GOOGL
+INFO 2025-08-10 22:57:38,647 Adding MSFT to universal model...
+INFO 2025-08-10 22:57:38,648 Fetching data for MSFT
+INFO 2025-08-10 22:57:39,007 Prepared 201 rows of data for MSFT
+INFO 2025-08-10 22:57:39,007 Adding TSLA to universal model...
+INFO 2025-08-10 22:57:39,007 Fetching data for TSLA
+INFO 2025-08-10 22:57:39,348 Prepared 201 rows of data for TSLA
+INFO 2025-08-10 22:57:39,349 Adding AMZN to universal model...
+INFO 2025-08-10 22:57:39,350 Fetching data for AMZN
+INFO 2025-08-10 22:57:39,682 Prepared 201 rows of data for AMZN
+INFO 2025-08-10 22:57:39,683 Adding META to universal model...
+INFO 2025-08-10 22:57:39,683 Fetching data for META
+INFO 2025-08-10 22:57:40,068 Prepared 201 rows of data for META
+INFO 2025-08-10 22:57:40,070 Adding JPM to universal model...
+INFO 2025-08-10 22:57:40,070 Fetching data for JPM
+INFO 2025-08-10 22:57:40,479 Prepared 201 rows of data for JPM
+INFO 2025-08-10 22:57:40,480 Adding V to universal model...
+INFO 2025-08-10 22:57:40,481 Fetching data for V
+INFO 2025-08-10 22:57:40,814 Prepared 201 rows of data for V
+INFO 2025-08-10 22:57:40,814 Adding JNJ to universal model...
+INFO 2025-08-10 22:57:40,814 Fetching data for JNJ
+INFO 2025-08-10 22:57:42,697 Prepared 201 rows of data for JNJ
+INFO 2025-08-10 22:57:42,698 Adding WMT to universal model...
+INFO 2025-08-10 22:57:42,698 Fetching data for WMT
+INFO 2025-08-10 22:57:45,138 Prepared 201 rows of data for WMT
+INFO 2025-08-10 22:57:45,139 Adding SPY to universal model...
+INFO 2025-08-10 22:57:45,140 Fetching data for SPY
+INFO 2025-08-10 22:57:45,625 Prepared 201 rows of data for SPY
+INFO 2025-08-10 22:57:45,626 Adding QQQ to universal model...
+INFO 2025-08-10 22:57:45,627 Fetching data for QQQ
+INFO 2025-08-10 22:57:46,006 Prepared 201 rows of data for QQQ
+INFO 2025-08-10 22:57:46,009 Universal model data: 2412 total samples from 12 stocks
+INFO 2025-08-10 22:57:46,330 Universal model accuracy: 51.55%
+INFO 2025-08-10 22:57:46,349 Universal model saved: C:\Users\user\Desktop\pull\pull3\StockVibePredictor\Backend\Models\universal_model.pkl

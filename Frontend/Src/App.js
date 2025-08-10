@@ -47,12 +47,6 @@ function App() {
     }
   };
 
-  const handleReset = () => {
-    setStockData(null);
-    setPrediction(null);
-    setError(null);
-    setCurrentTicker("");
-  };
 
   return (
     <div className="App">
@@ -66,7 +60,6 @@ function App() {
           <StockInput
             onSubmit={fetchStockData}
             loading={loading}
-            onReset={handleReset}
           />
 
           {error && (

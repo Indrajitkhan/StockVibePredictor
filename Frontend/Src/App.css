@@ -193,9 +193,10 @@
 
 .app-footer p {
   margin: 0;
-  opacity: 0.8;
+  color: #6b7280;
   font-size: 0.9rem;
 }
+
 
 @media (max-width: 768px) {
   .app-header {
