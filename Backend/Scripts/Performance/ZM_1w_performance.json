@@ -1,0 +1,10 @@
+{
+  "ticker": "ZM",
+  "timeframe": "1w",
+  "test_accuracy": 0.675,
+  "cv_mean": 0.6431478968792401,
+  "cv_std": 0.0156556056758665,
+  "training_samples": 159,
+  "features_count": 24,
+  "training_date": "2025-08-11T15:48:18.706226"
+}

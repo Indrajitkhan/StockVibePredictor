@@ -14,24 +14,24 @@ from pathlib import Path
 import sys
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# INFO: Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# INFO: Quick-start development settings - unsuitable for production
+# INFO: See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# INFO: SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# INFO: SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
+# INFO: Hosts/domain names that are valid for this site; required if DEBUG is False
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# INFO: Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders",
+    "rest_framework",
     "StockPredict",
 ]
 
@@ -55,11 +56,26 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
+# INFO: Allow your front-end origin (update for production later)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
-    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
-    "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.AnonRateThrottle"],
-    "DEFAULT_THROTTLE_RATES": {"anon": "100/day"},
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "100/hour",
+        "user": "1000/hour",
+        "prediction": "100/hour",
+        "trading": "50/hour",
+    },
 }
 
 ROOT_URLCONF = "StockVibePredictor.urls"
@@ -81,7 +97,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "StockVibePredictor.wsgi.application"
 
-# Logging configuration
+# INFO: Logging configuration
 
 LOGGING = {
     "version": 1,
@@ -96,7 +112,7 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "Logs", "stockpredict.log"),
+            "filename": os.path.join(BASE_DIR, "Logs", "StockPredict.log"),
             "formatter": "verbose",
         },
         "console": {
@@ -106,7 +122,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "apps.stockpredict": {
+        "Apps.StockPredict": {
             "handlers": ["file", "console"],
             "level": "INFO",
             "propagate": False,
@@ -115,7 +131,7 @@ LOGGING = {
 }
 
 
-# Database
+# INFO: Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
@@ -126,7 +142,7 @@ DATABASES = {
 }
 
 
-# Password validation
+# INFO: Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -144,17 +160,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Allow your front-end origin (update for production later)
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8000",
-]
-
 # Or allow all for dev (less secure, change for prod)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Internationalization
+# INFO: Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
@@ -165,6 +174,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+# INFO: Cache Configuration
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -176,16 +186,16 @@ CACHES = {
 }
 
 
-# Static files (CSS, JavaScript, Images)
+# INFO: Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
 
-# Default primary key field type
+# INFO: Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Add apps folder to Python path
+# INFO: Add apps folder to Python path
 
 sys.path.insert(0, os.path.join(BASE_DIR, "Apps"))

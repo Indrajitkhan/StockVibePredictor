@@ -1,0 +1,10 @@
+{
+  "ticker": "META",
+  "timeframe": "1mo",
+  "test_accuracy": 0.4782608695652174,
+  "cv_mean": 0.42777777777777776,
+  "cv_std": 0.07635890874796282,
+  "training_samples": 181,
+  "features_count": 21,
+  "training_date": "2025-08-11T15:47:46.572222"
+}

@@ -1,0 +1,10 @@
+{
+  "ticker": "DKNG",
+  "timeframe": "1w",
+  "test_accuracy": 0.6,
+  "cv_mean": 0.5227649630634705,
+  "cv_std": 0.03759508543068289,
+  "training_samples": 159,
+  "features_count": 24,
+  "training_date": "2025-08-11T15:48:28.348286"
+}

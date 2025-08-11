@@ -137,3 +137,68 @@ INFO 2025-08-09 05:22:22,486 views Data rows for GOOGL: 250
 INFO 2025-08-09 05:22:22,509 views Prediction for GOOGL: UP, Confidence: 0.5421609631665579
 INFO 2025-08-09 18:03:07,213 views Stock prediction model loaded successfully
 INFO 2025-08-09 18:03:07,213 views Model type: <class 'sklearn.ensemble._forest.RandomForestClassifier'>
+INFO 2025-08-11 09:43:36,785 views Loaded universal model for 1w
+INFO 2025-08-11 09:44:11,320 views Loaded universal model for 1w
+INFO 2025-08-11 09:44:14,467 views Redis connection test passed
+INFO 2025-08-11 09:45:08,473 views Loaded universal model for 1w
+INFO 2025-08-11 09:47:12,514 views Fetching 1d data for AAPL
+ERROR 2025-08-11 09:47:14,520 views Error fetching data for AAPL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:14,527 views Fetching 1w data for AAPL
+ERROR 2025-08-11 09:47:16,884 views Error fetching data for AAPL (1w): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:16,885 views Fetching 1mo data for AAPL
+ERROR 2025-08-11 09:47:18,255 views Error fetching data for AAPL (1mo): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:21,835 views Fetching 1d data for GOOGL
+ERROR 2025-08-11 09:47:23,449 views Error fetching data for GOOGL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:23,451 views Fetching 1w data for GOOGL
+ERROR 2025-08-11 09:47:25,236 views Error fetching data for GOOGL (1w): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:25,237 views Fetching 1mo data for GOOGL
+ERROR 2025-08-11 09:47:26,835 views Error fetching data for GOOGL (1mo): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:32,244 views Fetching 1d data for AMZN
+ERROR 2025-08-11 09:47:33,889 views Error fetching data for AMZN (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:33,890 views Fetching 1w data for AMZN
+ERROR 2025-08-11 09:47:36,166 views Error fetching data for AMZN (1w): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:36,167 views Fetching 1mo data for AMZN
+ERROR 2025-08-11 09:47:37,982 views Error fetching data for AMZN (1mo): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:47:41,245 views Fetching 1d data for AAPL
+ERROR 2025-08-11 09:47:42,815 views Error fetching data for AAPL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:48:36,040 views Fetching 1d data for GOOGL
+ERROR 2025-08-11 09:48:37,588 views Error fetching data for GOOGL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:52:31,076 views Loaded universal model for 1w
+INFO 2025-08-11 09:52:59,672 views Fetching 1d data for GOOGL
+ERROR 2025-08-11 09:53:01,500 views Error fetching data for GOOGL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:57:14,045 views Fetching 1d data for AAPL
+ERROR 2025-08-11 09:57:15,708 views Error fetching data for AAPL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 09:57:20,759 views Fetching 1d data for GOOGL
+ERROR 2025-08-11 09:57:22,477 views Error fetching data for GOOGL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:01:59,299 views Loaded universal model for 1w
+INFO 2025-08-11 10:02:34,514 views Loaded universal model for 1w
+INFO 2025-08-11 10:08:47,365 views Loaded universal model for 1w
+INFO 2025-08-11 10:11:04,499 views Loaded universal model for 1w
+INFO 2025-08-11 10:11:36,242 views Loaded universal model for 1w
+INFO 2025-08-11 10:11:40,612 views Loaded universal model for 1w
+INFO 2025-08-11 10:12:30,203 views Loaded universal model for 1w
+INFO 2025-08-11 10:12:45,638 views Loaded universal model for 1w
+INFO 2025-08-11 10:12:49,715 views Loaded universal model for 1w
+INFO 2025-08-11 10:13:03,944 views Loaded universal model for 1w
+INFO 2025-08-11 10:13:06,794 views Fetching 1d data for TSLA
+ERROR 2025-08-11 10:13:08,879 views Error fetching data for TSLA (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:14:35,292 views Loaded universal model for 1w
+INFO 2025-08-11 10:14:38,082 views Fetching 1d data for TSLA
+ERROR 2025-08-11 10:14:39,588 views Error fetching data for TSLA (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:16:39,295 views Loaded universal model for 1w
+INFO 2025-08-11 10:16:41,674 views Fetching 1d data for TSLA
+ERROR 2025-08-11 10:16:43,270 views Error fetching data for TSLA (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:18:37,443 views Loaded universal model for 1w
+INFO 2025-08-11 10:18:40,853 views Fetching 1d data for TSLA
+ERROR 2025-08-11 10:18:43,478 views Error fetching data for TSLA (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:28:36,711 views Loaded universal model for 1w
+INFO 2025-08-11 10:28:40,418 views Redis connection test passed
+INFO 2025-08-11 10:28:44,591 views Fetching 1d data for TSLA
+ERROR 2025-08-11 10:28:46,182 views Error fetching data for TSLA (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:28:54,214 views Fetching 1d data for GOOGL
+ERROR 2025-08-11 10:28:56,653 views Error fetching data for GOOGL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:29:14,797 views Fetching 1d data for AAPL
+ERROR 2025-08-11 10:29:16,982 views Error fetching data for AAPL (1d): sync_to_async can only be applied to sync functions.
+INFO 2025-08-11 10:34:30,041 views Loaded universal model for 1w
+INFO 2025-08-11 10:34:32,538 views Fetching 1d data for AAPL
+ERROR 2025-08-11 10:34:34,175 views Error fetching data for AAPL (1d): sync_to_async can only be applied to sync functions.

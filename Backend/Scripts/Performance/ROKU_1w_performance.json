@@ -1,0 +1,10 @@
+{
+  "ticker": "ROKU",
+  "timeframe": "1w",
+  "test_accuracy": 0.425,
+  "cv_mean": 0.4112015679179859,
+  "cv_std": 0.18665913638644752,
+  "training_samples": 159,
+  "features_count": 24,
+  "training_date": "2025-08-11T15:48:30.261210"
+}

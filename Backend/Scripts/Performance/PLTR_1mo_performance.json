@@ -1,0 +1,10 @@
+{
+  "ticker": "PLTR",
+  "timeframe": "1mo",
+  "test_accuracy": 0.43478260869565216,
+  "cv_mean": 0.48,
+  "cv_std": 0.042881011688565646,
+  "training_samples": 181,
+  "features_count": 21,
+  "training_date": "2025-08-11T15:48:12.236759"
+}

@@ -1,0 +1,20 @@
+http://localhost:8000/api/
+├── predict/
+│   ├── multi/          # Multi-timeframe predictions
+│   ├── batch/          # Batch predictions
+│   └── /               # Legacy single prediction
+├── trading/
+│   ├── simulate/       # Paper trading
+│   ├── portfolio/      # Portfolio management
+│   ├── history/        # Trade history
+│   └── real/           # Real trading (future)
+├── watchlist/
+│   ├── create/         # Create watchlists
+│   └── predictions/    # Watchlist predictions
+├── market/
+│   ├── overview/       # Market data
+│   └── analytics/      # Analytics dashboard
+├── system/
+│   ├── health/         # System health
+│   └── models/performance/ # Model metrics
+└── redis-check/        # Legacy Redis test
