@@ -667,3 +667,35 @@ WARNING 2025-08-11 16:27:53,602 views Using fallback model for AAPL (1d): SNOW_1
 INFO 2025-08-11 16:27:53,645 views Using universal model for AAPL (1w)
 INFO 2025-08-11 16:27:53,675 views Using ticker-specific model for AAPL (1mo)
 INFO 2025-08-11 16:27:53,722 views Multi-timeframe prediction completed for AAPL
+INFO 2025-08-11 16:31:58,401 views Found 25 model files in /Users/dibakar/Documents/Code/Git & Github/Repo/StockVibePredictor/Backend/Scripts/Models
+INFO 2025-08-11 16:31:58,406 views Loaded model for SNOW (1w)
+INFO 2025-08-11 16:31:58,411 views Loaded model for COIN (1mo)
+INFO 2025-08-11 16:31:58,416 views Loaded model for C (1w)
+INFO 2025-08-11 16:31:58,423 views Loaded universal model for 1w
+INFO 2025-08-11 16:31:58,428 views Loaded model for UNH (1w)
+INFO 2025-08-11 16:31:58,433 views Loaded model for GOOG (1mo)
+INFO 2025-08-11 16:31:58,437 views Loaded model for BAC (1w)
+INFO 2025-08-11 16:31:58,441 views Loaded model for MS (1w)
+INFO 2025-08-11 16:31:58,450 views Loaded model for GOOGL (1mo)
+INFO 2025-08-11 16:31:58,454 views Loaded model for RBLX (1w)
+INFO 2025-08-11 16:31:58,459 views Loaded model for MA (1mo)
+INFO 2025-08-11 16:31:58,463 views Loaded model for WFC (1w)
+INFO 2025-08-11 16:31:58,467 views Loaded model for ZM (1w)
+INFO 2025-08-11 16:31:58,471 views Loaded model for PG (1w)
+INFO 2025-08-11 16:31:58,477 views Loaded model for MSFT (1mo)
+INFO 2025-08-11 16:31:58,482 views Loaded model for AMZN (1mo)
+INFO 2025-08-11 16:31:58,486 views Loaded model for GME (1w)
+INFO 2025-08-11 16:31:58,490 views Loaded model for AMC (1w)
+INFO 2025-08-11 16:31:58,494 views Loaded model for DOCU (1w)
+INFO 2025-08-11 16:31:58,497 views Loaded model for ROKU (1w)
+INFO 2025-08-11 16:31:58,505 views Loaded model for AAPL (1mo)
+INFO 2025-08-11 16:31:58,509 views Loaded model for DKNG (1w)
+INFO 2025-08-11 16:31:58,516 views Loaded model for GS (1mo)
+INFO 2025-08-11 16:31:58,521 views Loaded model for PLTR (1mo)
+INFO 2025-08-11 16:31:58,527 views Loaded model for META (1mo)
+INFO 2025-08-11 16:31:58,527 views Model loading complete: 25 loaded, 0 failed
+INFO 2025-08-11 16:31:58,527 views Total models in cache: 25
+INFO 2025-08-11 16:31:58,527 views Timeframe 1d: Universal=False, Ticker-specific=0
+INFO 2025-08-11 16:31:58,527 views Timeframe 1w: Universal=True, Ticker-specific=14
+INFO 2025-08-11 16:31:58,527 views Timeframe 1mo: Universal=False, Ticker-specific=10
+INFO 2025-08-11 16:31:58,527 views Timeframe 1y: Universal=False, Ticker-specific=0
