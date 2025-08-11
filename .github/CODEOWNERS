@@ -1,0 +1,12 @@
+# This file defines who owns what in this repository
+# @dibakar owns everything by default
+
+* @dibakar
+
+# Specific ownership
+/Backend/ @dibakar
+/Frontend/ @dibakar
+/Scripts/ @dibakar
+*.py @dibakar
+*.js @dibakar
+*.jsx @dibakar

@@ -2,7 +2,18 @@
   "name": "stockvibepredictor-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "author": {
+    "name": "Dibakar",
+    "url": "https://github.com/ThisIsDibakar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThisIsDibakar/StockVibePredictor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ThisIsDibakar/StockVibePredictor/issues"
+  },
+  "homepage": "https://github.com/ThisIsDibakar/StockVibePredictor",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",

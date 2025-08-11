@@ -1,13 +1,24 @@
+<div align="center">
+
 # 📊 StockVibePredictor
 
 **StockVibePredictor** is a full-stack machine learning web app that predicts stock price trends.
 Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a prediction for whether the stock will go **Up** or **Down** the next trading day.
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
-[![Django](https://img.shields.io/badge/Django-4.0%2B-green.svg)](https://djangoproject.com)
-[![React](https://img.shields.io/badge/React-18.0%2B-blue.svg)](https://reactjs.org)
+[![Author](https://img.shields.io/badge/Author-Dibakar-blue)](https://github.com/ThisIsDibakar)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11-yellow)](https://python.org)
+[![Django](https://img.shields.io/badge/Django-5.0-darkgreen)](https://djangoproject.com)
+[![React](https://img.shields.io/badge/React-18.0-blue)](https://reactjs.org)
+[![Status](https://img.shields.io/badge/Status-Active-success)](https://github.com/dibakar/StockVibePredictor)
 
-# 🧩 Built with:
+**AI-Powered Stock Market Prediction System**
+
+_Created • August 2025_
+
+</div>
+
+## 🧩 Built With :
 
 - 🧠 Machine Learning (Random Forest)
 - ⚙️ Django (Backend + API)
@@ -15,7 +26,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-# 🌟 Features
+## 🌟 Features :
 
 - 🔄 **Real-Time Market Data** – Integration with Yahoo Finance (yfinance) API for accurate, up-to-date stock information.
 - 🤖 **ML-Powered Predictions** – Trained on historical stock data with technical indicators (RSI, Moving Averages, etc.).
@@ -25,7 +36,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack :
 
 | Layer              | Technology                              |
 | ------------------ | --------------------------------------- |
@@ -38,7 +49,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-# 📦 Project Architecture
+## 📦 Project Architecture :
 
 ```py
 /StockVibePredictor/
@@ -201,7 +212,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ## 🚀 COMPLETE SETUP & RUNNING GUIDE
 
-### 📋 Prerequisites Installation
+### 📋 Prerequisites Installations
 
 ### Install Required Software First :
 
@@ -236,14 +247,14 @@ sudo apt install redis-server
 
 ## 🔻 Step 1: Clone & Setup Project
 
-### Clone the repository
+### Clone the repository :
 
 ```bash
 git clone https://github.com/ThisIsDibakar/StockVibePredictor.git
 cd StockVibePredictor
 ```
 
-### Check you're in the right place
+### Check you're in the right place :
 
 ```bash
 ls
@@ -269,7 +280,7 @@ redis-server.exe
 
 ### Verify Redis is Running (Optional) :
 
-#### In another terminal:
+#### [ In another Terminal ]
 
 ```bash
 redis-cli ping
@@ -298,7 +309,7 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-#### You should see (venv) in your terminal prompt
+#### You should see (venv) in your terminal prompt ...
 
 ### Install Python Dependencies :
 
@@ -319,7 +330,8 @@ echo "SECRET_KEY=your-secret-key-here" >> .env
 echo "REDIS_URL=redis://localhost:6379/0" >> .env
 
 # Run migrations
-python manage.py makemigrations
+python manage.py migrate
+python manage.py makemigrations <AppName>
 python manage.py migrate
 
 # Create superuser (optional, for admin panel)
@@ -433,7 +445,7 @@ npm start
 3. Paste all endpoints from the Endpoints.txt file
 4. Click "Continue" → "Import"
 
-### Test Basic Endpoints:
+### Test Basic Endpoints :
 
 ```bash
 # 1. First check system health
@@ -536,7 +548,7 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
-## 📱 Access Points Summary
+## 📱 Access Points Summary :
 
 After everything is running, you can access : <br />
 • Redis: ⁠localhost:6379 (running in Terminal 1) <br />
@@ -548,15 +560,17 @@ After everything is running, you can access : <br />
 
 ---
 
-## 📂 Regenerating Ignored Files (.gitignore) :
+### 📂 Regenerating Ignored Files (.gitignore) :
 
 Our .gitignore file keeps the repo clean by excluding files like node_modules, venv, and stock_model.pkl. When you clone the repo, you’ll need to recreate these files locally.
+
+---
 
 ## Ignored files and how to Recreate them :
 
 venv/ : Python virtual environment for Django and ML dependencies.
 
-## Recreate :
+### Recreate :
 
 ```bash
 python -m venv venv
@@ -578,7 +592,7 @@ This regenerates node_modules based on package.json.
 
 stock_model.pkl: The trained ML model for stock predictions.
 
-Recreate:
+### Recreate :
 
 ```bash
 python TrainModel.py
@@ -633,7 +647,7 @@ Other Ignored Files : Files like .DS_Store, .vscode/, .coverage, etc., are user-
 
 ---
 
-## Why These Files Are Ignored ??
+### Why These Files Are Ignored ??
 
 node_modules/: Huge folder, regenerated with npm install.
 venv/: User-specific, avoids conflicts across machines.
@@ -843,12 +857,18 @@ Feel free to fork, remix, and use — just don’t forget to credit. 😎
 
 ---
 
+<div align="center">
+
 ## ⚠️ Disclaimer:
 
 This application is for educational and research purposes only. Stock predictions are not guaranteed and should not be used as the sole basis for investment decisions. Always consult with financial professionals before making investment choices.
 
 ---
 
-### ☕ Made with Passion, deployed with Precision, and maintained with stubborn Optimism ☕
+### Made with Passion, deployed with Precision, and maintained with stubborn Optimism
+
+### ☕
+
+</div>
 
 ---

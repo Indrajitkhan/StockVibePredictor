@@ -1,0 +1,161 @@
+# ========================================
+# PROJECT IDENTITY
+# ========================================
+
+git config user.name "Dibakar"
+git config user.signingkey "YOUR_GPG_KEY_ID"
+
+# ========================================
+# PROJECT METADATA
+# ========================================
+
+git config project.name "StockVibePredictor"
+git config project.description "AI-powered stock market prediction system with Django backend and React frontend"
+git config project.owner "Dibakar"
+git config project.owner-email "your-email@example.com"
+git config project.owner-github "https://github.com/ThisIsDibakar"
+git config project.created "2025-08-11"
+git config project.version "1.0.0"
+git config project.license "MIT"
+git config project.copyright "Copyright (c) 2025 Dibakar. All rights reserved."
+
+# ========================================
+# TEAM INFORMATION
+# ========================================
+
+git config team.lead "Dibakar"
+git config team.lead-email "your-email@example.com"
+git config team.backend-lead "Dibakar"
+git config team.frontend-lead "Dibakar"
+git config team.ml-lead "Dibakar"
+git config team.devops-lead "Dibakar"
+git config team.project-url "https://github.com/ThisIsDibakar/StockVibePredictor"
+git config team.documentation "https://github.com/ThisIsDibakar/StockVibePredictor/wiki"
+git config team.issues "https://github.com/ThisIsDibakar/StockVibePredictor/issues"
+
+# ========================================
+# REPOSITORY SETTINGS
+# ========================================
+
+git config core.repositoryformatversion 0
+git config core.filemode true
+git config core.bare false
+git config core.logallrefupdates true
+git config core.ignorecase true
+git config core.precomposeunicode true
+git config core.autocrlf input
+git config core.safecrlf true
+git config core.whitespace trailing-space,space-before-tab,indent-with-non-tab
+git config core.editor "code --wait"  # or vim, nano, etc.
+git config core.excludesfile .gitignore
+
+# ========================================
+# COMMIT SETTINGS
+# ========================================
+
+git config commit.template .gitmessage
+git config commit.gpgsign true
+git config commit.verbose true
+
+# ========================================
+# BRANCH SETTINGS
+# ========================================
+
+git config branch.main.remote origin
+git config branch.main.merge refs/heads/main
+git config branch.develop.remote origin
+git config branch.develop.merge refs/heads/develop
+git config branch.autosetupmerge always
+git config branch.autosetuprebase always
+
+# ========================================
+# MERGE & PULL SETTINGS
+# ========================================
+
+git config merge.ff false  # Always create merge commits
+git config merge.tool vscode
+git config merge.log true
+git config pull.rebase true
+git config pull.ff only
+git config rebase.autoStash true
+
+# ========================================
+# PUSH SETTINGS
+# ========================================
+
+git config push.default current
+git config push.followTags true
+git config push.autoSetupRemote true
+
+# ========================================
+# REMOTE SETTINGS
+# ========================================
+
+git config remote.origin.url https://github.com/ThisIsDibakar/StockVibePredictor.git
+git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+git config remote.origin.prune true
+
+# ========================================
+# DIFF & COLOR SETTINGS
+# ========================================
+
+git config diff.tool vscode
+git config diff.algorithm histogram
+git config diff.colorMoved zebra
+git config color.ui auto
+git config color.branch auto
+git config color.diff auto
+git config color.status auto
+git config color.interactive auto
+
+# ========================================
+# ALIAS COMMANDS FOR TEAM
+# ========================================
+
+git config alias.st "status -sb"
+git config alias.co "checkout"
+git config alias.br "branch -vv"
+git config alias.ci "commit"
+git config alias.last "log -1 HEAD --stat"
+git config alias.unstage "reset HEAD --"
+git config alias.visual "!gitk"
+git config alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config alias.who "shortlog -sne"
+git config alias.contributors "shortlog -sne"
+git config alias.filehistory "log --follow -p --"
+git config alias.undo "reset --soft HEAD~1"
+git config alias.amend "commit --amend --no-edit"
+git config alias.cleanup "!git branch --merged | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d"
+git config alias.deploy-ready "log origin/main..HEAD --oneline"
+git config alias.today "log --since=midnight --author='Dibakar' --oneline"
+git config alias.week "log --since='1 week ago' --author='Dibakar' --oneline"
+
+# ========================================
+# WORKFLOW ALIASES
+# ========================================
+
+git config alias.feature "checkout -b feature/"
+git config alias.bugfix "checkout -b bugfix/"
+git config alias.hotfix "checkout -b hotfix/"
+git config alias.sync "!git fetch --all --prune && git pull"
+git config alias.pushup "push -u origin HEAD"
+git config alias.publish "push -u origin HEAD"
+
+# ========================================
+# SECURITY & FILTERS
+# ========================================
+
+git config filter.lfs.clean "git-lfs clean -- %f"
+git config filter.lfs.smudge "git-lfs smudge -- %f"
+git config filter.lfs.process "git-lfs filter-process"
+git config filter.lfs.required true
+
+# ========================================
+# CUSTOM PROJECT COMMANDS
+# ========================================
+
+git config alias.train-models "!cd Backend/Scripts && python TrainModel.py"
+git config alias.run-backend "!cd Backend && python manage.py runserver"
+git config alias.run-frontend "!cd Frontend && npm start"
+git config alias.test-all "!cd Backend && python manage.py test && cd ../Frontend && npm test"
+git config alias.project-status "!echo '📊 Project: StockVibePredictor' && echo '👤 Owner: Dibakar' && echo '📅 Created: 2025-08-11' && echo '🔖 Version: 1.0.0' && git status"
