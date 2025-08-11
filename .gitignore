@@ -305,7 +305,6 @@ cache/
 models/
 performance/
 checkpoints/
-performance/
 
 # Jupyter Notebooks (if you want to ignore them)
 # *.ipynb
