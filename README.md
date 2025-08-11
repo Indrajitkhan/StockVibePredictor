@@ -7,7 +7,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 [![Django](https://img.shields.io/badge/Django-4.0%2B-green.svg)](https://djangoproject.com)
 [![React](https://img.shields.io/badge/React-18.0%2B-blue.svg)](https://reactjs.org)
 
-## 🧩 Built with:
+# 🧩 Built with:
 
 - 🧠 Machine Learning (Random Forest)
 - ⚙️ Django (Backend + API)
@@ -15,7 +15,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-## 🌟 Features
+# 🌟 Features
 
 - 🔄 **Real-Time Market Data** – Integration with Yahoo Finance (yfinance) API for accurate, up-to-date stock information.
 - 🤖 **ML-Powered Predictions** – Trained on historical stock data with technical indicators (RSI, Moving Averages, etc.).
@@ -25,7 +25,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 | Layer              | Technology                              |
 | ------------------ | --------------------------------------- |
@@ -38,7 +38,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-## 📦 Project Architecture
+# 📦 Project Architecture
 
 ```py
 /StockVibePredictor/
@@ -72,11 +72,14 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 │   │   │── /Blog/
 |   |
 │   │── /Logs/
-│   │   │── /stockpredict.log/
+│   │   │── /ModelTraining.log/
+│   │   │── /StockPredict.log/
+│   │   │── /TrainingErrors.log/
 |   |
 │   │── /Scripts/
+│   │   │── /Models/
+│   │   │── /Performance/
 │   │   │── /TrainModel.py/
-│   │   │── /stock_model.pkl/
 |   |
 │   │── /Templates/
 │   │   │── base.html
@@ -112,11 +115,8 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 │   │── .env
 │
 │── /Frontend/
-|   |
 │   │── /Apps/
-|   |   |
 │   │   │── /Dashboard/
-|   |   |   |
 |   |   |   |-- package.lock.json
 |   |   |   |-- package.json
 |   |   |   |-- README.md
@@ -131,6 +131,9 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 |   |   |   |-- logo.svg
 |   |   |   |-- Other essential components ...
 |   |   |
+|   |   |-- /Database/
+|   |   |   |--StockDatabase.js
+|   |   |
 |   |   |-- App.css
 |   |   |-- App.js
 |   |   |-- index.css
@@ -140,6 +143,8 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 │   │── package-lock.json
 │   │── webpack.config.js
 │   │── vite.config.js
+│   │── craco.config.js
+│   │── webpack.config.js
 │
 │── /Tests/
 │   │── /Unit/
@@ -151,6 +156,7 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 │   │── README.md
 │   │── CHANGELOG.md
 │   │── architecture.md
+│   │── Endpoints.txt
 │
 │── /Deployment/
 │   │── nginx.conf
@@ -183,133 +189,362 @@ Enter a stock ticker (e.g., `AAPL`) to see historical price charts and get a pre
 
 ---
 
-## 📜 Prerequisites :
-
-- Python 3.8 or higher
-- Node.js 16.0 or higher
-- NPM or yarn package manager
-- Git
-
----
-
 ## 💻 Code Standards :
 
-- Python: Follow PEP 8 standards, use type hints where applicable.
-- JavaScript: ESLint configuration for consistent code style.
-- Git: Use conventional commit messages.
+### - Python: Follow PEP 8 standards, use type hints where applicable.
+
+### - JavaScript: ESLint configuration for consistent code style.
+
+### - Git: Use conventional commit messages.
 
 ---
 
-## 🧰 Setup Instructions
+## 🚀 COMPLETE SETUP & RUNNING GUIDE
 
-##### 🔻 Clone the Repository :
+### 📋 Prerequisites Installation
+
+### Install Required Software First :
 
 ```bash
-git clone https://github.com/your-username/StockVibePredictor.git
+# Install Python 3.8+
+# Mac:
+brew install python@3.11
+
+# Windows: Download from python.org
+# Linux:
+sudo apt update
+sudo apt install python3.11 python3-pip
+
+# Install Node.js (for frontend)
+# Mac:
+brew install node
+
+# Windows: Download from nodejs.org
+# Linux:
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install Redis
+# Mac:
+brew install redis
+
+# Windows: Download from https://github.com/microsoftarchive/redis/releases
+# Linux:
+sudo apt update
+sudo apt install redis-server
+```
+
+## 🔻 Step 1: Clone & Setup Project
+
+### Clone the repository
+
+```bash
+git clone https://github.com/ThisIsDibakar/StockVibePredictor.git
 cd StockVibePredictor
 ```
 
-### ⚙️ Backend Setup (Django)
-
-#### Create virtual environment :
+### Check you're in the right place
 
 ```bash
+ls
+```
+
+You should see: Backend, Frontend, README.md, etc ...
+
+## 🔴 Step 2: Start Redis Server (IMPORTANT!)
+
+### Start Redis in a NEW Terminal :
+
+```bash
+# Mac/Linux - Terminal 1:
+redis-server
+
+# Windows - Terminal 1:
+redis-server.exe
+
+# You should see:
+# - Ready to accept connections
+# - The server is now ready to accept connections on port 6379
+```
+
+### Verify Redis is Running (Optional) :
+
+#### In another terminal:
+
+```bash
+redis-cli ping
+
+# Should return: PONG
+```
+
+#### ⚠️ KEEP THIS TERMINAL OPEN - Redis must stay running!
+
+## ⚙️ Step 3: Backend Setup (Django)
+
+### Open Terminal 2 for Backend :
+
+```bash
+# Navigate to project
+cd StockVibePredictor
+
+# Create virtual environment
 python -m venv venv
-```
 
-#### Activate environment :
-
-#### On Mac/Linux :
-
-```bash
+# Activate environment
+# Mac/Linux:
 source venv/bin/activate
-```
 
-#### On Windows :
-
-```bash
+# Windows:
 venv\Scripts\activate
 ```
 
-#### Install Python Dependencies :
+#### You should see (venv) in your terminal prompt
+
+### Install Python Dependencies :
 
 ```bash
+# Make sure you're in StockVibePredictor directory with (venv) active
 pip install -r requirements.txt
 ```
 
-#### Navigate to Django project :
+### Setup Django Backend :
 
 ```bash
-cd StockVibePredictor
+# Navigate to Backend
 cd Backend
-```
 
-#### Configure Django :
+# Create .env file for settings
+echo "DEBUG=True" > .env
+echo "SECRET_KEY=your-secret-key-here" >> .env
+echo "REDIS_URL=redis://localhost:6379/0" >> .env
 
-```bash
-cd Backend
+# Run migrations
+python manage.py makemigrations
 python manage.py migrate
+
+# Create superuser (optional, for admin panel)
+python manage.py createsuperuser
+# Enter username: <yourName>
+# Enter email: <yourName>@example.com
+# Enter password: (your choice)
+
+# Collect static files
 python manage.py collectstatic --noinput
 ```
 
-#### Start Development Server :
+### Start Django Server :
+
+#### Make sure you're in Backend directory ...
 
 ```bash
 python manage.py runserver
+#### You should see :
+#### Starting development server at http://127.0.0.1:8000/
+#### Quit the server with CONTROL-C.
 ```
 
-#### The API will be available at http://localhost:8000
+✅ Backend is running at: http://127.0.0.1:8000 <br />
+⚠️ KEEP THIS TERMINAL OPEN!
 
-### 💻 Frontend Setup (React & Next JS) :
+## 🧠 Step 4: Train ML Models
 
-#### Go to frontend folder :
+### Open Terminal 3 for Training :
 
 ```bash
-cd Frontend
+# Navigate to Scripts directory
+cd StockVibePredictor/Backend/Scripts
+
+# Activate virtual environment (if not already active)
+# Mac/Linux:
+source ../../venv/bin/activate
+
+# Windows:
+..\..\venv\Scripts\activate
+
+# Train models - Choose one:
+
+# Option 1: Quick training (just universal models)
+python TrainModel.py
+
+# Option 2: Train specific category
+python TrainModel.py category mega_cap_tech 1d,1w
+
+# Option 3: Full training (takes longer)
+python TrainModel.py full
+
+# You should see progress logs:
+# INFO: Training universal model for 1d...
+# INFO: Model saved: Models/universal_model_1d.pkl
 ```
 
-#### Install node dependencies :
+### Verify Models are Created :
 
 ```bash
+# Check Models directory
+
+ls Models/
+
+# Should show: universal_model_1d.pkl, universal_model_1w.pkl, etc.
+```
+
+## 💻 Step 5: Frontend Setup (React/Next.js)
+
+### Open Terminal 4 for Frontend :
+
+```bash
+# Navigate to Frontend directory
+cd StockVibePredictor/Frontend
+
+# Install dependencies
+npm install
+
+# If you get errors, try:
+npm install --legacy-peer-deps
+
+# Create .env.local file for API endpoint
+echo "NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api" > .env.local
+
+# Start the development server
+npm run dev
+# or
+npm start
+
+# You should see:
+# Local: http://localhost:3000
+# ready - started server on 0.0.0.0:3000
+```
+
+✅ Frontend is running at: http://localhost:3000 <br />
+⚠️ KEEP THIS TERMINAL OPEN!
+
+## 🧪 Step 6: Test with Postman
+
+### Install & Setup Postman :
+
+```bash
+# Download Postman from: https://www.postman.com/downloads/
+# Or use web version: https://web.postman.co/
+```
+
+### Import Endpoints to Postman :
+
+1. Open Postman
+2. Click "Import" → "Raw text"
+3. Paste all endpoints from the Endpoints.txt file
+4. Click "Continue" → "Import"
+
+### Test Basic Endpoints:
+
+```bash
+# 1. First check system health
+GET http://127.0.0.1:8000/api/system/health/
+
+# 2. Check Redis connection
+GET http://127.0.0.1:8000/api/redis-check/
+
+# 3. List available models
+GET http://127.0.0.1:8000/api/models/list/
+
+# 4. Make a prediction
+POST http://127.0.0.1:8000/api/predict/
+Headers: Content-Type: application/json
+Body:
+{
+    "ticker": "AAPL",
+    "timeframes": ["1d"]
+}
+```
+
+## 🎯 Step 7: Quick Verification Checklist
+
+### Run these commands to verify everything works :
+
+```bash
+# Terminal 1 - Check Redis
+redis-cli ping
+# Expected: PONG
+
+# Terminal 2 - Check Django API
+curl http://127.0.0.1:8000/api/system/health/
+# Expected: {"status": "healthy", ...}
+
+# Terminal 3 - Check models exist
+ls Backend/Scripts/Models/*.pkl
+# Expected: List of .pkl files
+
+# Terminal 4 - Check Frontend
+curl http://localhost:3000
+# Expected: HTML content
+
+# Test prediction via curl
+curl -X POST http://127.0.0.1:8000/api/predict/ \
+     -H "Content-Type: application/json" \
+     -d '{"ticker": "AAPL"}'
+# Expected: {"ticker": "AAPL", "predictions": {...}}
+```
+
+## 🛠️ Troubleshooting Common Issues :
+
+### Issue 1: "Redis connection failed"
+
+```bash
+# Solution: Make sure Redis is running
+redis-server  # Start Redis
+redis-cli ping  # Test connection
+```
+
+### Issue 2: "No models available"
+
+```bash
+# Solution: Train models first
+cd Backend/Scripts
+python TrainModel.py
+# Then reload models in Django
+curl -X POST http://127.0.0.1:8000/api/models/reload/
+```
+
+### Issue 3: "Port already in use"
+
+```bash
+# Kill existing processes
+# Mac/Linux:
+lsof -i :8000  # Find process using port 8000
+kill -9 <PID>  # Kill the process
+
+lsof -i :3000  # Find process using port 3000
+kill -9 <PID>  # Kill the process
+
+# Windows:
+netstat -ano | findstr :8000
+taskkill /PID <PID> /F
+
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+### Issue 4: "Module not found" errors
+
+```bash
+# Make sure virtual environment is activated
+# You should see (venv) in terminal
+
+# Reinstall dependencies
+pip install -r requirements.txt
+
+# For frontend:
+rm -rf node_modules package-lock.json
 npm install
 ```
 
-#### Run the React app :
+## 📱 Access Points Summary
 
-```bash
-npm start
-```
-
-#### The application will be available at http://localhost:3000
-
----
-
-## 🧠 Train the ML Model
-
-#### From Scripts directory :
-
-```bash
-cd Backend
-cd Scripts
-python TrainModel.py
-```
-
-#### This generates stock_model.pkl which is automatically loaded by the Django application.
-
-#### 📦 The backend will load this file to make predictions.
-
----
-
-## ML Usage :
-
-Access the Application: Navigate to http://localhost:3000 <br />
-Enter Stock Symbol: Input a valid ticker symbol (e.g., AAPL, TSLA, GOOGL) <br />
-View Analysis: The application will display :
-
-- Historical price charts
-- Technical indicators
-- Next-day prediction (Up/Down)
-- Confidence metrics
+After everything is running, you can access : <br />
+• Redis: ⁠localhost:6379 (running in Terminal 1) <br />
+• Django Backend API: ⁠http://127.0.0.1:8000 (Terminal 2) <br />
+• API Documentation: ⁠http://127.0.0.1:8000/api/ <br />
+• Django Admin: ⁠http://127.0.0.1:8000/admin/ <br />
+• Frontend Application: ⁠http://localhost:3000 (Terminal 4) <br />
+• Postman: Test all endpoints from Endpoints.txt <br />
 
 ---
 
@@ -317,11 +552,11 @@ View Analysis: The application will display :
 
 Our .gitignore file keeps the repo clean by excluding files like node_modules, venv, and stock_model.pkl. When you clone the repo, you’ll need to recreate these files locally.
 
-### Ignored files and how to Recreate them :
+## Ignored files and how to Recreate them :
 
 venv/ : Python virtual environment for Django and ML dependencies.
 
-### Recreate :
+## Recreate :
 
 ```bash
 python -m venv venv
@@ -398,7 +633,7 @@ Other Ignored Files : Files like .DS_Store, .vscode/, .coverage, etc., are user-
 
 ---
 
-### Why These Files Are Ignored ??
+## Why These Files Are Ignored ??
 
 node_modules/: Huge folder, regenerated with npm install.
 venv/: User-specific, avoids conflicts across machines.
@@ -410,7 +645,64 @@ Others: Editor files (.vscode/), OS files (.DS_Store), or test outputs (.coverag
 
 ---
 
-### Team Tips :
+## 🔄 Daily Startup Sequence
+
+### Once everything is installed, daily startup is :
+
+```bash
+# Terminal 1
+redis-server
+
+# Terminal 2
+cd StockVibePredictor/Backend
+source ../venv/bin/activate  # Mac/Linux
+# or
+..\venv\Scripts\activate  # Windows
+python manage.py runserver
+
+# Terminal 3 (optional - for model updates)
+cd StockVibePredictor/Backend/Scripts
+python TrainModel.py daily
+
+# Terminal 4
+cd StockVibePredictor/Frontend
+npm run dev
+```
+
+---
+
+## 🛑 Shutdown Sequence
+
+#### To properly shutdown :
+
+```bash
+# Terminal 4: Press Ctrl+C to stop Frontend
+# Terminal 2: Press Ctrl+C to stop Django
+# Terminal 1: Press Ctrl+C to stop Redis
+
+# Or kill all at once (Mac/Linux):
+pkill -f redis-server
+pkill -f "python manage.py"
+pkill -f node
+```
+
+---
+
+## ✅ Success Indicators
+
+### You know everything is working when :
+
+✅ Redis responds with "PONG" to ping <br />
+✅ Django shows no errors and says "Starting development server" <br />
+✅ Frontend compiles successfully with "Compiled successfully!" <br />
+✅ System health endpoint returns {"status": "healthy"} <br />
+✅ Models list shows at least one model <br />
+✅ Prediction endpoint returns data for AAPL <br />
+✅ Frontend loads at http://localhost:3000 <br />
+
+---
+
+## Team Tips :
 
 Verify Setup: After cloning, run git status to ensure ignored files don’t appear.
 Regenerate Locally: Each team member must recreate venv, node_modules, and stock_model.pkl locally.
@@ -425,7 +717,7 @@ git commit -m "Track ML model with Git LFS"
 git push origin main
 ```
 
-#### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to avoid dependency issues.
+### Consistency: Ensure all team members use the same Python (3.8+) and Node.js (16+) versions to avoid dependency issues.
 
 ---
 
@@ -441,6 +733,19 @@ After the installation of dependencies to keep requirements.txt updated for the 
 
 ---
 
+## ML Usage :
+
+Access the Application: Navigate to http://localhost:3000 <br />
+Enter Stock Symbol: Input a valid ticker symbol (e.g., AAPL, TSLA, GOOGL) <br />
+View Analysis: The application will display :
+
+- Historical price charts
+- Technical indicators
+- Next-day prediction (Up/Down)
+- Confidence metrics
+
+---
+
 ## 🎯 API Endpoints :
 
 | Method   | Endpoint                 | Description          |
@@ -451,42 +756,9 @@ After the installation of dependencies to keep requirements.txt updated for the 
 
 ---
 
-## 🧪 Testing the Setup :
-
-### Backend : Test the API with Postman or curl :
-
-#### Example Request :
-
-```bash
-curl -X POST -H "Content-Type: application/json" -d '{"ticker":"AAPL"}'
-```
-
-#### Example Response :
-
-```json
-{
-  "ticker": "AAPL",
-  "prediction": "Up",
-  "confidence": 0.78,
-  "current_price": 150.25,
-  "technical_indicators": {
-    "rsi": 65.2,
-    "ma_50": 148.5,
-    "ma_200": 145.8
-  }
-}
-```
-
-### Frontend :
-
-Enter a ticker (e.g., TSLA), and check for a chart and prediction. <br />
-ML Model: Verify stock_model.pkl works by running the API and checking predictions.
-
----
-
 ## ❌ Common Issues and Fixes :
 
-- Missing stock_model.pkl: Run python train_model.py and move the file to StockVibePredictor/. <br />
+- Missing stock models: Run python TrainModel.py. <br />
 - Dependency Errors: Ensure requirements.txt and package.json are up-to-date. Re-run pip install or npm install. <br />
 - CORS Issues: Verify django-cors-headers is installed and configured in StockVibePredictor/settings.py. <br />
 - Git Conflicts: Pull latest changes (git pull origin main) and resolve conflicts in VS Code or git mergetool. <br />
@@ -495,7 +767,7 @@ ML Model: Verify stock_model.pkl works by running the API and checking predictio
 
 ## ✨ Deployment (OPTIONAL) :
 
-#### Backend (Heroku):
+### Backend (Heroku):
 
 ```bash
 heroku create stock-vibe-predictor
