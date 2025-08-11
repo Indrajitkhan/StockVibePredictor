@@ -74,6 +74,8 @@ db.sqlite3-journal
 .env.*
 *.env
 *.env.*
+*.json
+*.json.*
 
 # Django migrations (uncomment if you want to ignore them)
 # */migrations/*
