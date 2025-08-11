@@ -74,7 +74,7 @@ db.sqlite3-journal
 .env.*
 *.env
 *.env.*
-*.json
+*.nn
 *.json.*
 
 # Django migrations (uncomment if you want to ignore them)
@@ -303,6 +303,7 @@ cache/
 *.pb
 *.onnx
 models/
+performance/
 checkpoints/
 performance/
 
