@@ -10,7 +10,7 @@ This index distinguishes **current** documentation from **historical** material.
 | [`ARCHITECTURE-DECISIONS.md`](./ARCHITECTURE-DECISIONS.md) | ADR log — audit baseline, investment-platform direction, Group-branch exclusion, hygiene actions. | IMPLEMENTED |
 | [`PRODUCT-VISION.md`](./PRODUCT-VISION.md) | Long-term investment-platform direction, principles, gated roadmap. | PLANNED (vision) |
 | [`CRITICAL-ISSUES.md`](./CRITICAL-ISSUES.md) | Prioritized open issues from the Phase 0/1 audit. | IMPLEMENTED (tracking) |
-| [`RUNTIME-BASELINE.md`](./RUNTIME-BASELINE.md) | Task 02 verified runtime facts + Task 03 test-infra repair & SQLite migration baseline (pytest fixed, migrations applied, regression results). | IMPLEMENTED (verified 2026-10-06 / 2026-10-07) |
+| [`RUNTIME-BASELINE.md`](./RUNTIME-BASELINE.md) | Task 02 runtime facts + Task 03 test-infra/SQLite baseline + Task 04 structural migration record (`Backend → api`, `Frontend → ui`). | IMPLEMENTED (verified 2026-10-06 / 2026-10-07) |
 
 ## Legacy / Needs Accuracy Pass
 

@@ -5,8 +5,8 @@
 PYTHON := python3
 PIP := pip3
 NPM := npm
-BACKEND_DIR := Backend
-FRONTEND_DIR := Frontend
+BACKEND_DIR := api
+FRONTEND_DIR := ui
 MANAGE := $(PYTHON) manage.py
 
 # Colors for output

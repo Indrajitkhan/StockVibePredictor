@@ -127,7 +127,7 @@
 ```bash
 🏗️ StockVibePredictor/
 │
-├── 📁 Backend/
+├── 📁 api/
 │   ├── 🔧 StockVibePredictor/
 │   │   ├── __init__.py
 │   │   ├── asgi.py
@@ -180,7 +180,7 @@
 │   ├── 🐳 Dockerfile
 │   └── 🔧 docker-compose.yml
 │
-├── 🎨 Frontend/
+├── 🎨 ui/
 │   ├── 📱 Apps/
 │   │   └── Dashboard/
 │   ├── 🌐 Public/
@@ -416,7 +416,7 @@ python manage.py runserver
 
 ```bash
 # 📂 Navigate to Scripts directory
-cd StockVibePredictor/Backend/Scripts
+cd StockVibePredictor/api/Scripts
 
 # 🔌 Activate virtual environment (if not already active)
 # Mac/Linux:
@@ -767,7 +767,7 @@ curl http://127.0.0.1:8000/api/system/health/
 # Expected: {"status": "healthy", ...}
 
 # ✅ Terminal 3 - Check models exist
-ls Backend/Scripts/Models/*.pkl
+ls api/Scripts/Models/*.pkl
 # Expected: List of .pkl files
 
 # ✅ Terminal 4 - Check Frontend
@@ -804,7 +804,7 @@ redis-cli ping  # Test connection
 
 ```bash
 # Solution: Train models first
-cd Backend/Scripts
+cd api/Scripts
 python TrainModel.py
 ```
 
@@ -906,7 +906,7 @@ npm run build
 #### **`.env`** - Environment variables
 
 ```bash
-echo "SECRET_KEY=your-django-secret-key" > Backend/.env
+echo "SECRET_KEY=your-django-secret-key" > api/.env
 ```
 
 #### **`migrations/`** - Django migrations
@@ -944,7 +944,7 @@ source ../venv/bin/activate  # Mac/Linux
 python manage.py runserver
 
 # 🧠 Terminal 3 (optional - for model updates)
-cd StockVibePredictor/Backend/Scripts
+cd StockVibePredictor/api/Scripts
 python TrainModel.py daily
 
 # 🎨 Terminal 4

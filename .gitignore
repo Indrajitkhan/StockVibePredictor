@@ -160,6 +160,8 @@ lerna-debug.log*
 # Build outputs
 Frontend/build/
 Frontend/dist/
+ui/build/
+ui/dist/
 frontend/build/
 frontend/dist/
 client/build/
@@ -510,9 +512,10 @@ BacktestResults/
 # ==============================================================================
 
 # Runtime and training logs — generated artifacts, not source.
-# Backend settings.py LOGGING writes to Backend/Logs/StockPredict.log; tracking these
+# Backend settings.py LOGGING writes to api/Logs/StockPredict.log (formerly Backend/Logs/); tracking these
 # makes every server run dirty the working tree. Untracked in Task 01.
 Backend/Logs/
+api/Logs/
 *.log
 logs/
 log/

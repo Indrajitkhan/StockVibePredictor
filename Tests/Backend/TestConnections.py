@@ -16,7 +16,7 @@ import unittest
 # Add project root to Python path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(PROJECT_ROOT))
-sys.path.append(str(PROJECT_ROOT / "Backend"))
+sys.path.append(str(PROJECT_ROOT / "api"))
 
 class ConnectionTestSuite(unittest.TestCase):
     """Test suite for external connections"""
@@ -24,7 +24,7 @@ class ConnectionTestSuite(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures"""
         self.base_dir = PROJECT_ROOT
-        self.backend_dir = self.base_dir / "Backend"
+        self.backend_dir = self.base_dir / "api"
         self.timeout = 10
         self.test_results = {
             "timestamp": datetime.now().isoformat(),

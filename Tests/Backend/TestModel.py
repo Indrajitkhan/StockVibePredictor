@@ -24,7 +24,7 @@ warnings.filterwarnings("ignore")
 # Add project root to Python path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(PROJECT_ROOT))
-sys.path.append(str(PROJECT_ROOT / "Backend"))
+sys.path.append(str(PROJECT_ROOT / "api"))
 
 class ComprehensiveModelTestSuite:
     """Complete test suite for all ML models"""
@@ -32,8 +32,8 @@ class ComprehensiveModelTestSuite:
     def __init__(self):
         """Initialize test suite"""
         self.base_dir = PROJECT_ROOT
-        self.model_dir = self.base_dir / "Backend" / "Scripts" / "Models"
-        self.results_dir = self.base_dir / "Backend" / "Scripts" / "TestResults"
+        self.model_dir = self.base_dir / "api" / "Scripts" / "Models"
+        self.results_dir = self.base_dir / "api" / "Scripts" / "TestResults"
         self.results_dir.mkdir(exist_ok=True)
 
         # Initialize results storage

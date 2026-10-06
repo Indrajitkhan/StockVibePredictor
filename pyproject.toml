@@ -108,18 +108,18 @@ docs = [
 ]
 
 [project.scripts]
-stockvibe = "Backend.manage:main"
-stockvibe-train = "Backend.Scripts.TrainModel:main"
-stockvibe-runserver = "Backend.manage:runserver"
-stockvibe-migrate = "Backend.manage:migrate"
-stockvibe-test = "Backend.manage:test"
+stockvibe = "api.manage:main"
+stockvibe-train = "api.Scripts.TrainModel:main"
+stockvibe-runserver = "api.manage:runserver"
+stockvibe-migrate = "api.manage:migrate"
+stockvibe-test = "api.manage:test"
 
 [tool.setuptools]
 include-package-data = true
 zip-safe = false
 
 [tool.setuptools.packages.find]
-where = ["Backend"]
+where = ["api"]
 include = ["Apps*", "Backend*", "Scripts*"]
 exclude = ["tests*", "docs*", "Frontend*"]
 
@@ -167,16 +167,16 @@ line_length = 88
 known_django = ["django", "rest_framework"]
 known_first_party = ["Apps", "Backend", "Scripts"]
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-skip_glob = ["*/migrations/*", "*/venv/*", "*/node_modules/*", "Frontend/*"]
-skip = ["Frontend"]
+skip_glob = ["*/migrations/*", "*/venv/*", "*/node_modules/*", "Frontend/*", "ui/*"]
+skip = ["Frontend", "ui"]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "StockVibePredictor.settings"
-pythonpath = ["Backend"]
+pythonpath = ["api"]
 python_files = ["test_*.py", "*_test.py", "tests.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-testpaths = ["Backend/Apps"]
+testpaths = ["api/Apps"]
 addopts = """
     -v
     --tb=short
@@ -192,7 +192,7 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["Backend"]
+source = ["api"]
 omit = [
     "*/migrations/*",
     "*/tests/*",
@@ -201,9 +201,9 @@ omit = [
     "*/env/*",
     "*/__pycache__/*",
     "*/settings/*",
-    "Backend/manage.py",
-    "Backend/Backend/wsgi.py",
-    "Backend/Backend/asgi.py",
+    "api/manage.py",
+    "api/StockVibePredictor/wsgi.py",
+    "api/StockVibePredictor/asgi.py",
     "Frontend/*",
 ]
 

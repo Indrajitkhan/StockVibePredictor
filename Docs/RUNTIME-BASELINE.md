@@ -230,3 +230,81 @@ python manage.py check                # PASS, 1 warning (urls.W005)
 # frontend (unchanged):
 cd ../Frontend && npx craco test --watchAll=false   # 13/13
 ```
+
+---
+
+# Task 04 — Structural Migration: Backend → api, Frontend → ui (2026-10-07)
+
+> Starting checkpoint: `a9a1fa1` (`test: repair test infrastructure and establish sqlite baseline`), branch `main`, clean tree.
+> **This is a structural move, not an application rewrite.** Move first, refactor later. No application logic, ML code, models, or tests were changed — only paths/imports invalidated by the rename.
+
+## S. What Moved (VERIFIED)
+
+* `git mv Backend api` · `git mv Frontend ui` — Git-aware moves; old directories no longer exist; no duplicated copies remain.
+* All untracked runtime state moved with the directories intact: `api/db.sqlite3` (167,936 bytes, migrated schema), `api/.env`, 4 fallback `universal_model_*.pkl` files (untracked, R-ML-02 artifacts), `ui/node_modules/`, `ui/build/` (rebuilt).
+* **Files moved:** `git diff --cached --name-status`: **77 files renamed (all R100)** — 35 from `Backend/` → `api/`, 42 from `Frontend/` → `ui/` — plus 11 modified config/docs/tests files; **no adds, no deletes** (see §W for the commit stat).
+
+## T. References Repaired (all rename-caused, nothing else)
+
+| File | Change |
+|---|---|
+| `pyproject.toml` | `[project.scripts]` `Backend.*` → `api.*` (5 entries); `[tool.setuptools.packages.find] where = ["api"]`; pytest `pythonpath = ["api"]`, `testpaths = ["api/Apps"]`; coverage `source = ["api"]` + omit paths → `api/…`; isort `skip`/`skip_glob` gained `ui` entries (legacy `Frontend` values kept for history) |
+| `Makefile` | `BACKEND_DIR := api`, `FRONTEND_DIR := ui` (all targets flow through these variables) |
+| `.gitignore` | Added `ui/node_modules/`, `ui/build/`, `ui/dist/`, `api/Logs/` alongside legacy rules; log-path comment updated. Generic patterns already covered the rest (`db.sqlite3`, `.env`, `**/node_modules/`) — verified via `git check-ignore` |
+| `.github/CODEOWNERS` | `/Backend/` `/Frontend/` → `/api/` `/ui/` |
+| `Tests/Backend/TestConnections.py` | `PROJECT_ROOT / "Backend"` → `PROJECT_ROOT / "api"` (sys.path + `backend_dir`) |
+| `Tests/Backend/TestModel.py` | `base_dir / "Backend" / …` → `base_dir / "api" / …` (model_dir, results_dir) |
+| `Tests/e2e/EnterpriseTest.py` | instruction text `cd Frontend && npm start` → `cd ui && npm start` |
+| `Docs/CRITICAL-ISSUES.md` | evidence commands updated to `api/…` paths with "(path renamed in Task 04)" annotations — findings unchanged |
+| `README.md` | current-structure tree + runnable commands updated (`cd …/api/Scripts`, `.env` location, model-listing commands) |
+
+**Left historically accurate (untouched):** Task 02/03 sections of this document, `Docs/ChangeLog.md`, `Docs/ARCHITECTURE-DECISIONS.md` Task 01 records, bare prose words ("Backend API", "Frontend design" in `AUTHORS.md`), comment strings, `Frontend-Integration.md` doc title/prose. **No Python imports inside `api/` needed repair** — `manage.py`, `settings.py` (all `BASE_DIR`-relative), and app code are layout-independent. **`craco.config.js` needed no change** — its `<rootDir>/../Tests/` references are relative to the frontend dir's parent, which still resolves correctly from `ui/`.
+
+## U. Post-Move Verification (VERIFIED)
+
+### Backend (from `api/`)
+
+| Check | Result |
+|---|---|
+| `manage.py check` | **PASS** — same single pre-existing `urls.W005` warning (R-BE-03, deferred) |
+| `manage.py showmigrations` | All `[X]` — SQLite migration state from Task 03 intact |
+| `manage.py migrate` | **No migrations to apply** — no-op, DB state preserved (not regenerated, not deleted) |
+| `pytest --collect-only -q` / `pytest -q` | **0 tests collected / no tests ran** — identical to Task 03 baseline (empty scaffold, honest) |
+| `/api/v1/system/health/` | HTTP 200 — `status: "healthy"`, `model_cache_size: 4` |
+| `/api/v1/chart/AAPL/` | HTTP 200 — live yfinance data |
+| `/api/v1/company/AAPL/essentials/` | HTTP 200 |
+| `/api/v1/predict/multi-timeframe/` (POST) | HTTP 200 — **known ML masking (fallback `.pkl`s), not a genuine baseline**; unchanged by the move, deferred to ML task |
+
+### Frontend (from `ui/`)
+
+| Check | Result |
+|---|---|
+| Jest (`craco test --watchAll=false`) | **4 suites / 13 tests, all pass** — unchanged from Task 03 checkpoint |
+| Production build (`npm run build`) | **SUCCESS** — same output profile as Task 02; same known `homepage`-path note (R-FE-02, deferred) |
+| Dev server | **NOT TESTED this run** — port-3000 blocker (R-FE-01) is external to the repo; unchanged, deferred |
+| Browser/DOM integration | **UNVERIFIED** — no browser-level verification performed in this task |
+
+### Newman (from `Postman/`, unmodified)
+
+**15/15 requests · 17/17 assertions · 0 failures** — identical to Task 03. The collection targets `http://localhost:8000/api/v1` via environment variables; no local-path references exist inside it, so nothing needed modification. Prediction passes **only because fallback model artifacts exist** (R-ML-02 masking R-ML-01) — explicitly not a successful ML baseline.
+
+## V. Backend ↔ Frontend Path Integrity (VERIFIED)
+
+* Frontend API base remains `http://localhost:8000/api`, hardcoded in `ui/src/App.js:119` (and `CompanyEssentials.js`) — **unchanged**, per task rules (no centralization).
+* The structural move did not touch any API path: backend routes (`/api/`, `/api/v1/`) are Django-internal, frontend base URL is protocol/host-based. Newman's live pass proves endpoint correspondence.
+
+## W. Task 04 Status Register
+
+| Item | Status |
+|---|---|
+| Structural migration `Backend → api`, `Frontend → ui` | **RESOLVED** — Git-aware renames, 77 files (35 `Backend/` + 42 `Frontend/`), no source deletion, no duplication |
+| R-BE-01 (pytest config) | RESOLVED in Task 03 — re-verified working post-move |
+| R-DB-01 (SQLite baseline) | RESOLVED in Task 03 — re-verified intact post-move (no-op migrate) |
+| R-ML-01 / R-ML-02 (genuine artifacts / fallback side-effects) | **DEFERRED** — unchanged behavior; fallback `.pkl`s moved with the tree, still masking; next ML task owns this |
+| R-FE-01 (port 3000) | DEFERRED — external process, untouched |
+| R-FE-02 (homepage metadata) | DEFERRED — same build note persists |
+| R-BE-02 / R-BE-03 / R-TEST-01 | DEFERRED — unchanged |
+| Browser/DOM behavior | UNVERIFIED |
+
+**Architectural note:** `api/` and `ui/` are now the authoritative directory names. Future tasks must not resurrect `Backend/` or `Frontend/`.
+

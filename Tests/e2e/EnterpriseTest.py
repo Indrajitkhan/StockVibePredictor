@@ -547,7 +547,7 @@ class APITester:
             print_colored("   4. 📋 Review failed tests in the detailed report", "WHITE")
         else:
             print_colored(
-                "   1. 🚀 Start your frontend: cd Frontend && npm start", "WHITE"
+                "   1. 🚀 Start your frontend: cd ui && npm start", "WHITE"
             )
             print_colored("   2. 🎉 Your API is ready for production!", "WHITE")
             print_colored("   3. 📈 Consider adding more advanced features", "WHITE")

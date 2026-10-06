@@ -4,8 +4,8 @@
 * @dibakar
 
 # Specific ownership
-/Backend/ @dibakar
-/Frontend/ @dibakar
+/api/ @dibakar
+/ui/ @dibakar
 /Scripts/ @dibakar
 *.py @dibakar
 *.js @dibakar
