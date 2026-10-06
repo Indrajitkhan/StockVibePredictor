@@ -505,6 +505,22 @@ TradingHistory/
 UserPortfolios/
 BacktestResults/
 
+# ==============================================================================
+# TASK 01 — REPOSITORY HYGIENE (untracked 2026-10-06)
+# ==============================================================================
+
+# Runtime and training logs — generated artifacts, not source.
+# Backend settings.py LOGGING writes to Backend/Logs/StockPredict.log; tracking these
+# makes every server run dirty the working tree. Untracked in Task 01.
+Backend/Logs/
+*.log
+logs/
+log/
+
+# OS / local environment noise (untracked in Task 01)
+.DS_Store
+.gitconfig
+
 # Development databases
 development.db
 test.db
