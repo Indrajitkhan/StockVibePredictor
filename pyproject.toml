@@ -171,11 +171,12 @@ skip_glob = ["*/migrations/*", "*/venv/*", "*/node_modules/*", "Frontend/*"]
 skip = ["Frontend"]
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "Backend.Backend.settings"
+DJANGO_SETTINGS_MODULE = "StockVibePredictor.settings"
+pythonpath = ["Backend"]
 python_files = ["test_*.py", "*_test.py", "tests.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-testpaths = ["Backend/tests", "Backend/Apps"]
+testpaths = ["Backend/Apps"]
 addopts = """
     -v
     --tb=short
@@ -276,11 +277,7 @@ home-page = "https://github.com/ThisIsDibakar/StockVibePredictor"
 license = "MIT"
 license_files = ["LICENSE"]
 platform = ["any"]
-project_urls = {
-    "Bug Tracker" = "https://github.com/DibVibe/StockVibePredictor/issues"
-    "Documentation" = "https://github.com/DibVibe/StockVibePredictor/wiki"
-    "Source Code" = "https://github.com/DibVibe/StockVibePredictor"
-}
+project_urls = { "Bug Tracker" = "https://github.com/DibVibe/StockVibePredictor/issues", "Documentation" = "https://github.com/DibVibe/StockVibePredictor/wiki", "Source Code" = "https://github.com/DibVibe/StockVibePredictor" }
 
 # Custom metadata for the project
 [tool.stockvibe]

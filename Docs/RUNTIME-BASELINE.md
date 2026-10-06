@@ -129,3 +129,104 @@ cd ../Frontend && npm install && npm run build
 cd .. && pytest            # FAILS — R-BE-01 (recorded, not fixed)
 cd Frontend && npx craco test --watchAll=false   # 13/13 pass
 ```
+
+---
+
+# Task 03 — Testing Infrastructure Repair + SQLite Baseline (2026-10-07)
+
+> Starting checkpoint: `9a1d704` (`docs: record verified Task 02 runtime baseline`), branch `main`, clean tree.
+> Scope held strictly to: pytest configuration repair + minimal SQLite migration baseline. No application refactors, no ML changes, no frontend changes, no test rewrites.
+
+## M. Pytest Configuration Repair (RESOLVED: R-BE-01)
+
+**Root cause (precise):** the `[metadata]` section's `project_urls` was written as a *multi-line inline table* (`{ ... }` spanning lines 279–283). TOML **forbids newlines inside inline tables**, so parsing failed at line 279 col 17 ("Invalid initial character for a key part") — the first key on line 2 of the braces. Additionally, the pytest section pointed at a nonexistent module (`Backend.Backend.settings` — no such package; the real one is `StockVibePredictor.settings`, importable only with `Backend/` on `sys.path`) and nonexistent test paths (`Backend/tests` does not exist).
+
+**Minimal correction (all in `pyproject.toml`, nothing else):**
+
+1. `project_urls` collapsed onto a single valid TOML line (same three URLs, unchanged values).
+2. `DJANGO_SETTINGS_MODULE`: `Backend.Backend.settings` → `StockVibePredictor.settings`.
+3. Added `pythonpath = ["Backend"]` (required so pytest, invoked from repo root, can import the settings module — mirrors how `manage.py` runs from `Backend/`).
+4. `testpaths`: `["Backend/tests", "Backend/Apps"]` → `["Backend/Apps"]` (the only location containing Python tests).
+
+No frameworks added, no tests rewritten, no application code touched.
+
+**Results:**
+
+| Step | Result |
+|---|---|
+| TOML parse | **OK** (`tomllib.load` passes) |
+| `pytest --collect-only -q` | **Collected 0 items** — honest result: the only Python test file is `Backend/Apps/StockPredict/tests.py`, which is an **empty scaffold** (`# Create your tests here`). No test files exist anywhere else in the project (`Tests/` holds JS tests + ad-hoc scripts). |
+| `pytest -q` | **No tests ran** (exit 0). **Backend regression suite is effectively empty** — this is the honest executable baseline. Nothing was invented to fill it. |
+
+## N. SQLite Migration Baseline (RESOLVED: R-DB-01)
+
+**Pre-migration inspection (VERIFIED):**
+
+* Three models confirmed registered in app `StockPredict`: `PredictionHistory`, `ModelPerformance`, `ApiUsage` (via `apps.get_app_config('StockPredict').get_models()`).
+* `INSTALLED_APPS` includes `"StockPredict"` (resolvable via settings' `sys.path.insert(0, .../Apps)`); middleware `Apps.StockPredict.middleware.APIVersionMiddleware` loads.
+* **Zero migration files existed anywhere** in the repo (find across tree, excluding `.venv`/`node_modules`).
+* `Backend/db.sqlite3` was the 0-byte runtime artifact from Task 02.
+
+**Migration creation (Django's normal mechanism — no hand-fabricated files):**
+
+```text
+Backend/Apps/StockPredict/migrations/0001_initial.py
+  + Create model ApiUsage
+  + Create model ModelPerformance
+  + Create model PredictionHistory
+```
+
+**Migration application:** `manage.py migrate` applied **19 migrations** across `StockPredict`, `admin`, `auth`, `contenttypes`, `sessions` — all OK. `showmigrations` all `[X]`. `db.sqlite3` now **167,936 bytes** (was 0). Migrated tables present in SQLite: `StockPredict_predictionhistory`, `StockPredict_modelperformance`, `StockPredict_apiusage` + auth/admin/session tables.
+
+**ORM write verification (VERIFIED):** inside a rolled-back `transaction.atomic()` savepoint (no permanent data created), all three models were created, read back, and verified; post-rollback counts are 0/0/0. Connect + create + read + rollback all succeed against the migrated SQLite tables.
+
+## O. Runtime Regression After Migration (VERIFIED)
+
+`manage.py check`: **PASS** with the same single pre-existing warning (`urls.W005`, R-BE-03, deferred). Live server on `127.0.0.1:8000`:
+
+| Endpoint | Result |
+|---|---|
+| `/api/v1/system/health/` | HTTP 200 — now reports `status: "healthy"`, `models: "healthy"` with `model_cache_size: 4` |
+| `/api/v1/chart/AAPL/` | HTTP 200 — live yfinance candlestick data (unchanged) |
+| `/api/v1/company/AAPL/essentials/` | HTTP 200 — live fundamentals (unchanged) |
+| `/api/v1/predict/multi-timeframe/` (POST) | **HTTP 200** — **see critical note below** |
+
+**⚠ Important honest observation — prediction status changed, and it is NOT a Task 03 fix:** Task 02 recorded prediction as HTTP 500 / zero model artifacts (R-ML-01). During Task 03's runs, the app's import-time side-effect code (R-ML-02) had already persisted **4 code-generated fallback `universal_model_*.pkl` files** (`1d`, `1w`, `1mo`, `1y`; created Oct 6 22:26 during Task 02 endpoint verification, ~30–34 KB each) into the gitignored `Backend/Scripts/Models/`. The prediction path now loads these and returns 200. **These are in-code dummy/fallback models, not genuinely trained artifacts** — Task 03 did not create, train, or modify them, and they remain untracked. R-ML-01's real defect ("no genuine trained artifacts") still stands; the 500→200 change is a side effect of R-ML-02, documented, not celebrated.
+
+## P. Regression Suites After Task 03
+
+| Suite | Task 02 | Task 03 | Change |
+|---|---|---|---|
+| pytest | could not parse config | **runs; 0 tests collected** (suite is empty scaffold) | R-BE-01 RESOLVED (infra); emptiness recorded honestly |
+| Newman (15 req / 17 assertions) | 2 failures (prediction 500) | **15/15 requests, 17/17 assertions, 0 failures** | prediction now 200 via fallback `.pkl`s (see §O caveat — not a genuine fix) |
+| Frontend Jest | 4 suites / 13 tests pass | **4 suites / 13 tests pass** | unchanged checkpoint ✅ |
+
+## Q. Task 03 Status Register
+
+| Item | Status |
+|---|---|
+| R-BE-01 (pytest config broken) | **RESOLVED** — TOML fixed, settings/paths corrected, pytest runs |
+| R-DB-01 (no migrations, empty DB) | **RESOLVED** — initial migrations created + applied; ORM write verified |
+| R-ML-01 (no genuine model artifacts) | **STILL FAILING (masked)** — prediction returns 200 only via code-generated fallback `.pkl`s; no genuine training has occurred |
+| R-ML-02 (import/request side-effect file creation) | **STILL PRESENT / DEFERRED** — now proven to also *persist* dummy `.pkl` artifacts to disk, changing observable behavior between runs |
+| R-FE-01 (port 3000 blocked) | DEFERRED (untouched, per task rules) |
+| R-FE-02 (homepage metadata) | DEFERRED |
+| R-BE-02 (`views.py` cold start) | DEFERRED |
+| R-BE-03 (`urls.W005`) | DEFERRED — still the only `check` warning |
+| R-TEST-01 (misnamed mocked "integration" tests) | DEFERRED — plus newly confirmed: backend has **zero** executable tests |
+| Browser/DOM behavior | UNVERIFIED (no browser verification in this task) |
+
+## R. Task 03 Reproduction
+
+```bash
+cd "/Users/dibakar/Documents/Code-Local/Git & Github/Repo/StockVibePredictor"
+source .venv/bin/activate
+python -m pytest --collect-only -q   # 0 items (empty scaffold — honest)
+python -m pytest -q                  # no tests ran, exit 0
+cd Backend
+python manage.py makemigrations StockPredict   # 0001_initial (3 models)
+python manage.py migrate              # 19 migrations OK
+python manage.py check                # PASS, 1 warning (urls.W005)
+# frontend (unchanged):
+cd ../Frontend && npx craco test --watchAll=false   # 13/13
+```
