@@ -1,183 +1,125 @@
-# StockVibePredictor Makefile
-# Project automation and management
+# StockVibePredictor — Root Makefile (project orchestrator)
+#
+# Delegates backend work to api/Makefile and frontend work to ui/Makefile.
+# Architecture adopted from the SHADE-ai / VisionCore Makefile system (Task 07).
 
-# Variables
-PYTHON := python3
-PIP := pip3
-NPM := npm
-BACKEND_DIR := api
-FRONTEND_DIR := ui
-MANAGE := $(PYTHON) manage.py
+.DEFAULT_GOAL := help
 
-# Colors for output
-GREEN := \033[0;32m
-YELLOW := \033[0;33m
-NC := \033[0m # No Color
+SHELL := /bin/sh
 
-.PHONY: all help install install-backend install-frontend \
-        dev dev-backend dev-frontend \
-        migrate makemigrations test test-backend test-frontend \
-        clean clean-backend clean-frontend \
-        build \
-        logs lint format check
+.PHONY: help install setup dev api-dev ui-dev check test test-api test-ui api-test ui-test build api-regression newman logs status stop clean clean-api clean-ui api-clean ui-clean
 
-# Default target
-all: help
+RESET := \033[0m
+BOLD := \033[1m
+DIM := \033[2m
+CYAN := \033[36m
+GREEN := \033[32m
+YELLOW := \033[33m
+RED := \033[31m
+MAGENTA := \033[35m
 
-# Help command
+API_DIR := api
+UI_DIR := ui
+
 help:
-	@echo ""
-	@echo "$(GREEN)StockVibePredictor - Available Commands:$(NC)"
-	@echo ""
-	@echo "$(YELLOW)Installation:$(NC)"
-	@echo "  make install          - Install all dependencies (backend + frontend)"
-	@echo "  make install-backend  - Install Python dependencies only"
-	@echo "  make install-frontend - Install Node dependencies only"
-	@echo ""
-	@echo "$(YELLOW)Development:$(NC)"
-	@echo "  make dev             - Run both backend and frontend servers [ Note : Don't forget to refresh ]"
-	@echo "  make dev-backend     - Run Django server only"
-	@echo "  make dev-frontend    - Run React development server only"
-	@echo ""
-	@echo "$(YELLOW)Database:$(NC)"
-	@echo "  make migrate         - Apply database migrations"
-	@echo "  make makemigrations  - Create new migrations"
-	@echo "  make superuser       - Create Django superuser"
-	@echo ""
-	@echo "$(YELLOW)Testing:$(NC)"
-	@echo "  make test            - Run all tests"
-	@echo "  make test-backend    - Run Django tests"
-	@echo "  make test-frontend   - Run frontend tests"
-	@echo ""
-	@echo "$(YELLOW)Utilities:$(NC)"
-	@echo "  make clean           - Remove all temporary files"
-	@echo "  make lint            - Run linters"
-	@echo "  make format          - Format code"
-	@echo "  make logs            - Show application logs"
-	@echo "  make check           - Run all checks before commit"
-	@echo ""
+	@printf '\n$(CYAN)StockVibePredictor — project orchestrator$(RESET)\n'
+	@printf 'Backend targets live in api/Makefile; frontend targets live in ui/Makefile.\n\n'
+	@printf '$(BOLD)Setup$(RESET)\n'
+	@printf '  $(GREEN)make install$(RESET)            Install backend (shared root .venv) and frontend dependencies\n'
+	@printf '  $(GREEN)make setup$(RESET)              Install dependencies and apply database migrations\n'
+	@printf '$(BOLD)Development$(RESET)\n'
+	@printf '  $(CYAN)make dev$(RESET)                Start backend (127.0.0.1:8000) and frontend (3000) together\n'
+	@printf '  $(CYAN)make api-dev$(RESET)            Start only the Django backend (--noreload; see api/Makefile)\n'
+	@printf '  $(CYAN)make ui-dev$(RESET)             Start only the React frontend (CRA, opens the browser)\n'
+	@printf '$(BOLD)Quality$(RESET)\n'
+	@printf '  $(CYAN)make check$(RESET)              Run Django system checks\n'
+	@printf '  $(CYAN)make test$(RESET)               Run backend (Django runner) and frontend (Jest) suites\n'
+	@printf '  $(CYAN)make api-test$(RESET)           Run only the backend suite (currently 0 tests)\n'
+	@printf '  $(CYAN)make ui-test$(RESET)            Run only the Jest suite\n'
+	@printf '  $(CYAN)make build$(RESET)              Build the frontend production bundle (ui/build/)\n'
+	@printf '  $(CYAN)make api-regression$(RESET)    Run the Newman API regression suite (backend must be running)\n'
+	@printf '$(BOLD)Maintenance$(RESET)\n'
+	@printf '  $(CYAN)make logs$(RESET)               Tail the backend log\n'
+	@printf '  $(CYAN)make status$(RESET)             Show backend and frontend readiness\n'
+	@printf '  $(CYAN)make stop$(RESET)               Stop dev servers on ports 8000 and 3000\n'
+	@printf '  $(CYAN)make clean$(RESET)              Remove caches, ui/node_modules/ and build output (SAFE)\n\n'
+	@printf '$(DIM)No lint/format targets: no linters are installed in the venv and ui/package.json has no lint scripts.$(RESET)\n'
+	@printf '$(DIM)make clean never touches api/.env, api/db.sqlite3, api/app/api/logs/, or model .pkl artifacts.$(RESET)\n\n'
 
-# Install all dependencies
-install: install-backend install-frontend
-	@echo "$(GREEN)✓ All dependencies installed successfully!$(NC)"
+install:
+	@printf '$(MAGENTA)Installing backend dependencies (shared root .venv)...$(RESET)\n'
+	@$(MAKE) -C $(API_DIR) install
+	@printf '$(MAGENTA)Installing frontend dependencies...$(RESET)\n'
+	@$(MAKE) -C $(UI_DIR) install
+	@printf '$(GREEN)✔ All dependencies installed.$(RESET)\n'
 
-# Install backend dependencies
-install-backend:
-	@echo "$(YELLOW)Installing backend dependencies...$(NC)"
-	@cd $(BACKEND_DIR) && $(PIP) install -r requirements.txt
-	@echo "$(GREEN)✓ Backend dependencies installed$(NC)"
+setup: install
+	@$(MAKE) -C $(API_DIR) migrate
+	@printf '$(GREEN)✔ Project setup completed — run make dev.$(RESET)\n'
 
-# Install frontend dependencies
-install-frontend:
-	@echo "$(YELLOW)Installing frontend dependencies...$(NC)"
-	@cd $(FRONTEND_DIR) && $(NPM) install
-	@echo "$(GREEN)✓ Frontend dependencies installed$(NC)"
-
-# Run both servers in development mode
 dev:
-	@echo "$(GREEN)Starting StockVibePredictor in development mode...$(NC)"
-	@echo "$(YELLOW)Backend will run on http://localhost:8000$(NC)"
-	@echo "$(YELLOW)Frontend will run on http://localhost:3000$(NC)"
-	@make -j 2 dev-backend dev-frontend
+	@printf '\n$(BOLD)$(MAGENTA)Starting StockVibePredictor (backend + frontend)...$(RESET)\n'
+	@printf 'Backend:  $(CYAN)http://127.0.0.1:8000$(RESET)\n'
+	@printf 'Frontend: $(CYAN)http://localhost:3000$(RESET)\n'
+	@printf '$(DIM)Press Ctrl-C to stop both servers.$(RESET)\n\n'
+	@$(MAKE) -j 2 api-dev ui-dev
 
-# Run Django development server
-dev-backend:
-	@echo "$(YELLOW)Starting Django server...$(NC)"
-	@cd $(BACKEND_DIR) && $(MANAGE) runserver
+api-dev:
+	@$(MAKE) -C $(API_DIR) dev
 
-# Run React development server
-dev-frontend:
-	@echo "$(YELLOW)Starting React development server...$(NC)"
-	@cd $(FRONTEND_DIR) && $(NPM) start
+ui-dev:
+	@$(MAKE) -C $(UI_DIR) start
 
-# Database migrations
-migrate:
-	@echo "$(YELLOW)Applying migrations...$(NC)"
-	@cd $(BACKEND_DIR) && $(MANAGE) migrate
-	@echo "$(GREEN)✓ Migrations applied$(NC)"
+check:
+	@$(MAKE) -C $(API_DIR) check
 
-makemigrations:
-	@echo "$(YELLOW)Creating migrations...$(NC)"
-	@cd $(BACKEND_DIR) && $(MANAGE) makemigrations
-	@echo "$(GREEN)✓ Migrations created$(NC)"
+test: test-api test-ui
+	@printf '$(GREEN)✔ All tests completed.$(RESET)\n'
 
-# Create superuser
-superuser:
-	@echo "$(YELLOW)Creating Django superuser...$(NC)"
-	@cd $(BACKEND_DIR) && $(MANAGE) createsuperuser
+test-api api-test:
+	@$(MAKE) -C $(API_DIR) test
 
-# Run tests
-test: test-backend test-frontend
-	@echo "$(GREEN)✓ All tests completed$(NC)"
+test-ui ui-test:
+	@$(MAKE) -C $(UI_DIR) test
 
-test-backend:
-	@echo "$(YELLOW)Running Django tests...$(NC)"
-	@cd $(BACKEND_DIR) && $(MANAGE) test
-
-test-frontend:
-	@echo "$(YELLOW)Running frontend tests...$(NC)"
-	@cd $(FRONTEND_DIR) && $(NPM) test
-
-# Clean commands
-clean: clean-backend clean-frontend
-	@echo "$(GREEN)✓ Cleanup completed$(NC)"
-
-clean-backend:
-	@echo "$(YELLOW)Cleaning backend...$(NC)"
-	@find $(BACKEND_DIR) -type f -name "*.pyc" -delete
-	@find $(BACKEND_DIR) -type d -name "__pycache__" -delete
-	@find $(BACKEND_DIR) -type f -name "*.pyo" -delete
-	@find $(BACKEND_DIR) -type f -name ".coverage" -delete
-	@find $(BACKEND_DIR) -type d -name "*.egg-info" -exec rm -rf {} + 2>/dev/null || true
-	@echo "$(GREEN)✓ Backend cleaned$(NC)"
-
-clean-frontend:
-	@echo "$(YELLOW)Cleaning frontend...$(NC)"
-	@cd $(FRONTEND_DIR) && rm -rf node_modules build dist
-	@echo "$(GREEN)✓ Frontend cleaned$(NC)"
-
-# Linting
-lint:
-	@echo "$(YELLOW)Running linters...$(NC)"
-	@cd $(BACKEND_DIR) && python -m flake8 . --exclude=migrations,venv
-	@cd $(FRONTEND_DIR) && $(NPM) run lint 2>/dev/null || echo "No lint script found"
-	@echo "$(GREEN)✓ Linting completed$(NC)"
-
-# Format code
-format:
-	@echo "$(YELLOW)Formatting code...$(NC)"
-	@cd $(BACKEND_DIR) && python -m black . --exclude=migrations
-	@cd $(FRONTEND_DIR) && $(NPM) run format 2>/dev/null || echo "No format script found"
-	@echo "$(GREEN)✓ Formatting completed$(NC)"
-
-# Show logs
-logs:
-	@echo "$(YELLOW)Showing recent logs...$(NC)"
-	@tail -f $(BACKEND_DIR)/Logs/*.log
-
-# Run all checks before commit
-check: lint test
-	@echo "$(GREEN)✓ All checks passed! Ready to commit.$(NC)"
-
-# Quick setup for new developers
-setup: install migrate
-	@echo "$(GREEN)✓ Project setup completed!$(NC)"
-	@echo "Run 'make dev' to start the development servers"
-
-# Production build
 build:
-	@echo "$(YELLOW)Building for production...$(NC)"
-	@cd $(FRONTEND_DIR) && $(NPM) run build
-	@cd $(BACKEND_DIR) && $(PYTHON) manage.py collectstatic --noinput
-	@echo "$(GREEN)✓ Production build completed$(NC)"
+	@$(MAKE) -C $(UI_DIR) build
 
-# Run with specific ports (optional)
-dev-custom:
-	@echo "$(GREEN)Starting with custom ports...$(NC)"
-	@make -j 2 dev-backend-custom dev-frontend-custom
+# Canonical API regression (Newman). The backend must already be running:
+#   make api-dev   (in another terminal), then:   make api-regression
+api-regression:
+	@printf '$(MAGENTA)Running the Newman API regression suite...$(RESET)\n'
+	@if ! curl --fail --silent --connect-timeout 2 --max-time 4 http://127.0.0.1:8000/api/system/health/ >/dev/null 2>&1; then \
+		printf '$(RED)✘ Backend not reachable on 127.0.0.1:8000 — start it first (make api-dev).$(RESET)\n'; \
+		exit 1; \
+	fi
+	@newman run postman/Collections/StockVibePredictor_API_v2.postman_collection.json \
+		-e postman/Environments/Development.postman_environment.json
 
-dev-backend-custom:
-	@cd $(BACKEND_DIR) && $(MANAGE) runserver 0.0.0.0:8080
+newman: api-regression
 
-dev-frontend-custom:
-	@cd $(FRONTEND_DIR) && PORT=3001 $(NPM) start
+logs:
+	@$(MAKE) -C $(API_DIR) logs
+
+status:
+	@printf '$(BOLD)Backend$(RESET)\n'
+	@$(MAKE) -C $(API_DIR) doctor
+	@printf '$(BOLD)Frontend$(RESET)\n'
+	@$(MAKE) -C $(UI_DIR) doctor
+
+stop:
+	@$(MAKE) -C $(API_DIR) stop
+	@$(MAKE) -C $(UI_DIR) stop
+
+# SAFE cleanup: backend caches + ui/node_modules/ and ui build output only.
+# Never removes api/.env, api/db.sqlite3, api/app/api/logs/, api/app/api/scripts/
+# (Models/Performance/Validation), source, or Git metadata. Delegates to the
+# domain Makefiles; removal failures are retried and verified, never suppressed.
+clean: clean-api clean-ui
+	@printf '$(GREEN)✔ Cleanup completed.$(RESET)\n'
+
+clean-api api-clean:
+	@$(MAKE) -C $(API_DIR) clean
+
+clean-ui ui-clean:
+	@$(MAKE) -C $(UI_DIR) clean

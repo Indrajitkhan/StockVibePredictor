@@ -32,8 +32,8 @@ class ComprehensiveModelTestSuite:
     def __init__(self):
         """Initialize test suite"""
         self.base_dir = PROJECT_ROOT
-        self.model_dir = self.base_dir / "api" / "Scripts" / "Models"
-        self.results_dir = self.base_dir / "api" / "Scripts" / "TestResults"
+        self.model_dir = self.base_dir / "api" / "app" / "api" / "scripts" / "Models"
+        self.results_dir = self.base_dir / "api" / "app" / "api" / "scripts" / "TestResults"
         self.results_dir.mkdir(exist_ok=True)
 
         # Initialize results storage

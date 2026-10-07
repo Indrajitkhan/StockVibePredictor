@@ -44,8 +44,8 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-from .Services.DataService import StockDataProcessor
-from .Services.CacheManager import CacheManager
+from .services.DataService import StockDataProcessor
+from .services.CacheManager import CacheManager
 from .config.ChartConfig import TIMEFRAME_CONFIGS
 
 # Additional imports for technical indicators
@@ -60,11 +60,11 @@ import asyncio
 
 # Base configuration
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-MODELS_DIR = BASE_DIR / "Scripts" / "Models"
+MODELS_DIR = BASE_DIR / "app" / "api" / "scripts" / "Models"
 MODELS_DIR.mkdir(exist_ok=True)
 
 # Logger setup
-logger = logging.getLogger("apps.StockPredict")
+logger = logging.getLogger("app.StockPredict")
 
 # Ensure logger is configured
 def log_prediction_request(ticker, timeframes, user_id=None, request_ip=None):

@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "apps.StockPredict.middleware.APIVersionMiddleware",
+    "app.StockPredict.middleware.APIVersionMiddleware",
 ]
 
 
@@ -128,7 +128,7 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "Logs", "StockPredict.log"),
+            "filename": os.path.join(BASE_DIR, "app", "api", "logs", "StockPredict.log"),
             "formatter": "verbose",
         },
         "console": {
@@ -138,7 +138,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "apps.StockPredict": {
+        "app.StockPredict": {
             "handlers": ["file", "console"],
             "level": "INFO",
             "propagate": False,
@@ -212,6 +212,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# INFO: Add apps folder to Python path
+# INFO: Add app folder to Python path
 
-sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
+sys.path.insert(0, os.path.join(BASE_DIR, "app"))

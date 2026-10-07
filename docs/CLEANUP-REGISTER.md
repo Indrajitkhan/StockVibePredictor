@@ -74,4 +74,30 @@ Checkpoint: started from `af2cbb9` (`chore: update repository identity to Dibaka
 | Pure JS files | **KEEP `.js`** | No JSX | `ReportWebVitals.js`, `StockDatabase.js`, `tests/integration/Api.test.js` | unchanged |
 | `ui/src/App.js` | Moved + renamed | Mandatory Task 06 rename | unique `App.jsx` | `ui/src/App.jsx` |
 
-Do not treat historical Task 05 path strings in this register as the live tree. Current routes live at `api/apps/StockPredict/urls.py`.
+Do not treat historical Task 05 path strings in this register as the live tree. Current routes live at `api/app/StockPredict/urls.py` (moved again in Task 07).
+
+---
+
+# Task 07 — Makefile Architecture + Final API Structure
+
+Checkpoint: started from `20284f7` (`refactor: normalize internal structure and js jsx naming`) on `main`.
+
+Classification key unchanged: **ACTIVE**, **REQUIRED INFRASTRUCTURE**, **HISTORICAL**, **REDUNDANT**, **OBSOLETE**, **GENERATED**, **SUSPICIOUS**.
+
+| Item | Decision | Reason | Evidence | Destination |
+| ---- | -------- | ------ | -------- | ----------- |
+| Root `Makefile` | Rewritten | Orchestrator delegating to `api/Makefile` + `ui/Makefile` (SHADE-ai/VisionCore pattern) | old root Makefile duplicated recipes and `make clean` failed (`rm: node_modules: Directory not empty`) | root `Makefile` |
+| `api/Makefile` | Created | Backend/Django commands; shared root `.venv` (Python 3.11); `--noreload` documented (SIGTERM defect deferred) | new file | `api/Makefile` |
+| `ui/Makefile` | Created | CRA/CRACO commands; retry-verified clean (node_modules race proven on macOS) | new file | `ui/Makefile` |
+| `make clean` failure | Fixed | Root cause: macOS fails a single recursive `rm` when a directory is touched mid-removal; retry + verification loop, no `\|\| true` | reproduced exit 2 with empty `node_modules` left behind | safe `clean` in all three Makefiles |
+| `api/apps/` | Moved | Requested `apps → app` | `git mv` (R100) | `api/app/` |
+| `api/app/StockPredict/Services/` | Moved | Requested `Services → services` (supersedes Task 06 keep) | `git mv` via temp path (case-only on APFS) | `api/app/StockPredict/services/` |
+| `api/Logs/` | Moved | Requested `Logs → app/api/logs`; runtime logs remain gitignored | plain `mv` (contents untracked), `.gitignore` updated | `api/app/api/logs/` |
+| `api/Scripts/` | Moved | Requested `Scripts → app/api/scripts` | `git mv` for `TrainModel.py`; artifacts untracked | `api/app/api/scripts/` |
+| Python package identity | Updated | `apps.StockPredict` → `app.StockPredict` in settings/urls/apps.py/views/CompanyEssentials loggers | Django app label remains `StockPredict` | in place |
+| `TrainModel.py` paths | Updated | `Config` now resolves Models/Performance/Validation/logs under `api/app/api/` | `MODELS_DIR = BASE_DIR / "app" / "api" / "scripts" / "Models"` | in place |
+| `pyproject.toml` | Updated | entry point `api.app.api.scripts.TrainModel:main`, packages `app*`, pytest `api/app` | packaging/isort/pytest sections | in place |
+| Fallback `.pkl` artifacts | Preserved (not tracked) | GENERATED import-time dummy models (R-ML-02); not genuine; not retrained | still gitignored | `api/app/api/scripts/Models/` (local-only) |
+| `api/app/api/` | NOT a Django app | Structural/support location per Task 07 brief §14; no `apps.py`/`models.py` added | no `INSTALLED_APPS` entry | support dir |
+
+ML fallback quarantine (R-ML-01/02), train/serve schema mismatch, `TimeSeriesSplit`, and the SIGTERM/autoreload defect remain **deferred** to the next engineering phase.

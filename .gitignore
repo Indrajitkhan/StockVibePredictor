@@ -512,10 +512,11 @@ BacktestResults/
 # ==============================================================================
 
 # Runtime and training logs — generated artifacts, not source.
-# Backend settings.py LOGGING writes to api/Logs/StockPredict.log (formerly Backend/Logs/); tracking these
-# makes every server run dirty the working tree. Untracked in Task 01.
+# Backend settings.py LOGGING writes to api/app/api/logs/StockPredict.log (moved from api/Logs/ in Task 07;
+# originally Backend/Logs/); tracking these makes every server run dirty the working tree. Untracked in Task 01.
 Backend/Logs/
 api/Logs/
+api/app/api/logs/
 *.log
 logs/
 log/

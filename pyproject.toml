@@ -109,7 +109,7 @@ docs = [
 
 [project.scripts]
 stockvibe = "api.manage:main"
-stockvibe-train = "api.Scripts.TrainModel:main"
+stockvibe-train = "api.app.api.scripts.TrainModel:main"
 stockvibe-runserver = "api.manage:runserver"
 stockvibe-migrate = "api.manage:migrate"
 stockvibe-test = "api.manage:test"
@@ -120,7 +120,7 @@ zip-safe = false
 
 [tool.setuptools.packages.find]
 where = ["api"]
-include = ["apps*", "Backend*", "Scripts*"]
+include = ["app*"]
 exclude = ["tests*", "docs*", "Frontend*"]
 
 [tool.setuptools.package-data]
@@ -165,7 +165,7 @@ extend-exclude = '''
 profile = "black"
 line_length = 88
 known_django = ["django", "rest_framework"]
-known_first_party = ["apps", "Backend", "Scripts"]
+known_first_party = ["app", "StockVibePredictor"]
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 skip_glob = ["*/migrations/*", "*/venv/*", "*/node_modules/*", "Frontend/*", "ui/*"]
 skip = ["Frontend", "ui"]
@@ -176,7 +176,7 @@ pythonpath = ["api"]
 python_files = ["test_*.py", "*_test.py", "tests.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-testpaths = ["api/apps"]
+testpaths = ["api/app"]
 addopts = """
     -v
     --tb=short

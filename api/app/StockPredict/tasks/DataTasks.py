@@ -1,5 +1,5 @@
 from celery import shared_task
-from ..Services import DataService
+from ..services import DataService
 
 @shared_task
 def fetch_stock_data_async(ticker, timeframe):

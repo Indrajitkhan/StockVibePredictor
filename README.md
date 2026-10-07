@@ -104,7 +104,7 @@ Authoritative structure and facts: [`docs/README.md`](docs/README.md), [`docs/RU
 | 🔄 **Market data**                        | CURRENT      | Chart/company endpoints use yfinance locally.                                                                                                              |
 | 🤖 **Predictions**                        | EXPERIMENTAL | Endpoints exist; they currently load import-generated fallback `.pkl` files, not independently trained models. Historical accuracy numbers are UNVERIFIED. |
 | 📈 **Charts**                             | CURRENT      | Chart.js in the CRA frontend.                                                                                                                              |
-| 🔌 **REST API**                           | CURRENT      | Django REST routes in `api/apps/StockPredict/urls.py`. Canonical regression: `postman/`.                                                                   |
+| 🔌 **REST API**                           | CURRENT      | Django REST routes in `api/app/StockPredict/urls.py`. Canonical regression: `postman/`.                                                                   |
 | 💰 **Live trading / brokerage / wallets** | NOT PRESENT  | Intentionally disabled. `/trading/real/` is a stub.                                                                                                        |
 
 ---
@@ -121,7 +121,7 @@ Authoritative structure and facts: [`docs/README.md`](docs/README.md), [`docs/RU
 | :----------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------- |
 | 🎨 **Frontend**    | React 18 + CRA (`react-scripts` 5) + CRACO + Chart.js                        | **CURRENT**                                               |
 | ⚙️ **Backend**     | Django 5.x + Django REST Framework                                           | **CURRENT**                                               |
-| 🧠 **ML**          | scikit-learn VotingClassifier / Random Forest in `api/Scripts/TrainModel.py` | **EXPERIMENTAL** — no genuine trained artifacts on disk   |
+| 🧠 **ML**          | scikit-learn VotingClassifier / Random Forest in `api/app/api/scripts/TrainModel.py` | **EXPERIMENTAL** — no genuine trained artifacts on disk   |
 | 📊 **Data Source** | yfinance                                                                     | **CURRENT** for chart/company endpoints                   |
 | 💾 **Database**    | SQLite (`api/db.sqlite3`)                                                    | **CURRENT** local baseline; MongoDB is **PLANNED**        |
 | 🔥 **Cache**       | Redis (optional in settings)                                                 | **UNVERIFIED** as a required runtime                      |
@@ -144,18 +144,21 @@ Authoritative structure and facts: [`docs/README.md`](docs/README.md), [`docs/RU
 StockVibePredictor/
 ├── api/                         # Django 5 + DRF application
 │   ├── StockVibePredictor/       # settings, urls, wsgi/asgi
-│   ├── apps/StockPredict/        # models, views, urls, CompanyEssentials
-│   ├── Scripts/TrainModel.py     # historical training script
+│   ├── app/StockPredict/        # models, views, urls, CompanyEssentials
+│   ├── app/api/scripts/          # TrainModel.py + model artifacts (gitignored)
+│   ├── app/api/logs/             # runtime logs (gitignored)
+│   ├── Makefile                  # backend commands
 │   ├── manage.py
 │   └── requirements.txt
 ├── ui/                          # Create React App + CRACO
 │   ├── public/
 │   ├── src/                       # JSX components under src/components/js/
 │   ├── craco.config.js
+│   ├── Makefile                  # frontend commands
 │   └── package.json
 ├── docs/                        # current + historical documentation
 │   ├── README.md                  # documentation index
-│   ├── CLEANUP-REGISTER.md        # Task 05–06 cleanup decisions
+│   ├── CLEANUP-REGISTER.md        # Task 05–07 cleanup decisions
 │   ├── RUNTIME-BASELINE.md
 │   └── archive/                   # college PDFs (historical)
 ├── tests/                       # Jest unit/integration + ad-hoc Python scripts
@@ -173,7 +176,7 @@ StockVibePredictor/
 ├── .github/CODEOWNERS
 ├── .gitignore
 ├── AUTHORS.md
-├── Makefile
+├── Makefile                     # root orchestrator (delegates to api/ and ui/)
 ├── pyproject.toml               # packaging + pytest config
 └── README.md
 ```
@@ -181,6 +184,29 @@ StockVibePredictor/
 **Not in this tree (intentionally):** `LICENSE` (MIT is claimed in badges/metadata but no license file exists), Docker/compose, CI workflows, `Deployment/`, `Security/`, `ui/Apps/Dashboard`, `api/setup.py`. Runtime artifacts such as `.venv/`, `ui/node_modules/`, `api/db.sqlite3`, logs, and fallback `*.pkl` models are gitignored, not source.
 
 </details>
+
+### Make commands
+
+The repository now has a three-level Makefile system: the root `Makefile` orchestrates, `api/Makefile` owns backend/Django commands, and `ui/Makefile` owns frontend/React commands (architecture adopted from SHADE-ai/VisionCore).
+
+```bash
+make help            # list root targets (delegation map)
+make install         # backend deps (shared root .venv) + frontend deps
+make setup           # install + apply database migrations
+make dev             # backend (127.0.0.1:8000) + frontend (3000) together
+make check           # Django system checks
+make test            # backend suite + Jest suite
+make build           # frontend production bundle (ui/build/)
+make api-regression  # Newman API regression (backend must be running)
+make logs            # tail the backend log
+make status          # backend/frontend readiness
+make stop            # stop dev servers on ports 8000/3000
+make clean           # SAFE cleanup: caches, ui/node_modules/, ui/build/ only
+```
+
+`make clean` never touches `api/.env`, `api/db.sqlite3`, `api/app/api/logs/`, `api/app/api/scripts/` (models/performance/validation), source code, or Git metadata.
+
+Backend- and frontend-specific targets live in `api/Makefile` and `ui/Makefile` — run `make help` inside those directories.
 
 ---
 
@@ -359,13 +385,13 @@ python manage.py runserver
 
 ## 🧠 **Step 4: Train ML Models (UNVERIFIED / HISTORICAL)**
 
-There are **no independently trained model artifacts** in git. Importing `views.py` can persist dummy `universal_model_*.pkl` files under gitignored `api/Scripts/Models/`. Those files are **not** a training success. The commands and accuracy numbers below are leftover college-era README copy and must not be treated as a current baseline.
+There are **no independently trained model artifacts** in git. Importing `views.py` can persist dummy `universal_model_*.pkl` files under gitignored `api/app/api/scripts/Models/`. Those files are **not** a training success. The commands and accuracy numbers below are leftover college-era README copy and must not be treated as a current baseline.
 
 ### **🤖 Terminal 3 - Model Training:**
 
 ```bash
 # 📂 Navigate to Scripts directory
-cd StockVibePredictor/api/Scripts
+cd StockVibePredictor/api/app/api/scripts
 
 # 🔌 Activate virtual environment (if not already active)
 # Mac/Linux:
@@ -715,7 +741,7 @@ curl http://127.0.0.1:8000/api/system/health/
 # Expected: {"status": "healthy", ...}
 
 # ✅ Terminal 3 - Check models exist
-ls api/Scripts/Models/*.pkl
+ls api/app/api/scripts/Models/*.pkl
 # Expected: List of .pkl files
 
 # ✅ Terminal 4 - Check Frontend
@@ -752,7 +778,7 @@ redis-cli ping  # Test connection
 
 ```bash
 # Solution: Train models first
-cd api/Scripts
+cd api/app/api/scripts
 python TrainModel.py
 ```
 
@@ -1046,7 +1072,7 @@ git push origin Group
 
 </div>
 
-> Source of truth for routes: [`api/apps/StockPredict/urls.py`](api/apps/StockPredict/urls.py). Newman collection: [`postman/Collections/StockVibePredictor_API_v2.postman_collection.json`](postman/Collections/StockVibePredictor_API_v2.postman_collection.json). `docs/API.md` is UNVERIFIED historical documentation. The duplicate `docs/API-Endpoints.json` was removed in Task 05.
+> Source of truth for routes: [`api/app/StockPredict/urls.py`](api/app/StockPredict/urls.py). Newman collection: [`postman/Collections/StockVibePredictor_API_v2.postman_collection.json`](postman/Collections/StockVibePredictor_API_v2.postman_collection.json). `docs/API.md` is UNVERIFIED historical documentation. The duplicate `docs/API-Endpoints.json` was removed in Task 05.
 
 ---
 

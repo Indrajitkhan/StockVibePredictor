@@ -245,7 +245,7 @@ class ConnectionTestSuite(unittest.TestCase):
     def test_file_system_permissions(self):
         """Test file system permissions for model files"""
         try:
-            model_dir = self.backend_dir / "Scripts"
+            model_dir = self.backend_dir / "app" / "api" / "scripts"
             model_file = model_dir / "stock_model.pkl"
 
             # Test read permissions

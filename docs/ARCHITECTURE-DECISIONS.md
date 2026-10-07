@@ -266,3 +266,53 @@ Keep Python package identity where the framework already requires it:
 No TypeScript (`.ts` / `.tsx`) is introduced.
 
 Mandatory rename: `ui/src/App.js` → `ui/src/App.jsx`.
+
+---
+
+## ADR-012 — Makefile Architecture + Final API Structure (Task 07)
+
+**Status: IMPLEMENTED (2026-10-08)**
+
+### Makefile system (adopted from SHADE-ai / VisionCore)
+
+```text
+Makefile           # orchestrator: delegates via make -C api / make -C ui
+api/Makefile       # Django backend (shared root .venv, Python 3.11)
+ui/Makefile        # CRA/CRACO frontend
+```
+
+* Root delegates rather than duplicating recipes; `make test` runs backend + Jest;
+  `make api-regression` gates Newman on a health check.
+* No lint/format targets: none exist in this repo (no linters in venv; `ui/package.json`
+  defines no lint scripts). No training target by design (ML integrity issues open —
+  `docs/CRITICAL-ISSUES.md`).
+* `make clean` is safe: removes `__pycache__`, `.pytest_cache`, `ui/node_modules/`,
+  `ui/build/` only. Never touches `api/.env`, `api/db.sqlite3`, `api/app/api/logs/`,
+  `api/app/api/scripts/` artifacts, sources, or Git metadata. No destructive
+  `clean-all` variant was added, so there is nothing extra to document.
+
+### Final API structure
+
+```text
+api/
+├── app/
+│   ├── StockPredict/      # Django app (label unchanged: "StockPredict")
+│   │   ├── api/V1/ config/ monitoring/ services/ tasks/
+│   └── api/               # structural/support (NOT a Django app)
+│       ├── logs/           # runtime logs, gitignored
+│       └── scripts/        # TrainModel.py + Models/ Performance/ Validation/
+├── Makefile
+├── manage.py
+├── requirements.txt
+└── StockVibePredictor/    # settings, urls, wsgi/asgi
+```
+
+Moves (all Git-aware; case-only via temp path on macOS):
+
+* `api/apps/` → `api/app/` (package identity `apps.StockPredict` → `app.StockPredict`)
+* `api/app/StockPredict/Services/` → `api/app/StockPredict/services/` (supersedes
+  ADR-011's keep-PascalCase decision; requested in Task 07)
+* `api/Logs/` → `api/app/api/logs/` (runtime logs, still gitignored)
+* `api/Scripts/` → `api/app/api/scripts/`
+
+Deliberately unchanged: `StockPredict`, `V1`, `Models`, `Performance`, `Validation`.

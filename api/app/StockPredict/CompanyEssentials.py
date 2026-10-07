@@ -40,7 +40,7 @@ def validate_ticker(ticker):
     pattern = r'^[\w\.\-\^]+$'
     return bool(re.match(pattern, ticker))
 
-logger = logging.getLogger("apps.StockPredict")
+logger = logging.getLogger("app.StockPredict")
 
 
 @api_view(["GET"])
