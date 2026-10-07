@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DibVibe/StockVibePredictor.git"
+    "url": "https://github.com/DibakarArchives/StockVibePredictor.git"
   },
   "bugs": {
-    "url": "https://github.com/DibVibe/StockVibePredictor.git/issues"
+    "url": "https://github.com/DibakarArchives/StockVibePredictor.git/issues"
   },
-  "homepage": "https://github.com/DibVibe/StockVibePredictor",
+  "homepage": "https://github.com/DibakarArchives/StockVibePredictor",
   "dependencies": {
     "axios": "^1.11.0",
     "chart.js": "^3.9.1",

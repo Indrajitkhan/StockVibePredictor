@@ -296,7 +296,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Breaking Changes:
 
 1. **API Endpoints Changed:**
-
    - Old: `/api/predict_stock/`
    - New: `/api/predict/multi/`
 
@@ -386,8 +385,8 @@ python manage.py shell
 
 ## 🔗 Links
 
-- **Repository:** [github.com/DibVibe/StockVibePredictor](https://github.com/DibVibe/StockVibePredictor)
-- **Issues:** [github.com/DibVibe/StockVibePredictor/issues](https://github.com/DibVibe/StockVibePredictor/issues)
+- **Repository:** [github.com/DibakarArchives/StockVibePredictor](https://github.com/DibakarArchives/StockVibePredictor)
+- **Issues:** [github.com/DibakarArchives/StockVibePredictor/issues](https://github.com/DibakarArchives/StockVibePredictor/issues)
 - **Documentation:** [docs.stockvibepredictor.com](https://docs.stockvibepredictor.com)
 - **API Reference:** [API.md](./API.md)
 

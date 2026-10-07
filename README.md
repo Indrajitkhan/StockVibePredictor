@@ -968,7 +968,7 @@ pkill -f node
 #### **1️⃣ Clone the Repository**
 
 ```bash
-git clone https://github.com/DibVibe/StockVibePredictor.git
+git clone https://github.com/DibakarArchives/StockVibePredictor.git
 cd StockVibePredictor
 ```
 

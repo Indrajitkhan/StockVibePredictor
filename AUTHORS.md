@@ -5,7 +5,7 @@
 **Dibakar**
 
 - GitHub: [@Dibakar](https://github.com/ThisIsDibakar)
-- Email: `dibvibe.dev@gmail.com`
+- Email: `dibakararchives@gmail.com`
 - Role: Creator, Lead Developer, Maintainer
 - Contributions: Project architecture, ML models, Backend API, Frontend design
 

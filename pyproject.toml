@@ -10,10 +10,10 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "Dibakar", email = "dibvibe.dev@gmail.com"},
+    {name = "Dibakar", email = "dibakararchives@gmail.com"},
 ]
 maintainers = [
-    {name = "Dibakar", email = "dibvibe.dev@gmail.com"},
+    {name = "Dibakar", email = "dibakararchives@gmail.com"},
 ]
 keywords = [
     "stock-market",
@@ -65,12 +65,12 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/DibVibe/StockVibePredictor"
-Documentation = "https://github.com/DibVibe/StockVibePredictor/wiki"
-Repository = "https://https://github.com/DibVibe/StockVibePredictor.git"
-"Bug Tracker" = "https://github.com/DibVibe/StockVibePredictor/issues"
-"Source Code" = "https://github.com/DibVibe/StockVibePredictor"
-Changelog = "https://github.com/DibVibe/StockVibePredictor/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/DibakarArchives/StockVibePredictor"
+Documentation = "https://github.com/DibakarArchives/StockVibePredictor/wiki"
+Repository = "https://https://github.com/DibakarArchives/StockVibePredictor.git"
+"Bug Tracker" = "https://github.com/DibakarArchives/StockVibePredictor/issues"
+"Source Code" = "https://github.com/DibakarArchives/StockVibePredictor"
+Changelog = "https://github.com/DibakarArchives/StockVibePredictor/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
@@ -275,12 +275,12 @@ ignore = ["migrations", "venv", "env", "Frontend"]
 [metadata]
 name = "StockVibePredictor"
 author = "Dibakar"
-author-email = "dibvibe.dev@gmail.com"
+author-email = "dibakararchives@gmail.com"
 home-page = "https://github.com/ThisIsDibakar/StockVibePredictor"
 license = "MIT"
 license_files = ["LICENSE"]
 platform = ["any"]
-project_urls = { "Bug Tracker" = "https://github.com/DibVibe/StockVibePredictor/issues", "Documentation" = "https://github.com/DibVibe/StockVibePredictor/wiki", "Source Code" = "https://github.com/DibVibe/StockVibePredictor" }
+project_urls = { "Bug Tracker" = "https://github.com/DibakarArchives/StockVibePredictor/issues", "Documentation" = "https://github.com/DibakarArchives/StockVibePredictor/wiki", "Source Code" = "https://github.com/DibakarArchives/StockVibePredictor" }
 
 # Custom metadata for the project
 [tool.stockvibe]
