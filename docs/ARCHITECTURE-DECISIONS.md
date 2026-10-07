@@ -218,3 +218,51 @@ Small, controlled, history-preserving cleanup based on the audit:
   `Docs/Presentation.pdf` → `Docs/archive/` (historical college artifacts, not current docs).
 * **`.gitignore`** extended with a Task-01 section so these are not re-tracked.
 * No history rewritten, no branch merged, nothing pushed, no application logic changed.
+
+---
+
+## ADR-011 — Internal Directory Casing and JS/JSX Naming (Task 06)
+
+**Status: IMPLEMENTED (2026-10-07)**
+
+Normalize internal directory names and React source extensions without changing application behavior.
+
+### Directory naming
+
+Use lowercase for normal directories:
+
+```text
+api/
+apps/
+api/                 # StockPredict HTTP package (api/apps/StockPredict/api/)
+config/
+monitoring/
+tasks/
+ui/
+public/
+src/
+components/
+css/
+js/
+database/
+docs/
+tests/
+postman/
+```
+
+Keep Python package identity where the framework already requires it:
+
+* Django app label remains `StockPredict` (`INSTALLED_APPS = "StockPredict"`).
+* `Services/` stays PascalCase because that was the requested target; no extra rename.
+* `api/Logs/` stays as the ignored runtime log directory. Settings, `TrainModel.py`, and the Makefile write/read there. There is no `api/apps/api/` package, so logs were not moved into source.
+
+### React source naming
+
+```text
+.jsx  → files containing JSX
+.js   → pure JavaScript (API/data/util/config modules, hooks with no JSX)
+```
+
+No TypeScript (`.ts` / `.tsx`) is introduced.
+
+Mandatory rename: `ui/src/App.js` → `ui/src/App.jsx`.

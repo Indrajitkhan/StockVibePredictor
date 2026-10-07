@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSS/PredictionResult.css";
+import "../css/PredictionResult.css";
 
 const PredictionResult = ({
   predictions,

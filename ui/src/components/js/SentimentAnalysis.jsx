@@ -13,7 +13,7 @@ import {
 } from "chart.js";
 import { Doughnut, Bar, Line } from "react-chartjs-2";
 import PropTypes from "prop-types";
-import "../CSS/SentimentAnalysis.css";
+import "../css/SentimentAnalysis.css";
 
 // Register Chart.js components
 ChartJS.register(

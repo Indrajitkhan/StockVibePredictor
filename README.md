@@ -37,7 +37,7 @@
 
 ---
 
-## Repository status (Task 05)
+## Repository status (Task 06)
 
 This repository is a **revived college prototype**, not a production trading platform.
 No real capital, brokerage, wallet, or payment code is active.
@@ -104,7 +104,7 @@ Authoritative structure and facts: [`docs/README.md`](docs/README.md), [`docs/RU
 | 🔄 **Market data**                        | CURRENT      | Chart/company endpoints use yfinance locally.                                                                                                              |
 | 🤖 **Predictions**                        | EXPERIMENTAL | Endpoints exist; they currently load import-generated fallback `.pkl` files, not independently trained models. Historical accuracy numbers are UNVERIFIED. |
 | 📈 **Charts**                             | CURRENT      | Chart.js in the CRA frontend.                                                                                                                              |
-| 🔌 **REST API**                           | CURRENT      | Django REST routes in `api/Apps/StockPredict/urls.py`. Canonical regression: `postman/`.                                                                   |
+| 🔌 **REST API**                           | CURRENT      | Django REST routes in `api/apps/StockPredict/urls.py`. Canonical regression: `postman/`.                                                                   |
 | 💰 **Live trading / brokerage / wallets** | NOT PRESENT  | Intentionally disabled. `/trading/real/` is a stub.                                                                                                        |
 
 ---
@@ -144,18 +144,18 @@ Authoritative structure and facts: [`docs/README.md`](docs/README.md), [`docs/RU
 StockVibePredictor/
 ├── api/                         # Django 5 + DRF application
 │   ├── StockVibePredictor/       # settings, urls, wsgi/asgi
-│   ├── Apps/StockPredict/        # models, views, urls, CompanyEssentials
+│   ├── apps/StockPredict/        # models, views, urls, CompanyEssentials
 │   ├── Scripts/TrainModel.py     # historical training script
 │   ├── manage.py
 │   └── requirements.txt
 ├── ui/                          # Create React App + CRACO
-│   ├── Public/
-│   ├── Src/
+│   ├── public/
+│   ├── src/                       # JSX components under src/components/js/
 │   ├── craco.config.js
 │   └── package.json
 ├── docs/                        # current + historical documentation
 │   ├── README.md                  # documentation index
-│   ├── CLEANUP-REGISTER.md        # Task 05 decisions
+│   ├── CLEANUP-REGISTER.md        # Task 05–06 cleanup decisions
 │   ├── RUNTIME-BASELINE.md
 │   └── archive/                   # college PDFs (historical)
 ├── tests/                       # Jest unit/integration + ad-hoc Python scripts
@@ -163,7 +163,7 @@ StockVibePredictor/
 │   ├── e2e/
 │   ├── integration/
 │   ├── unit/
-│   └── SetupTests.js
+│   └── SetupTests.jsx
 ├── postman/                     # Newman API regression (retained)
 │   ├── Collections/
 │   ├── Environments/
@@ -625,7 +625,7 @@ cat Performance/training_summary_latest.json | python -m json.tool
 
 ## 💻 **Step 5: Frontend Setup (React / CRA + CRACO)**
 
-The UI is Create React App (`react-scripts` 5) with CRACO, not Next.js. The API base is hardcoded as `http://localhost:8000/api` in `ui/Src/App.js` — there is no `NEXT_PUBLIC_API_URL`.
+The UI is Create React App (`react-scripts` 5) with CRACO, not Next.js. The API base is hardcoded as `http://localhost:8000/api` in `ui/src/App.jsx` — there is no `NEXT_PUBLIC_API_URL`.
 
 Port 3000 must be free (`craco.config.js` pins it). If another process holds 3000, the dev server will fail (R-FE-01).
 
@@ -1046,7 +1046,7 @@ git push origin Group
 
 </div>
 
-> Source of truth for routes: [`api/Apps/StockPredict/urls.py`](api/Apps/StockPredict/urls.py). Newman collection: [`postman/Collections/StockVibePredictor_API_v2.postman_collection.json`](postman/Collections/StockVibePredictor_API_v2.postman_collection.json). `docs/API.md` is UNVERIFIED historical documentation. The duplicate `docs/API-Endpoints.json` was removed in Task 05.
+> Source of truth for routes: [`api/apps/StockPredict/urls.py`](api/apps/StockPredict/urls.py). Newman collection: [`postman/Collections/StockVibePredictor_API_v2.postman_collection.json`](postman/Collections/StockVibePredictor_API_v2.postman_collection.json). `docs/API.md` is UNVERIFIED historical documentation. The duplicate `docs/API-Endpoints.json` was removed in Task 05.
 
 ---
 

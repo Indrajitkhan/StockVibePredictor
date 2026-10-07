@@ -103,7 +103,7 @@ def api_root(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/", include("Apps.StockPredict.urls")),  # Versioned API
-    path("api/", include("Apps.StockPredict.urls")),      # Non-versioned (backward compatibility)
+    path("api/v1/", include("apps.StockPredict.urls")),  # Versioned API
+    path("api/", include("apps.StockPredict.urls")),      # Non-versioned (backward compatibility)
     path("", api_root, name="api_root"),
 ]

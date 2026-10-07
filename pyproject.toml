@@ -120,7 +120,7 @@ zip-safe = false
 
 [tool.setuptools.packages.find]
 where = ["api"]
-include = ["Apps*", "Backend*", "Scripts*"]
+include = ["apps*", "Backend*", "Scripts*"]
 exclude = ["tests*", "docs*", "Frontend*"]
 
 [tool.setuptools.package-data]
@@ -165,7 +165,7 @@ extend-exclude = '''
 profile = "black"
 line_length = 88
 known_django = ["django", "rest_framework"]
-known_first_party = ["Apps", "Backend", "Scripts"]
+known_first_party = ["apps", "Backend", "Scripts"]
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 skip_glob = ["*/migrations/*", "*/venv/*", "*/node_modules/*", "Frontend/*", "ui/*"]
 skip = ["Frontend", "ui"]
@@ -176,7 +176,7 @@ pythonpath = ["api"]
 python_files = ["test_*.py", "*_test.py", "tests.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-testpaths = ["api/Apps"]
+testpaths = ["api/apps"]
 addopts = """
     -v
     --tb=short

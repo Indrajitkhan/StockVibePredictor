@@ -6,7 +6,7 @@ import yfinance as yf
 from asgiref.sync import sync_to_async
 
 # Import the config from the config module
-from ..Config.ChartConfig import TIMEFRAME_CONFIGS
+from ..config.ChartConfig import TIMEFRAME_CONFIGS
 
 # Initialize logger
 logger = logging.getLogger(__name__)

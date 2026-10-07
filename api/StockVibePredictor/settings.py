@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'Apps.StockPredict.middleware.APIVersionMiddleware',
+    "apps.StockPredict.middleware.APIVersionMiddleware",
 ]
 
 
@@ -138,7 +138,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "Apps.StockPredict": {
+        "apps.StockPredict": {
             "handlers": ["file", "console"],
             "level": "INFO",
             "propagate": False,
@@ -214,4 +214,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # INFO: Add apps folder to Python path
 
-sys.path.insert(0, os.path.join(BASE_DIR, "Apps"))
+sys.path.insert(0, os.path.join(BASE_DIR, "apps"))

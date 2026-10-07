@@ -46,7 +46,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 from .Services.DataService import StockDataProcessor
 from .Services.CacheManager import CacheManager
-from .Config.ChartConfig import TIMEFRAME_CONFIGS
+from .config.ChartConfig import TIMEFRAME_CONFIGS
 
 # Additional imports for technical indicators
 import atexit
@@ -64,7 +64,7 @@ MODELS_DIR = BASE_DIR / "Scripts" / "Models"
 MODELS_DIR.mkdir(exist_ok=True)
 
 # Logger setup
-logger = logging.getLogger("Apps.StockPredict")
+logger = logging.getLogger("apps.StockPredict")
 
 # Ensure logger is configured
 def log_prediction_request(ticker, timeframes, user_id=None, request_ip=None):

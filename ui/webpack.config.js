@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./Src/index.js",
+  entry: "./src/index.jsx",
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
@@ -10,13 +10,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./Public/index.html",
+      template: "./public/index.html",
       filename: "index.html",
     }),
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "Public"),
+      directory: path.join(__dirname, "public"),
     },
     port: 3000,
     open: true,

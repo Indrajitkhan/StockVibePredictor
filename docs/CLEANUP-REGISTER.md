@@ -40,10 +40,38 @@ Do not delete the collection because pytest is empty. Newman remains the API reg
 
 ## Documentation identity
 
-Root `README.md` was rewritten in place to describe the **current** tree (`api/`, `ui/`, `docs/`, `tests/`, `postman/`), strip Next.js / Docker / production-accuracy marketing as **UNVERIFIED**, and point routes at `api/Apps/StockPredict/urls.py`.
+Root `README.md` was rewritten in place to describe the **then-current** tree (`api/`, `ui/`, `docs/`, `tests/`, `postman/`), strip Next.js / Docker / production-accuracy marketing as **UNVERIFIED**, and point routes at `api/Apps/StockPredict/urls.py` (later normalized to `api/apps/...` in Task 06).
 
 College-era training copy and `docs/API.md` remain as historical text, explicitly labeled.
 
-## Out of scope (not started)
+## Out of scope (not started in Task 05)
 
-ML fallback quarantine (R-ML-02), schema leakage, CRA → Vite, SQLite → MongoDB, dependency upgrades, Task 06.
+ML fallback quarantine (R-ML-02), schema leakage, CRA → Vite, SQLite → MongoDB, dependency upgrades.
+
+---
+
+# Task 06 — Internal Structure, Naming & JS/JSX Normalization
+
+Checkpoint: started from `af2cbb9` (`chore: update repository identity to DibakarArchives`) on `main`. Task 05 remains `199afe9`.
+
+| Item | Decision | Reason | Evidence | Destination |
+| ---- | -------- | ------ | -------- | ----------- |
+| `api/Apps/` | Moved | Directory casing | Git-aware rename via temp path | `api/apps/` |
+| `api/apps/StockPredict/Api/` | Moved | Directory casing | Git-aware rename | `api/apps/StockPredict/api/` |
+| `api/apps/StockPredict/Config/` | Moved | Directory casing | Git-aware rename | `api/apps/StockPredict/config/` |
+| `api/apps/StockPredict/Monitoring/` | Moved | Directory casing | Git-aware rename | `api/apps/StockPredict/monitoring/` |
+| `api/apps/StockPredict/Tasks/` | Moved | Directory casing | Git-aware rename | `api/apps/StockPredict/tasks/` |
+| `api/apps/StockPredict/Services/` | **KEEP** | Requested target is PascalCase `Services/` | Task 06 brief; relative imports stay `.Services` | unchanged |
+| `api/Logs/` | **KEEP** | Runtime/history logs, already gitignored. Settings, `TrainModel.py`, Makefile use `api/Logs`. No `api/apps/api/` package exists. | settings `Logs/StockPredict.log`; `.gitignore` `api/Logs/` | `api/Logs/` |
+| `api/apps/__init__.py` | Added | Make dotted `apps.StockPredict` imports work after `Apps/` → `apps/` | empty package init | `api/apps/__init__.py` |
+| `ui/Public/` | Moved | Directory casing | Git-aware rename | `ui/public/` |
+| `ui/Src/` | Moved | Directory casing | Git-aware rename | `ui/src/` |
+| `ui/src/Components/` | Moved | Directory casing | Git-aware rename | `ui/src/components/` |
+| `ui/src/components/CSS/` | Moved | Directory casing | Git-aware rename | `ui/src/components/css/` |
+| `ui/src/components/Javascript/` | Moved | Directory casing + shorter name | Git-aware rename | `ui/src/components/js/` |
+| `ui/src/Database/` | Moved | Directory casing | Git-aware rename | `ui/src/database/` |
+| JSX-containing `.js` files | Renamed `.jsx` | Files that contain JSX markup | `App.jsx`, `index.jsx`, component files, `SetupTests.jsx`, `App.test.jsx` | same folders |
+| Pure JS files | **KEEP `.js`** | No JSX | `ReportWebVitals.js`, `StockDatabase.js`, `tests/integration/Api.test.js` | unchanged |
+| `ui/src/App.js` | Moved + renamed | Mandatory Task 06 rename | unique `App.jsx` | `ui/src/App.jsx` |
+
+Do not treat historical Task 05 path strings in this register as the live tree. Current routes live at `api/apps/StockPredict/urls.py`.

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../CSS/StockInput.css";
-import { searchStocks, getPopularStocks } from "../../Database/StockDatabase";
+import "../css/StockInput.css";
+import { searchStocks, getPopularStocks } from "../../database/StockDatabase";
 
 const StockInput = ({ onSubmit, loading }) => {
   const [ticker, setTicker] = useState("");

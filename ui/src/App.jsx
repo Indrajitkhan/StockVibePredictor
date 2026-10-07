@@ -10,25 +10,25 @@ import axios from "axios";
 import "./App.css";
 
 // Regular Components
-import Navbar from "./Components/Javascript/Navbar";
-import StockInput from "./Components/Javascript/StockInput";
-import LoadingSpinner from "./Components/Javascript/LoadingSpinner";
-import SystemStatus from "./Components/Javascript/SystemStatus";
-import TimeframeSelector from "./Components/Javascript/TimeframeSelector";
-import ErrorMessage from "./Components/Javascript/ErrorMessage";
-import TabNavigation from "./Components/Javascript/TabNavigation";
+import Navbar from "./components/js/Navbar";
+import StockInput from "./components/js/StockInput";
+import LoadingSpinner from "./components/js/LoadingSpinner";
+import SystemStatus from "./components/js/SystemStatus";
+import TimeframeSelector from "./components/js/TimeframeSelector";
+import ErrorMessage from "./components/js/ErrorMessage";
+import TabNavigation from "./components/js/TabNavigation";
 
 // Lazy Load Heavy Components
-const StockChart = lazy(() => import("./Components/Javascript/StockChart"));
+const StockChart = lazy(() => import("./components/js/StockChart"));
 const CompanyEssentials = lazy(() =>
-  import("./Components/Javascript/CompanyEssentials")
+  import("./components/js/CompanyEssentials")
 );
 const PredictionsTab = lazy(() =>
-  import("./Components/Javascript/PredictionTab")
+  import("./components/js/PredictionTab")
 );
-const AnalysisTab = lazy(() => import("./Components/Javascript/AnalysisTab"));
+const AnalysisTab = lazy(() => import("./components/js/AnalysisTab"));
 const SentimentAnalysis = lazy(() =>
-  import("./Components/Javascript/SentimentAnalysis")
+  import("./components/js/SentimentAnalysis")
 );
 
 // Utility: Debounce Function

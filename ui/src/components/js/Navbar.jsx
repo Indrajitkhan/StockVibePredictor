@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../CSS/Navbar.css";
+import "../css/Navbar.css";
 
 const Navbar = ({ systemHealth, onQuickSearch }) => {
   // ==================== STATE MANAGEMENT ====================

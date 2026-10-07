@@ -30,7 +30,7 @@ module.exports = {
       jestConfig.testRegex = ".*\\.(test|spec)\\.(js|jsx)$";
       delete jestConfig.testMatch;
 
-      jestConfig.setupFilesAfterEnv = ["<rootDir>/../tests/SetupTests.js"];
+      jestConfig.setupFilesAfterEnv = ["<rootDir>/../tests/SetupTests.jsx"];
       jestConfig.testEnvironment = "jsdom";
 
       // Enhanced module resolution
@@ -99,7 +99,7 @@ module.exports = {
   // ... rest of your webpack config ...
   webpack: {
     configure: (webpackConfig) => {
-      webpackConfig.entry = path.resolve(__dirname, "Src/index.js");
+      webpackConfig.entry = path.resolve(__dirname, "src/index.jsx");
 
       const htmlWebpackPlugin = webpackConfig.plugins.find(
         (plugin) => plugin.constructor.name === "HtmlWebpackPlugin"
@@ -108,20 +108,20 @@ module.exports = {
       if (htmlWebpackPlugin) {
         htmlWebpackPlugin.options.template = path.resolve(
           __dirname,
-          "Public/index.html"
+          "public/index.html"
         );
       }
 
       webpackConfig.resolve.modules = [
-        path.resolve(__dirname, "Src"),
-        path.resolve(__dirname, "Components"),
+        path.resolve(__dirname, "src"),
+        path.resolve(__dirname, "src/components"),
         "node_modules",
       ];
 
       webpackConfig.resolve.alias = {
         ...webpackConfig.resolve.alias,
-        "@": path.resolve(__dirname, "Src"),
-        "@components": path.resolve(__dirname, "Components"),
+        "@": path.resolve(__dirname, "src"),
+        "@components": path.resolve(__dirname, "src/components"),
       };
 
       const babelLoaderRule = webpackConfig.module.rules.find(
@@ -139,8 +139,8 @@ module.exports = {
 
         if (jsRule) {
           jsRule.include = [
-            path.resolve(__dirname, "Src"),
-            path.resolve(__dirname, "Components"),
+            path.resolve(__dirname, "src"),
+            path.resolve(__dirname, "src/components"),
           ];
         }
       }
@@ -151,7 +151,7 @@ module.exports = {
 
   devServer: {
     static: {
-      directory: path.join(__dirname, "Public"),
+      directory: path.join(__dirname, "public"),
     },
     port: 3000,
     open: true,
