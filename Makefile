@@ -25,7 +25,7 @@ help:
 	@printf '\n$(CYAN)StockVibePredictor — project orchestrator$(RESET)\n'
 	@printf 'Backend targets live in api/Makefile; frontend targets live in ui/Makefile.\n\n'
 	@printf '$(BOLD)Setup$(RESET)\n'
-	@printf '  $(GREEN)make install$(RESET)            Install backend (shared root .venv) and frontend dependencies\n'
+	@printf '  $(GREEN)make install$(RESET)            Install backend (api/.venv) and frontend dependencies\n'
 	@printf '  $(GREEN)make setup$(RESET)              Install dependencies and apply database migrations\n'
 	@printf '$(BOLD)Development$(RESET)\n'
 	@printf '  $(CYAN)make dev$(RESET)                Start backend (127.0.0.1:8000) and frontend (3000) together\n'
@@ -47,7 +47,7 @@ help:
 	@printf '$(DIM)make clean never touches api/.env, api/db.sqlite3, api/app/api/logs/, or model .pkl artifacts.$(RESET)\n\n'
 
 install:
-	@printf '$(MAGENTA)Installing backend dependencies (shared root .venv)...$(RESET)\n'
+	@printf '$(MAGENTA)Installing backend dependencies (api/.venv)...$(RESET)\n'
 	@$(MAKE) -C $(API_DIR) install
 	@printf '$(MAGENTA)Installing frontend dependencies...$(RESET)\n'
 	@$(MAKE) -C $(UI_DIR) install

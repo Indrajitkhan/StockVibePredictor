@@ -88,7 +88,7 @@ module.exports = {
       jestConfig.moduleFileExtensions = ["js", "jsx", "json", "node"];
       jestConfig.testPathIgnorePatterns = [
         "/node_modules/",
-        "<rootDir>/../tests/Backend/",
+        "<rootDir>/../tests/backend/",
       ];
       jestConfig.clearMocks = true;
 

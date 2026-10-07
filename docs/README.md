@@ -11,7 +11,7 @@ This index distinguishes **current** documentation from **historical** material.
 | [`PRODUCT-VISION.md`](./PRODUCT-VISION.md) | Long-term investment-platform direction, principles, gated roadmap. | PLANNED (vision) |
 | [`CRITICAL-ISSUES.md`](./CRITICAL-ISSUES.md) | Prioritized open issues from the Phase 0/1 audit. | IMPLEMENTED (tracking) |
 | [`RUNTIME-BASELINE.md`](./RUNTIME-BASELINE.md) | Task 02 runtime facts + Task 03 test-infra/SQLite baseline + Task 04 structural migration record (`Backend → api`, `Frontend → ui`). Historical path strings from those tasks are preserved. | IMPLEMENTED (verified 2026-10-06 / 2026-10-07) |
-| [`CLEANUP-REGISTER.md`](./CLEANUP-REGISTER.md) | Task 05 classification plus Task 06 internal casing / JS↔JSX decisions plus Task 07 Makefile architecture / final API structure. | IMPLEMENTED (Task 05–07) |
+| [`CLEANUP-REGISTER.md`](./CLEANUP-REGISTER.md) | Task 05 classification plus Task 06 internal casing / JS↔JSX decisions plus Task 07 Makefile architecture / final API structure plus Task 08 root-level architecture cleanup. | IMPLEMENTED (Task 05–08) |
 
 ## Legacy / Needs Accuracy Pass
 

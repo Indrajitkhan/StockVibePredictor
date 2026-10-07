@@ -1,7 +1,8 @@
 # StockVibePredictor — api/Makefile (Django backend)
 #
-# Backend commands. Uses the shared root virtualenv (../.venv, Python 3.11).
-# Adopted from the SHADE-ai / VisionCore Makefile architecture (Task 07).
+# Backend commands. Uses the backend virtualenv (api/.venv, Python 3.11).
+# Adopted from the SHADE-ai / VisionCore Makefile architecture (Task 07);
+# the venv moved from the repository root into api/ in Task 08.
 
 .DEFAULT_GOAL := help
 
@@ -10,7 +11,7 @@ SHELL := /bin/sh
 .PHONY: help install setup-env dev run check test shell migrate makemigrations migrations logs doctor status stop clean
 
 PYTHON ?= python3.11
-VENV ?= ../.venv
+VENV ?= .venv
 PY := $(VENV)/bin/python
 PIP := $(PY) -m pip
 MANAGE := $(PY) manage.py
@@ -29,9 +30,9 @@ MAGENTA := \033[35m
 
 help:
 	@printf '\n$(CYAN)StockVibePredictor — api (Django backend)$(RESET)\n'
-	@printf 'Uses the shared root virtualenv ($(VENV), Python 3.11).\n\n'
+	@printf 'Uses the backend virtualenv ($(VENV), Python 3.11).\n\n'
 	@printf '$(BOLD)Setup$(RESET)\n'
-	@printf '  $(GREEN)make install$(RESET)        Create/verify the venv and install requirements.txt\n'
+	@printf '  $(GREEN)make install$(RESET)        Create/verify the api/.venv venv and install requirements.txt\n'
 	@printf '  $(GREEN)make setup-env$(RESET)     Create api/.env from api/.env.example if missing\n'
 	@printf '$(BOLD)Run$(RESET)\n'
 	@printf '  $(CYAN)make dev$(RESET)            Start the Django server on $(HOST):$(PORT) (--noreload)\n'
@@ -50,11 +51,11 @@ help:
 	@printf '  $(CYAN)make clean$(RESET)         Remove Python caches only (db, .env, logs, models untouched)\n\n'
 	@printf '$(DIM)No training target on purpose: the ML pipeline has known integrity issues (docs/CRITICAL-ISSUES.md).$(RESET)\n\n'
 
-# The shared virtualenv lives at the repository root; create it there if missing.
+# The backend virtualenv lives at api/.venv; create it there if missing.
 $(PY):
-	@printf '$(MAGENTA)Creating the shared virtualenv at the repository root ($(VENV))...$(RESET)\n'
-	@command -v $(PYTHON) >/dev/null 2>&1 || { printf '$(RED)✘ Python not found: $(PYTHON)$(RESET)\n'; exit 1; }
-	@cd .. && $(PYTHON) -m venv .venv
+	@printf '$(MAGENTA)Creating the backend virtualenv at $(VENV)...$(RESET)\n'
+	@command -V $(PYTHON) >/dev/null 2>&1 || { printf '$(RED)✘ Python not found: $(PYTHON)$(RESET)\n'; exit 1; }
+	@$(PYTHON) -m venv $(VENV)
 	@$(PIP) install --upgrade pip --disable-pip-version-check >/dev/null
 	@printf '$(GREEN)✔ Virtualenv ready.$(RESET)\n'
 

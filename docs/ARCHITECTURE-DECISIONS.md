@@ -316,3 +316,32 @@ Moves (all Git-aware; case-only via temp path on macOS):
 * `api/Scripts/` → `api/app/api/scripts/`
 
 Deliberately unchanged: `StockPredict`, `V1`, `Models`, `Performance`, `Validation`.
+
+---
+
+## ADR-013 — Root-Level Architecture Cleanup (Task 08)
+
+**Status: IMPLEMENTED (2026-10-08)**
+
+Principle: the repository root represents the **project**, not one development
+environment; backend-owned state lives under `api/`, frontend-owned under `ui/`.
+
+| Change | Rationale |
+| ------ | --------- |
+| `.venv/` (root) → `api/.venv/` | Python env is backend-specific. Moved intact (no recreate); the 30 venv files with embedded absolute paths (`bin/activate*`, `pyvenv.cfg`, console-script shebangs) were patched to the new prefix and the environment verified in place (Python 3.11.14, Django 5.2.5, DRF 3.16.1). One canonical backend venv; `.gitignore` `.venv` rule covers it (verified via `git check-ignore`). |
+| `.pytest_cache/` (root) → `api/.pytest_cache/` | pytest is a backend concern. To stop it regenerating at the root, `pyproject.toml` now sets `cache_dir = "api/.pytest_cache"`. Still gitignored. |
+| `.github/` (incl. `CODEOWNERS`) removed | Explicit owner request (Task 08 §5). Removed via `git rm -r`; not recreated, not replaced by another ownership mechanism; no GitHub Actions added. |
+| `tests/Backend/` → `tests/backend/` | Sole remaining PascalCase directory; aligns with the repo-wide lowercase convention (Task 06). Git-aware rename via temp path (APFS case-only rename limitation). `ui/craco.config.js` Jest ignore pattern updated; root README tree updated. |
+| `.DS_Store` (root + `ui/`) removed | macOS Finder junk, gitignored, regenerated on demand; no project meaning. |
+| `pyproject.toml` URL typo | `https://https://` → `https://` (Repository URL) — configuration defect fixed while editing the file. |
+
+Unchanged (audited, no structural reason to move): `api/app/api/` remains a
+structural/support directory — **not** a Django app (no `apps.py`/`models.py`,
+not in `INSTALLED_APPS`); `api/app/StockPredict/` remains the sole Django app;
+postman assets stay under `postman/`; the four fallback `.pkl` models remain
+untracked and unretrained under `api/app/api/scripts/Models/`.
+
+Makefile revalidation after the moves: `api/Makefile` now creates/uses
+`api/.venv` (`VENV ?= .venv`, venv created in `api/`, not at the root); the
+root `Makefile` help text no longer claims a "shared root .venv" and delegates
+all backend Python work to `api/Makefile`. `make clean` safety unchanged.

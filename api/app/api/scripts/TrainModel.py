@@ -39,10 +39,10 @@ class Config:
 
     # Paths
     BASE_DIR = Path(__file__).resolve().parent.parent
-    MODELS_DIR = BASE_DIR / "app" / "api" / "scripts" / "Models"
-    PERFORMANCE_DIR = BASE_DIR / "app" / "api" / "scripts" / "Performance"
-    LOGS_DIR = BASE_DIR / "app" / "api" / "logs"
-    VALIDATION_DIR = BASE_DIR / "app" / "api" / "scripts" / "Validation"
+    MODELS_DIR = BASE_DIR / "scripts" / "Models"
+    PERFORMANCE_DIR = BASE_DIR / "scripts" / "Performance"
+    LOGS_DIR = BASE_DIR / "logs"
+    VALIDATION_DIR = BASE_DIR / "scripts" / "Validation"
 
     # Training parameters
     MIN_DATA_POINTS = 30

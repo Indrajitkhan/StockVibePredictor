@@ -67,7 +67,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/DibakarArchives/StockVibePredictor"
 Documentation = "https://github.com/DibakarArchives/StockVibePredictor/wiki"
-Repository = "https://https://github.com/DibakarArchives/StockVibePredictor.git"
+Repository = "https://github.com/DibakarArchives/StockVibePredictor.git"
 "Bug Tracker" = "https://github.com/DibakarArchives/StockVibePredictor/issues"
 "Source Code" = "https://github.com/DibakarArchives/StockVibePredictor"
 Changelog = "https://github.com/DibakarArchives/StockVibePredictor/blob/main/CHANGELOG.md"
@@ -171,6 +171,7 @@ skip_glob = ["*/migrations/*", "*/venv/*", "*/node_modules/*", "Frontend/*", "ui
 skip = ["Frontend", "ui"]
 
 [tool.pytest.ini_options]
+cache_dir = "api/.pytest_cache"
 DJANGO_SETTINGS_MODULE = "StockVibePredictor.settings"
 pythonpath = ["api"]
 python_files = ["test_*.py", "*_test.py", "tests.py"]

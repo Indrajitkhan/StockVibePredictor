@@ -162,7 +162,7 @@ StockVibePredictor/
 │   ├── RUNTIME-BASELINE.md
 │   └── archive/                   # college PDFs (historical)
 ├── tests/                       # Jest unit/integration + ad-hoc Python scripts
-│   ├── Backend/
+│   ├── backend/
 │   ├── e2e/
 │   ├── integration/
 │   ├── unit/
@@ -173,7 +173,6 @@ StockVibePredictor/
 │   ├── Examples/
 │   ├── Scripts/
 │   └── README.md
-├── .github/CODEOWNERS
 ├── .gitignore
 ├── AUTHORS.md
 ├── Makefile                     # root orchestrator (delegates to api/ and ui/)
@@ -181,7 +180,7 @@ StockVibePredictor/
 └── README.md
 ```
 
-**Not in this tree (intentionally):** `LICENSE` (MIT is claimed in badges/metadata but no license file exists), Docker/compose, CI workflows, `Deployment/`, `Security/`, `ui/Apps/Dashboard`, `api/setup.py`. Runtime artifacts such as `.venv/`, `ui/node_modules/`, `api/db.sqlite3`, logs, and fallback `*.pkl` models are gitignored, not source.
+**Not in this tree (intentionally):** `LICENSE` (MIT is claimed in badges/metadata but no license file exists), Docker/compose, CI workflows, `.github/` (removed in Task 08), `Deployment/`, `Security/`, `ui/Apps/Dashboard`, `api/setup.py`. Runtime artifacts such as `api/.venv/`, `ui/node_modules/`, `api/db.sqlite3`, logs, and fallback `*.pkl` models are gitignored, not source.
 
 </details>
 
@@ -191,7 +190,7 @@ The repository now has a three-level Makefile system: the root `Makefile` orches
 
 ```bash
 make help            # list root targets (delegation map)
-make install         # backend deps (shared root .venv) + frontend deps
+make install         # backend deps (api/.venv) + frontend deps
 make setup           # install + apply database migrations
 make dev             # backend (127.0.0.1:8000) + frontend (3000) together
 make check           # Django system checks
@@ -394,10 +393,10 @@ There are **no independently trained model artifacts** in git. Importing `views.
 cd StockVibePredictor/api/app/api/scripts
 
 # 🔌 Activate virtual environment (if not already active)
-# Mac/Linux:
-source ../../venv/bin/activate
+# Mac/Linux (canonical backend venv lives at api/.venv — Task 08):
+source ../../../.venv/bin/activate
 # Windows:
-..\..\venv\Scripts\activate
+..\..\..\.venv\Scripts\activate
 
 # 🎯 Train models - Smart modes available (v5.0 ENHANCED):
 
@@ -914,7 +913,7 @@ redis-server
 
 # ⚙️ Terminal 2
 cd StockVibePredictor/api
-source ../.venv/bin/activate  # Mac/Linux — local baseline uses repo-root .venv
+source .venv/bin/activate  # Mac/Linux — local baseline uses api/.venv (Task 08)
 python manage.py runserver 127.0.0.1:8000
 
 # 🧠 Terminal 3 (optional)

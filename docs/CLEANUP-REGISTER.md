@@ -101,3 +101,29 @@ Classification key unchanged: **ACTIVE**, **REQUIRED INFRASTRUCTURE**, **HISTORI
 | `api/app/api/` | NOT a Django app | Structural/support location per Task 07 brief §14; no `apps.py`/`models.py` added | no `INSTALLED_APPS` entry | support dir |
 
 ML fallback quarantine (R-ML-01/02), train/serve schema mismatch, `TimeSeriesSplit`, and the SIGTERM/autoreload defect remain **deferred** to the next engineering phase.
+
+---
+
+# Task 08 — Root-Level Architecture Cleanup
+
+Checkpoint: started from `0dd5da4` (`chore: finalize makefile and api structure`) on `main`.
+
+Classification key unchanged: **ACTIVE**, **REQUIRED INFRASTRUCTURE**, **HISTORICAL**, **REDUNDANT**, **OBSOLETE**, **GENERATED**, **SUSPICIOUS**.
+
+| Item | Decision | Reason | Evidence | Destination |
+| ---- | -------- | ------ | -------- | ----------- |
+| Root `.venv/` | Moved | Backend-specific environment; root represents the project, not one dev environment (Task 08 §3) | `mv` (same volume, untracked); 30 embedded-path files patched (`bin/activate*`, `pyvenv.cfg`, console scripts); env verified in place (Python 3.11.14, Django 5.2.5, DRF 3.16.1) | `api/.venv/` |
+| Root `.pytest_cache/` | Moved | pytest is a backend concern (Task 08 §4); prevented root regeneration via `pyproject.toml` `cache_dir = "api/.pytest_cache"` | `mv`; `git check-ignore` confirms ignored | `api/.pytest_cache/` |
+| `.github/` (incl. `CODEOWNERS`) | Removed | Explicit owner request (Task 08 §5); may be recreated later | `git rm -r .github` (tracked deletion); not recreated, no replacement mechanism, no Actions added | removed |
+| `tests/Backend/` | Renamed | Sole remaining PascalCase directory; repo-wide lowercase convention (Task 06) | `git mv` via temp path (APFS case-only limitation); `ui/craco.config.js` Jest ignore updated | `tests/backend/` |
+| `.DS_Store` (root, `ui/`) | Removed | macOS Finder junk; gitignored; regenerates harmlessly | `rm`; `git check-ignore .DS_Store` | removed |
+| `pyproject.toml` | Updated | pytest `cache_dir` pinned to `api/.pytest_cache`; `Repository` URL `https://https://` typo corrected | `[tool.pytest.ini_options]`, `[project.urls]` | in place |
+| `api/Makefile` | Updated | `VENV ?= .venv`; venv now created inside `api/` (not at root); help text updated | `$(PY)` rule creates `api/.venv` | in place |
+| Root `Makefile` | Updated | Help text no longer claims "shared root .venv" | `make install` description | in place |
+| `README.md` | Updated | Tree (no `.github/`, `tests/backend/`, `api/.venv/` artifacts note), install help, startup `source .venv/bin/activate` from `api/` | Task 08 pass; historical sections preserved | in place |
+| `docs/README.md` | Updated | Index now covers Task 08 | CLEANUP-REGISTER row | in place |
+| `api/app/api/` | Kept (verified) | Structural/support dir, NOT a Django app (Task 08 §7) — no `apps.py`/`models.py`, not in `INSTALLED_APPS` | audit | in place |
+| `postman/` | Kept | Referenced by root Makefile `api-regression` + Newman; no structural reason to move | audit | in place |
+| Fallback `.pkl` artifacts | Preserved (not tracked) | GENERATED import-time dummy models (R-ML-02); not retrained (Task 08 hard rule) | still gitignored | `api/app/api/scripts/Models/` (local-only) |
+
+Historical documentation (`docs/RUNTIME-BASELINE.md`, earlier CLEANUP-REGISTER/ADR sections) intentionally retains old path strings (e.g. repo-root `.venv`, `tests/Backend/`, `.github/CODEOWNERS`) — provenance is preserved; only **current**-architecture references were updated.
