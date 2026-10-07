@@ -6,7 +6,9 @@
 # Specific ownership
 /api/ @dibakar
 /ui/ @dibakar
-/Scripts/ @dibakar
+/docs/ @dibakar
+/tests/ @dibakar
+/postman/ @dibakar
 *.py @dibakar
 *.js @dibakar
 *.jsx @dibakar

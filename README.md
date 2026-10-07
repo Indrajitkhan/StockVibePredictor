@@ -15,7 +15,7 @@
 <br/>
 
 [![Author](https://img.shields.io/badge/👨‍💻_Author-Dibakar-FF6B6B?style=for-the-badge&logo=github)](https://github.com/ThisIsDibakar)
-[![License](https://img.shields.io/badge/📜_License-MIT-4ECDC4?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/📜_License-MIT_claimed_no_LICENSE_file-lightgrey?style=for-the-badge)](#)
 [![Python](https://img.shields.io/badge/🐍_Python-3.11+-FFD93D?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Django](https://img.shields.io/badge/🎯_Django-5.0-092E20?style=for-the-badge&logo=django)](https://djangoproject.com)
 [![React](https://img.shields.io/badge/⚛️_React-18.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org)
@@ -34,6 +34,22 @@
 </pre>
 
 </div>
+
+---
+
+## Repository status (Task 05)
+
+This repository is a **revived college prototype**, not a production trading platform.
+No real capital, brokerage, wallet, or payment code is active.
+
+| Status           | Meaning                                                                                                                                                                          |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CURRENT**      | Demonstrated locally: Django API under `api/`, CRA/CRACO React app under `ui/`, SQLite (`api/db.sqlite3`), live yfinance chart/company data, Newman API regression (`postman/`). |
+| **EXPERIMENTAL** | Prediction endpoints exist but currently load **import-generated fallback `.pkl` files**, not independently trained artifacts.                                                   |
+| **UNVERIFIED**   | Historical accuracy numbers, Redis-as-required, Next.js, Docker/Heroku/Vercel, production auth, and rate-limit/SLA claims.                                                       |
+| **PLANNED**      | Investment-management platform direction in `docs/PRODUCT-VISION.md`. Live execution remains disabled.                                                                           |
+
+Authoritative structure and facts: [`docs/README.md`](docs/README.md), [`docs/RUNTIME-BASELINE.md`](docs/RUNTIME-BASELINE.md), [`docs/CLEANUP-REGISTER.md`](docs/CLEANUP-REGISTER.md).
 
 ---
 
@@ -66,7 +82,7 @@
 ### 🎨 **Frontend**
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![CRA](https://img.shields.io/badge/Create_React_App-CRACO-09D3AC?style=flat-square)
 ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
 
 </td>
@@ -83,13 +99,13 @@
 
 </div>
 
-| Feature                       | Description                                                                              |
-| :---------------------------- | :--------------------------------------------------------------------------------------- |
-| 🔄 **Real-Time Market Data**  | Integration with Yahoo Finance (yfinance) API for accurate, up-to-date stock information |
-| 🤖 **ML-Powered Predictions** | Trained on historical stock data with technical indicators (RSI, Moving Averages, etc.)  |
-| 📈 **Interactive Visuals**    | Uses Chart.js on the frontend to display trends and predictions                          |
-| 🔌 **RESTful API**            | Comprehensive backend API for data retrieval and predictions                             |
-| 📱 **Responsive Design**      | Modern, mobile-first frontend interface                                                  |
+| Feature                                   | Status       | Description                                                                                                                                                |
+| :---------------------------------------- | :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔄 **Market data**                        | CURRENT      | Chart/company endpoints use yfinance locally.                                                                                                              |
+| 🤖 **Predictions**                        | EXPERIMENTAL | Endpoints exist; they currently load import-generated fallback `.pkl` files, not independently trained models. Historical accuracy numbers are UNVERIFIED. |
+| 📈 **Charts**                             | CURRENT      | Chart.js in the CRA frontend.                                                                                                                              |
+| 🔌 **REST API**                           | CURRENT      | Django REST routes in `api/Apps/StockPredict/urls.py`. Canonical regression: `postman/`.                                                                   |
+| 💰 **Live trading / brokerage / wallets** | NOT PRESENT  | Intentionally disabled. `/trading/real/` is a stub.                                                                                                        |
 
 ---
 
@@ -97,19 +113,19 @@
 
 ## 🛠️ **Technology Stack**
 
-<img src="https://skillicons.dev/icons?i=python,django,react,nextjs,redis,sklearn,nodejs,postgres,docker,git&theme=dark" />
+<img src="https://skillicons.dev/icons?i=python,django,react,nodejs,git&theme=dark" />
 
 <br/>
 
-| **Layer**          | **Technology**                     | **Purpose**                         |
-| :----------------- | :--------------------------------- | :---------------------------------- |
-| 🎨 **Frontend**    | `React` + `Next.js` + `Chart.js`   | Interactive UI & Data Visualization |
-| ⚙️ **Backend**     | `Django` + `Django REST Framework` | API & Business Logic                |
-| 🧠 **ML Model**    | `Scikit-learn` (Random Forest)     | Stock Price Predictions             |
-| 📊 **Data Source** | `Yahoo Finance API`                | Real-time Market Data               |
-| 💾 **Database**    | `SQLite` / `PostgreSQL`            | Data Persistence                    |
-| 🔥 **Cache**       | `Redis`                            | High-Performance Caching            |
-| 🚀 **Deployment**  | `Heroku` + `Vercel`                | Production Hosting                  |
+| **Layer**          | **Technology**                                                               | **Status**                                                |
+| :----------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------- |
+| 🎨 **Frontend**    | React 18 + CRA (`react-scripts` 5) + CRACO + Chart.js                        | **CURRENT**                                               |
+| ⚙️ **Backend**     | Django 5.x + Django REST Framework                                           | **CURRENT**                                               |
+| 🧠 **ML**          | scikit-learn VotingClassifier / Random Forest in `api/Scripts/TrainModel.py` | **EXPERIMENTAL** — no genuine trained artifacts on disk   |
+| 📊 **Data Source** | yfinance                                                                     | **CURRENT** for chart/company endpoints                   |
+| 💾 **Database**    | SQLite (`api/db.sqlite3`)                                                    | **CURRENT** local baseline; MongoDB is **PLANNED**        |
+| 🔥 **Cache**       | Redis (optional in settings)                                                 | **UNVERIFIED** as a required runtime                      |
+| 🚀 **Deployment**  | none in this repository                                                      | **PLANNED** — no Dockerfile, compose file, or CI workflow |
 
 </div>
 
@@ -124,110 +140,45 @@
 <details>
 <summary><b>🗂️ Click to Expand Full Project Structure</b></summary>
 
-```bash
-🏗️ StockVibePredictor/
-│
-├── 📁 api/
-│   ├── 🔧 StockVibePredictor/
-│   │   ├── __init__.py
-│   │   ├── asgi.py
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   └── wsgi.py
-│   │
-│   ├── 📱 Apps/
-│   │   ├── StockPredict/
-│   │   │   ├── __init__.py
-│   │   │   ├── admin.py
-│   │   │   ├── apps.py
-│   │   │   ├── CheckPath.py
-│   │   │   ├── CompanyEssentials.py
-│   │   │   ├── middleware.py
-│   │   │   ├── models.py
-│   │   │   ├── tests.py
-│   │   │   ├── urls.py
-│   │   │   └── views.py
-│   │   ├── Future_App_01/
-│   │   └── Future_App_02/
-│   │
-│   ├── 📊 Logs/
-│   │   ├── ModelTraining.log
-│   │   ├── StockPredict.log
-│   │   └── TrainingErrors.log
-│   │
-│   ├── 🧠 Scripts/
-│   │   ├── Models/
-│   │   ├── Performance/
-│   │   └── TrainModel.py
-│   │
-│   ├── 🎨 Templates/
-│   │   ├── base.html
-│   │   └── index.html
-│   │
-│   ├── 🎭 Static/
-│   │   ├── Css/
-│   │   ├── Js/
-│   │   └── Images/
-│   │
-│   ├── 📸 Media/
-│   ├── ⚙️ Config/
-│   ├── 🛠️ Utils/
-│   ├── 📜 Scripts/
-│   │
-│   ├── 📦 manage.py
-│   ├── 🦾 setup.py
-│   ├── 📋 requirements.txt
-│   ├── 🐳 Dockerfile
-│   └── 🔧 docker-compose.yml
-│
-├── 🎨 ui/
-│   ├── 📱 Apps/
-│   │   └── Dashboard/
-│   ├── 🌐 Public/
-│   │   ├── favicon.ico
-│   │   └── index.html
-│   ├── 💻 Src/
-│   │   ├── Components/
-│   │   ├── Database/
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   └── index.js
-│   ├── 📦 package.json
-│   ├── ⚙️ craco.config.js
-│   └── ⚙️ webpack.config.js
-│
-├── 🧪 Tests/
+```text
+StockVibePredictor/
+├── api/                         # Django 5 + DRF application
+│   ├── StockVibePredictor/       # settings, urls, wsgi/asgi
+│   ├── Apps/StockPredict/        # models, views, urls, CompanyEssentials
+│   ├── Scripts/TrainModel.py     # historical training script
+│   ├── manage.py
+│   └── requirements.txt
+├── ui/                          # Create React App + CRACO
+│   ├── Public/
+│   ├── Src/
+│   ├── craco.config.js
+│   └── package.json
+├── docs/                        # current + historical documentation
+│   ├── README.md                  # documentation index
+│   ├── CLEANUP-REGISTER.md        # Task 05 decisions
+│   ├── RUNTIME-BASELINE.md
+│   └── archive/                   # college PDFs (historical)
+├── tests/                       # Jest unit/integration + ad-hoc Python scripts
 │   ├── Backend/
 │   ├── e2e/
 │   ├── integration/
 │   ├── unit/
-│   └── setupTests.js
-│
-├── 🏤 Postman/
+│   └── SetupTests.js
+├── postman/                     # Newman API regression (retained)
 │   ├── Collections/
 │   ├── Environments/
 │   ├── Examples/
 │   ├── Scripts/
-│   ├── Tests/
 │   └── README.md
-│
-├── 📚 Docs/
-│   ├── API.md
-│   ├── CHANGELOG.md
-│   ├── Endpoints.json
-│   └── Migration-Notes.md
-│
-├── 🚀 Deployment/
-├── 🔒 Security/
-├── 🔄 CI-CD/
-│
-├── 🔧 .gitconfig
-└── 🔧 .gitignore
-├── 📜 LICENSE
-└── 👨‍✈️ AUTHORS.md
-└── 🪖 pyproject.toml
-└── 📖 README.md
+├── .github/CODEOWNERS
+├── .gitignore
+├── AUTHORS.md
+├── Makefile
+├── pyproject.toml               # packaging + pytest config
+└── README.md
 ```
+
+**Not in this tree (intentionally):** `LICENSE` (MIT is claimed in badges/metadata but no license file exists), Docker/compose, CI workflows, `Deployment/`, `Security/`, `ui/Apps/Dashboard`, `api/setup.py`. Runtime artifacts such as `.venv/`, `ui/node_modules/`, `api/db.sqlite3`, logs, and fallback `*.pkl` models are gitignored, not source.
 
 </details>
 
@@ -297,23 +248,19 @@ sudo apt install redis-server
 
 ```bash
 # 📥 Clone the repository
-git clone https://github.com/DibVibe/StockVibePredictor.git
+git clone https://github.com/DibakarArchives/StockVibePredictor.git
 cd StockVibePredictor
 
 # 👀 Check you're in the right place
 ls
-# You should see: Backend, Frontend, README.md, etc...
+# You should see: api/, ui/, docs/, tests/, postman/, README.md, etc...
 ```
 
 ---
 
-## 🔴 **Step 2: Start Redis Server** _(IMPORTANT!)_
+## 🔴 **Step 2: Redis (OPTIONAL / UNVERIFIED)**
 
-<div align="center">
-
-⚠️ **CRITICAL: Redis Must Be Running First!** ⚠️
-
-</div>
+Local Task 02–04 baselines ran Django against SQLite **without Redis as a required service**. Redis is listed in settings; treat it as optional unless you are specifically exercising cache endpoints.
 
 ```bash
 # 🖥️ Terminal 1 - Start Redis:
@@ -362,14 +309,14 @@ venv\Scripts\activate
 
 ```bash
 # 📥 Install all dependencies
-pip install -r requirements.txt
+pip install -r api/requirements.txt
 ```
 
 ### **🔧 Setup Django Backend:**
 
 ```bash
-# 📂 Navigate to Backend
-cd Backend
+# 📂 Navigate to api/
+cd api
 
 # 🔐 Create .env file for settings
 echo "DEBUG=True" > .env
@@ -393,7 +340,7 @@ python manage.py collectstatic --noinput
 ### **🚀 Start Django Server:**
 
 ```bash
-# 🎯 Make sure you're in Backend directory
+# 🎯 Make sure you're in the api/ directory
 python manage.py runserver
 
 # ✅ You should see:
@@ -410,7 +357,9 @@ python manage.py runserver
 
 ---
 
-## 🧠 **Step 4: Train ML Models**
+## 🧠 **Step 4: Train ML Models (UNVERIFIED / HISTORICAL)**
+
+There are **no independently trained model artifacts** in git. Importing `views.py` can persist dummy `universal_model_*.pkl` files under gitignored `api/Scripts/Models/`. Those files are **not** a training success. The commands and accuracy numbers below are leftover college-era README copy and must not be treated as a current baseline.
 
 ### **🤖 Terminal 3 - Model Training:**
 
@@ -674,13 +623,17 @@ cat Performance/training_summary_latest.json | python -m json.tool
 
 ---
 
-## 💻 **Step 5: Frontend Setup (React/Next.js)**
+## 💻 **Step 5: Frontend Setup (React / CRA + CRACO)**
+
+The UI is Create React App (`react-scripts` 5) with CRACO, not Next.js. The API base is hardcoded as `http://localhost:8000/api` in `ui/Src/App.js` — there is no `NEXT_PUBLIC_API_URL`.
+
+Port 3000 must be free (`craco.config.js` pins it). If another process holds 3000, the dev server will fail (R-FE-01).
 
 ### **⚛️ Terminal 4 - Frontend:**
 
 ```bash
-# 📂 Navigate to Frontend directory
-cd StockVibePredictor/Frontend
+# 📂 Navigate to ui/ directory
+cd StockVibePredictor/ui
 
 # 📦 Install dependencies
 npm install
@@ -688,12 +641,7 @@ npm install
 # If you get errors, try:
 npm install --legacy-peer-deps
 
-# 🔐 Create .env.local file for API endpoint
-echo "NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api" > .env.local
-
 # 🚀 Start the development server
-npm run dev
-# or
 npm start
 
 # ✅ You should see:
@@ -726,7 +674,7 @@ npm start
 
 1. Open Postman
 2. Click "Import" → "Raw text"
-3. Paste all endpoints from the Endpoints.txt file
+3. Import `postman/Collections/StockVibePredictor_API_v2.postman_collection.json`
 4. Click "Continue" → "Import"
 
 ### **🧪 Test Basic Endpoints:**
@@ -828,7 +776,7 @@ taskkill /PID <PID> /F
 # You should see (venv) in terminal
 
 # Reinstall dependencies
-pip install -r requirements.txt
+pip install -r api/requirements.txt
 
 # For frontend:
 rm -rf node_modules package-lock.json
@@ -843,14 +791,14 @@ npm install
 
 ## 📱 **Access Points Summary**
 
-| Service               | URL                                  | Terminal   |
-| :-------------------- | :----------------------------------- | :--------- |
-| 🔥 **Redis**          | `localhost:6379`                     | Terminal 1 |
-| ⚙️ **Django Backend** | `http://127.0.0.1:8000`              | Terminal 2 |
-| 📊 **API Docs**       | `http://127.0.0.1:8000/api/`         | Terminal 2 |
-| 👤 **Django Admin**   | `http://127.0.0.1:8000/admin/`       | Terminal 2 |
-| 🎨 **Frontend App**   | `http://localhost:3000`              | Terminal 3 |
-| 📮 **Postman**        | Test endpoints from `Endpoints.json` | -          |
+| Service                 | URL                                                                     | Terminal   |
+| :---------------------- | :---------------------------------------------------------------------- | :--------- |
+| 🔥 **Redis**            | `localhost:6379`                                                        | Terminal 1 |
+| ⚙️ **Django Backend**   | `http://127.0.0.1:8000`                                                 | Terminal 2 |
+| 📊 **API Docs**         | `http://127.0.0.1:8000/api/`                                            | Terminal 2 |
+| 👤 **Django Admin**     | `http://127.0.0.1:8000/admin/`                                          | Terminal 2 |
+| 🎨 **Frontend App**     | `http://localhost:3000`                                                 | Terminal 3 |
+| 📮 **Postman / Newman** | `postman/Collections/StockVibePredictor_API_v2.postman_collection.json` | -          |
 
 </div>
 
@@ -875,13 +823,13 @@ Our `.gitignore` file keeps the repo clean by excluding files like `node_modules
 python -m venv venv
 source venv/bin/activate  # Mac/Linux
 venv\Scripts\activate     # Windows
-pip install -r requirements.txt
+pip install -r api/requirements.txt
 ```
 
 #### **`node_modules/`** - Node.js dependencies
 
 ```bash
-cd Frontend
+cd ui
 npm install
 ```
 
@@ -899,7 +847,7 @@ python TrainModel.py
 #### **`build/`, `dist/`** - React build output
 
 ```bash
-cd Frontend
+cd ui
 npm run build
 ```
 
@@ -912,7 +860,7 @@ echo "SECRET_KEY=your-django-secret-key" > api/.env
 #### **`migrations/`** - Django migrations
 
 ```bash
-cd Backend
+cd api
 python manage.py makemigrations
 python manage.py migrate
 ```
@@ -920,7 +868,7 @@ python manage.py migrate
 #### **`*.sqlite3`, `*.db`** - Local database
 
 ```bash
-cd Backend
+cd api
 python manage.py migrate
 ```
 
@@ -939,17 +887,17 @@ python manage.py migrate
 redis-server
 
 # ⚙️ Terminal 2
-cd StockVibePredictor/Backend
-source ../venv/bin/activate  # Mac/Linux
-python manage.py runserver
+cd StockVibePredictor/api
+source ../.venv/bin/activate  # Mac/Linux — local baseline uses repo-root .venv
+python manage.py runserver 127.0.0.1:8000
 
-# 🧠 Terminal 3 (optional - for model updates)
-cd StockVibePredictor/api/Scripts
-python TrainModel.py daily
+# 🧠 Terminal 3 (optional)
+# Do not treat leftover TrainModel.py output as a verified training baseline.
+# Current predictions use import-generated fallback .pkl files (R-ML-02).
 
 # 🎨 Terminal 4
-cd StockVibePredictor/Frontend
-npm run dev
+cd StockVibePredictor/ui
+npm start
 ```
 
 ---
@@ -1086,17 +1034,19 @@ git push origin Group
 
 ## 🎯 **API Endpoints**
 
-| Method   | Endpoint               | Description                |
-| :------- | :--------------------- | :------------------------- |
-| **POST** | `/api/predict/`        | Get stock prediction       |
-| **GET**  | `/api/stock/{ticker}/` | Retrieve stock data        |
-| **GET**  | `/api/health/`         | Health check               |
-| **GET**  | `/api/models/list/`    | List available models      |
-| **POST** | `/api/predict/multi/`  | Multi-timeframe prediction |
+| Method   | Endpoint                            | Description                | Notes                                                              |
+| :------- | :---------------------------------- | :------------------------- | :----------------------------------------------------------------- |
+| **POST** | `/api/predict/multi-timeframe/`     | Multi-timeframe prediction | Alias: `/api/predict/multi/`. Currently served by fallback models. |
+| **POST** | `/api/predict/batch/`               | Batch predictions          |                                                                    |
+| **GET**  | `/api/models/list/`                 | List models                | May include generated fallback `.pkl` files.                       |
+| **GET**  | `/api/market/chart/<ticker>/`       | Chart data                 | Alias: `/api/chart/<ticker>/`. Live yfinance.                      |
+| **GET**  | `/api/company/<ticker>/essentials/` | Company essentials         | Live yfinance.                                                     |
+| **GET**  | `/api/system/health/`               | Health check               |                                                                    |
+| **POST** | `/api/trading/real/`                | Real trade                 | **Stub / not live execution.**                                     |
 
 </div>
 
-> 📚 **For Complete Endpoints Guide → `Docs/API-Endpoints.json`**
+> Source of truth for routes: [`api/Apps/StockPredict/urls.py`](api/Apps/StockPredict/urls.py). Newman collection: [`postman/Collections/StockVibePredictor_API_v2.postman_collection.json`](postman/Collections/StockVibePredictor_API_v2.postman_collection.json). `docs/API.md` is UNVERIFIED historical documentation. The duplicate `docs/API-Endpoints.json` was removed in Task 05.
 
 ---
 
@@ -1117,7 +1067,9 @@ git push origin Group
 
 <div align="center">
 
-## ✨ **Deployment (OPTIONAL)**
+## ✨ **Deployment (PLANNED / UNVERIFIED)**
+
+There is **no** Dockerfile, docker-compose, GitHub Actions workflow, Heroku, or Vercel config in this repository. The commands below are leftover college-era notes, not a working deploy path.
 
 </div>
 
@@ -1225,8 +1177,8 @@ For issues and questions:
 
 <div align="center">
 
-This project is licensed under the **MIT License**<br>
-Feel free to fork, remix, and use — just don't forget to credit 😎
+Metadata and badges claim **MIT**, but **no `LICENSE` file exists in the repository**.<br>
+Treat the license as unverified until a file is added.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 

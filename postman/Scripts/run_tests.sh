@@ -12,9 +12,10 @@ fi
 
 # Run tests for each environment
 echo "Testing Development Environment..."
+mkdir -p ./results
 newman run ../Collections/StockVibePredictor_API_v2.postman_collection.json \
     -e ../Environments/Development.postman_environment.json \
     --reporters cli,html \
-    --reporter-html-export ../Tests/results/dev-test-results.html
+    --reporter-html-export ./results/dev-test-results.html
 
-echo "✅ Tests Complete! Check Tests/results/ for reports"
+echo "✅ Tests Complete! Check Scripts/results/ for reports"

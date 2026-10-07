@@ -1,4 +1,4 @@
-# Docs/archive — Historical Artifacts
+# docs/archive — Historical Artifacts
 
 This folder holds **historical** project artifacts preserved for reference. They are **not**
 current documentation and may describe intentions or results that no longer match the code.

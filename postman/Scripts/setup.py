@@ -42,7 +42,7 @@ def setup_environment():
     print("\n📋 Setup Summary:")
     print("- Collection: Ready")
     print("- Environments: 3 configured")
-    print("- Tests: Ready to run")
+    print("- Tests: inline in the collection (see collection Test scripts)")
     print("\n🎯 Next steps:")
     print("1. Import collection and environments into Postman")
     print("2. Update credentials in environment variables")

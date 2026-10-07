@@ -1,7 +1,17 @@
-# STOCKVIBEPREDICTOR API - POSTMAN SETUP GUIDE
+# STOCKVIBEPREDICTOR API - Postman Setup Guide
 
 VERSION: 2.0 <br />
-LAST UPDATED: 2024 <br />
+LAST UPDATED: Task 05 (2026-10-07) — paths and retention decision only. The body below is leftover 2024 setup copy and is **not** a verified feature list.
+
+## Current status (KEEP / MOVE)
+
+* **KEEP** the canonical collection, three environments, examples, and scripts under `postman/`.
+* Newman is the live API regression suite while Django `tests.py` remains an empty scaffold.
+* Task 04 baseline: **15 requests / 17 assertions**, all passing against a live `127.0.0.1:8000` — **prediction HTTP 200 is masked by fallback `.pkl` files** (R-ML-02), not genuine trained models.
+* Removed as dead: `postman/Tests/*.json` (not consumed by Newman) and duplicate `docs/API-Endpoints.json`.
+* **UNVERIFIED in this guide:** authentication/token endpoints, GitHub Actions / Jenkins CI, staging/production hosts, and expected JSON bodies copied below.
+* Local Development needs **no auth**. Ignore credential/token sections unless you add auth later.
+
 
 ---
 
@@ -57,7 +67,7 @@ developer, tester, or someone learning API testing.
 1. Open Postman application.
 2. Click Import button (top-left corner).
 3. Choose File tab.
-4. Navigate to: Postman/Collections/.
+4. Navigate to: postman/Collections/.
 5. Select: StockVibePredictor_API_v2.postman_collection.json.
 6. Click Open → Import.
 
@@ -66,7 +76,7 @@ Alternative: Drag and drop the collection file into Postman window
 ### STEP 2: Import Environments
 
 1. Click Import again.
-2. Select all 3 environment files from Postman/Environments/ :
+2. Select all 3 environment files from postman/Environments/ :
    - Development.postman_environment.json
    - Staging.postman_environment.json
    - Production.postman_environment.json
@@ -293,7 +303,7 @@ $ npm install -g newman
 #### Run tests :
 
 ```bash
-$ cd Postman/Scripts
+$ cd postman/Scripts
 $ ./run_tests.sh
 ```
 
@@ -415,8 +425,8 @@ runs-on: ubuntu-latest
 steps: - uses: actions/checkout@v2 - name: Install Newman
 run: npm install -g newman - name: Run API Tests
 run: |
-newman run Postman/Collections/StockVibePredictor_API_v2.postman_collection.json \
- -e Postman/Environments/Development.postman_environment.json \
+newman run postman/Collections/StockVibePredictor_API_v2.postman_collection.json \
+ -e postman/Environments/Development.postman_environment.json \
  --reporters cli,json \
  --reporter-json-export results.json - name: Upload Results
 uses: actions/upload-artifact@v2
@@ -434,7 +444,7 @@ stages {
 stage('API Tests') {
 steps {
 sh 'npm install -g newman'
-sh 'newman run Postman/Collections/\*.json -e Postman/Environments/Development.postman_environment.json'
+sh 'newman run postman/Collections/\*.json -e postman/Environments/Development.postman_environment.json'
 }
 }
 }

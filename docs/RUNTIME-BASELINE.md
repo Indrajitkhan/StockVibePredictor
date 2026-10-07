@@ -308,3 +308,13 @@ cd ../Frontend && npx craco test --watchAll=false   # 13/13
 
 **Architectural note:** `api/` and `ui/` are now the authoritative directory names. Future tasks must not resurrect `Backend/` or `Frontend/`.
 
+## X. Task 05 — Repository cleanup (2026-10-07)
+
+Structural casing: `Docs/` → `docs/`, `Tests/` → `tests/`, `Postman/` → `postman/` (Git-aware case-only moves).
+
+Removed as dead/redundant (evidence in `docs/CLEANUP-REGISTER.md`): `ui/Apps/Dashboard/`, `api/package.json` + lockfile, `api/setup.py`, unused `postman/Tests/*.json`, duplicate `docs/API-Endpoints.json`, Makefile Docker targets.
+
+Postman decision: **KEEP + MOVE**, then drop only unreferenced test JSON. Newman remains the API regression suite.
+
+Documentation: root README identity/tree/endpoints qualified CURRENT / EXPERIMENTAL / UNVERIFIED / PLANNED. Fallback `.pkl` files remain gitignored generated artifacts — not genuine models.
+

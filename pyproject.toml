@@ -205,6 +205,7 @@ omit = [
     "api/StockVibePredictor/wsgi.py",
     "api/StockVibePredictor/asgi.py",
     "Frontend/*",
+    "ui/*",
 ]
 
 [tool.coverage.report]
@@ -229,6 +230,7 @@ warn_unused_configs = true
 ignore_missing_imports = true
 exclude = [
     "Frontend/",
+    "ui/",
     "migrations/",
     "venv/",
     "env/",
@@ -245,6 +247,7 @@ exclude = [
     "env",
     ".venv",
     "Frontend",
+    "ui",
     "node_modules",
 ]
 ignore = ["E203", "W503", "E501"]
@@ -254,7 +257,7 @@ per-file-ignores = [
 ]
 
 [tool.bandit]
-exclude_dirs = ["tests", "venv", "env", "Frontend"]
+exclude_dirs = ["tests", "venv", "env", "Frontend", "ui"]
 skips = ["B101", "B601"]
 
 [tool.pylint]

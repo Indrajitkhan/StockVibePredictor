@@ -18,7 +18,7 @@ NC := \033[0m # No Color
         dev dev-backend dev-frontend \
         migrate makemigrations test test-backend test-frontend \
         clean clean-backend clean-frontend \
-        build docker-up docker-down \
+        build \
         logs lint format check
 
 # Default target
@@ -48,11 +48,6 @@ help:
 	@echo "  make test            - Run all tests"
 	@echo "  make test-backend    - Run Django tests"
 	@echo "  make test-frontend   - Run frontend tests"
-	@echo ""
-	@echo "$(YELLOW)Docker:$(NC)"
-	@echo "  make docker-up       - Start services with Docker Compose"
-	@echo "  make docker-down     - Stop Docker services"
-	@echo "  make docker-build    - Build Docker images"
 	@echo ""
 	@echo "$(YELLOW)Utilities:$(NC)"
 	@echo "  make clean           - Remove all temporary files"
@@ -122,22 +117,6 @@ test-backend:
 test-frontend:
 	@echo "$(YELLOW)Running frontend tests...$(NC)"
 	@cd $(FRONTEND_DIR) && $(NPM) test
-
-# Docker commands
-docker-up:
-	@echo "$(YELLOW)Starting Docker services...$(NC)"
-	@cd $(BACKEND_DIR) && docker-compose up -d
-	@echo "$(GREEN)✓ Docker services started$(NC)"
-
-docker-down:
-	@echo "$(YELLOW)Stopping Docker services...$(NC)"
-	@cd $(BACKEND_DIR) && docker-compose down
-	@echo "$(GREEN)✓ Docker services stopped$(NC)"
-
-docker-build:
-	@echo "$(YELLOW)Building Docker images...$(NC)"
-	@cd $(BACKEND_DIR) && docker-compose build
-	@echo "$(GREEN)✓ Docker images built$(NC)"
 
 # Clean commands
 clean: clean-backend clean-frontend

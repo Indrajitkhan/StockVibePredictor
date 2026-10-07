@@ -441,7 +441,7 @@ allure-results/
 allure-report/
 
 # API Testing
-Postman/Tests/results/
+postman/Scripts/results/
 postman/environments/*_local.json
 postman/environments/*_secrets.json
 newman/

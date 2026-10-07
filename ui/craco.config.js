@@ -26,11 +26,11 @@ module.exports = {
 
   jest: {
     configure: (jestConfig) => {
-      jestConfig.roots = ["<rootDir>/../Tests"];
+      jestConfig.roots = ["<rootDir>/../tests"];
       jestConfig.testRegex = ".*\\.(test|spec)\\.(js|jsx)$";
       delete jestConfig.testMatch;
 
-      jestConfig.setupFilesAfterEnv = ["<rootDir>/../Tests/setupTests.js"];
+      jestConfig.setupFilesAfterEnv = ["<rootDir>/../tests/SetupTests.js"];
       jestConfig.testEnvironment = "jsdom";
 
       // Enhanced module resolution
@@ -38,7 +38,7 @@ module.exports = {
         "node_modules",
         "<rootDir>/node_modules",
         "<rootDir>/../node_modules", // Look in parent directory
-        path.resolve(__dirname, "node_modules"), // Absolute path to Frontend/node_modules
+        path.resolve(__dirname, "node_modules"), // Absolute path to ui/node_modules
       ];
 
       jestConfig.moduleNameMapper = {
@@ -88,7 +88,7 @@ module.exports = {
       jestConfig.moduleFileExtensions = ["js", "jsx", "json", "node"];
       jestConfig.testPathIgnorePatterns = [
         "/node_modules/",
-        "<rootDir>/../Tests/Backend/",
+        "<rootDir>/../tests/Backend/",
       ];
       jestConfig.clearMocks = true;
 
