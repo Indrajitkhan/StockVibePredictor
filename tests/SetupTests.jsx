@@ -52,16 +52,32 @@ jest.mock(
 // DON'T mock CSS here - let moduleNameMapper handle it
 // jest.mock("*.css", () => ({})); // REMOVED THIS LINE
 
-// Mock axios
+// Mock axios — the shared mock instance backs the centralized API client
+// (client.js calls axios.create().request/get/post).
+// NOTE: the variable must be named mock* — jest.mock factories may only
+// reference out-of-scope variables whose names begin with "mock".
+const mockAxios = {
+  get: jest.fn(() => Promise.resolve({ data: {} })),
+  post: jest.fn(() => Promise.resolve({ data: {} })),
+  request: jest.fn(() => Promise.resolve({ data: {} })),
+};
+
 jest.mock(
   "axios",
   () => ({
+    __esModule: true,
     default: {
-      get: jest.fn(() => Promise.resolve({ data: {} })),
-      post: jest.fn(() => Promise.resolve({ data: {} })),
+      ...mockAxios,
+      create: jest.fn(() => ({
+        ...mockAxios,
+        defaults: { headers: { common: {} } },
+        interceptors: {
+          request: { use: jest.fn(), eject: jest.fn() },
+          response: { use: jest.fn(), eject: jest.fn() },
+        },
+      })),
     },
-    get: jest.fn(() => Promise.resolve({ data: {} })),
-    post: jest.fn(() => Promise.resolve({ data: {} })),
+    ...mockAxios,
   }),
   { virtual: true }
 );
@@ -120,6 +136,9 @@ const sessionStorageMock = {
 global.sessionStorage = sessionStorageMock;
 
 // Clean up after each test
+// Mark the test environment as an act() environment (React 18 requirement)
+global.IS_REACT_ACT_ENVIRONMENT = true;
+
 afterEach(() => {
   jest.clearAllMocks();
   localStorage.clear();

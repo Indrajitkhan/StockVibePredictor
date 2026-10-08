@@ -1,0 +1,94 @@
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * StockVibe Design System — Semantic Tokens
+ * ══════════════════════════════════════════════════════════════════════
+ * Single source of truth for color, type, spacing, radius, and shadow.
+ * Components must consume these variables — never scatter raw colors.
+ */
+
+:root {
+  /* ─── Color: Surfaces & Background ─── */
+  --sv-bg: #0b0f14;
+  --sv-bg-raised: #11161d;
+  --sv-surface: #161c24;
+  --sv-surface-elevated: #1c242e;
+  --sv-surface-hover: #212b37;
+  --sv-border: #232d39;
+  --sv-border-strong: #2e3a47;
+
+  /* ─── Color: Text ─── */
+  --sv-text-primary: #f1f5f9;
+  --sv-text-secondary: #b6c2cf;
+  --sv-text-muted: #7d8a99;
+  --sv-text-faint: #566372;
+
+  /* ─── Color: Semantic ─── */
+  --sv-accent: #3b82f6;
+  --sv-accent-hover: #60a5fa;
+  --sv-accent-subtle: rgba(59, 130, 246, 0.12);
+  --sv-positive: #22c55e;
+  --sv-positive-subtle: rgba(34, 197, 94, 0.12);
+  --sv-negative: #ef4444;
+  --sv-negative-subtle: rgba(239, 68, 68, 0.12);
+  --sv-warning: #f59e0b;
+  --sv-warning-subtle: rgba(245, 158, 11, 0.12);
+  --sv-info: #38bdf8;
+  --sv-info-subtle: rgba(56, 189, 248, 0.12);
+
+  /* ─── Typography ─── */
+  --sv-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --sv-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas,
+    monospace;
+
+  --sv-text-display: 700 2.25rem/1.15 var(--sv-font-sans);
+  --sv-text-heading: 600 1.375rem/1.25 var(--sv-font-sans);
+  --sv-text-subheading: 600 1rem/1.35 var(--sv-font-sans);
+  --sv-text-body: 400 0.9375rem/1.6 var(--sv-font-sans);
+  --sv-text-caption: 500 0.75rem/1.4 var(--sv-font-sans);
+  --sv-text-numeric: 600 1.25rem/1.2 var(--sv-font-mono);
+  --sv-text-numeric-lg: 700 2rem/1.1 var(--sv-font-mono);
+
+  /* ─── Spacing scale (4px base) ─── */
+  --sv-space-1: 4px;
+  --sv-space-2: 8px;
+  --sv-space-3: 12px;
+  --sv-space-4: 16px;
+  --sv-space-5: 20px;
+  --sv-space-6: 24px;
+  --sv-space-8: 32px;
+  --sv-space-10: 40px;
+  --sv-space-12: 48px;
+
+  /* ─── Radius ─── */
+  --sv-radius-sm: 4px;
+  --sv-radius-md: 8px;
+  --sv-radius-lg: 12px;
+  --sv-radius-full: 999px;
+
+  /* ─── Shadows (subtle elevation only) ─── */
+  --sv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --sv-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --sv-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
+
+  /* ─── Layout ─── */
+  --sv-sidebar-width: 232px;
+  --sv-header-height: 56px;
+  --sv-content-max: 1440px;
+
+  /* ─── Transitions ─── */
+  --sv-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sv-transition: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

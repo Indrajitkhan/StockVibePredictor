@@ -1,0 +1,293 @@
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * Page-level styles — dashboard grids, tables, tabs, stock header
+ * ══════════════════════════════════════════════════════════════════════
+ */
+
+/* ─── Dashboard index grid ─── */
+.sv-index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--sv-space-4);
+}
+
+.sv-index-tile {
+  display: block;
+  padding: var(--sv-space-4);
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--sv-transition), background var(--sv-transition);
+}
+
+.sv-index-tile:hover {
+  border-color: var(--sv-border-strong);
+  background: var(--sv-surface-hover);
+  text-decoration: none;
+}
+
+/* ─── Two-column card row ─── */
+.sv-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--sv-space-6);
+  margin-top: var(--sv-space-6);
+}
+
+/* ─── Pulse grid (metric rows) ─── */
+.sv-pulse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sv-space-5);
+}
+
+/* ─── Watchlist rows ─── */
+.sv-watch-row-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sv-space-2);
+}
+
+.sv-watch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sv-space-4);
+  padding: var(--sv-space-3) var(--sv-space-4);
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+}
+
+.sv-watch-row-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sv-space-4);
+  flex: 1;
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.sv-watch-row-link:hover {
+  text-decoration: none;
+}
+
+.sv-watch-symbol {
+  font-weight: 600;
+  color: var(--sv-text-primary);
+  min-width: 72px;
+}
+
+.sv-watch-meta {
+  font-size: 0.8125rem;
+  color: var(--sv-text-muted);
+}
+
+/* ─── Watchlist add form ─── */
+.sv-watch-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sv-space-3);
+}
+
+.sv-watch-add-row {
+  display: flex;
+  gap: var(--sv-space-3);
+}
+
+.sv-watch-add-row .sv-search-input {
+  flex: 1;
+}
+
+/* ─── Markets table ─── */
+.sv-table-wrap {
+  overflow-x: auto; /* tables scroll, pages don't */
+}
+
+.sv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.sv-table th {
+  text-align: left;
+  padding: var(--sv-space-3) var(--sv-space-4);
+  font: var(--sv-text-caption);
+  color: var(--sv-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--sv-border);
+  white-space: nowrap;
+}
+
+.sv-table td {
+  padding: var(--sv-space-3) var(--sv-space-4);
+  border-bottom: 1px solid var(--sv-border);
+  color: var(--sv-text-secondary);
+}
+
+.sv-table tbody tr:hover {
+  background: var(--sv-surface-hover);
+}
+
+.sv-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── Stock analysis header ─── */
+.sv-stock-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sv-space-6);
+  flex-wrap: wrap;
+}
+
+.sv-stock-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sv-space-3);
+}
+
+.sv-stock-price {
+  font: var(--sv-text-numeric-lg);
+  color: var(--sv-text-primary);
+}
+
+/* ─── Timeframe pills ─── */
+.sv-tf-row {
+  display: flex;
+  gap: var(--sv-space-2);
+  margin-top: var(--sv-space-4);
+  flex-wrap: wrap;
+}
+
+.sv-tf-btn {
+  padding: var(--sv-space-1) var(--sv-space-3);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--sv-text-secondary);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-full);
+  background: transparent;
+  transition: all var(--sv-transition);
+}
+
+.sv-tf-btn:hover {
+  color: var(--sv-text-primary);
+  border-color: var(--sv-border-strong);
+}
+
+.sv-tf-btn.active {
+  color: var(--sv-accent-hover);
+  border-color: var(--sv-accent);
+  background: var(--sv-accent-subtle);
+}
+
+/* ─── Analysis tabs ─── */
+.sv-tabs {
+  display: flex;
+  gap: var(--sv-space-1);
+  border-bottom: 1px solid var(--sv-border);
+  overflow-x: auto;
+}
+
+.sv-tab-btn {
+  padding: var(--sv-space-3) var(--sv-space-4);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sv-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color var(--sv-transition), border-color var(--sv-transition);
+}
+
+.sv-tab-btn:hover {
+  color: var(--sv-text-primary);
+}
+
+.sv-tab-btn.active {
+  color: var(--sv-text-primary);
+  border-bottom-color: var(--sv-accent);
+}
+
+/* ─── Analysis stacking ─── */
+.sv-analysis-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sv-space-4);
+}
+
+/* ─── Technical metrics grid ─── */
+.sv-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--sv-space-5);
+}
+
+/* ─── Reused legacy component skinning (minimal, token-based) ─── */
+
+/* CompanyEssentials inside new shell */
+.company-essentials {
+  color: var(--sv-text-secondary);
+}
+
+.company-essentials .essentials-header h2 {
+  color: var(--sv-text-primary);
+}
+
+.company-essentials .essential-item label {
+  color: var(--sv-text-muted);
+}
+
+.company-essentials .essential-item .value {
+  color: var(--sv-text-primary);
+}
+
+/* PredictionResult inside new shell */
+.prediction-result {
+  color: var(--sv-text-secondary);
+}
+
+.prediction-result .prediction-header h2,
+.prediction-result .overall-summary h3 {
+  color: var(--sv-text-primary);
+}
+
+/* StockChart container inside new shell */
+.stock-chart-container {
+  color: var(--sv-text-secondary);
+}
+
+.stock-chart-container .chart-header h2 {
+  color: var(--sv-text-primary);
+}
+
+.stock-chart-container .price-stats .stat-item .stat-value {
+  color: var(--sv-text-primary);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .sv-index-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .sv-two-col {
+    grid-template-columns: 1fr;
+    gap: var(--sv-space-4);
+  }
+
+  .sv-stock-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

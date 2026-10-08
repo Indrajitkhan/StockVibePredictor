@@ -1,75 +1,32 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "../css/CompanyEssentials.css";
 
-const CompanyEssentials = ({ ticker, onCompanyDataReceived = null }) => {
-  const [companyData, setCompanyData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+/**
+ * CompanyEssentials — presentation component for company fundamentals.
+ *
+ * Data now comes from the centralized API layer (src/api/stocks.js) via the
+ * `data` prop. Legacy direct-axios fetching with a hardcoded localhost URL
+ * was removed so all traffic flows through src/api/client.js.
+ *
+ * Backward compatibility: if `data` is not provided (legacy callers),
+ * the component renders nothing rather than fetching on its own.
+ */
+const CompanyEssentials = ({ ticker, data = null, onCompanyDataReceived = null }) => {
   const [showAdditionalMetrics, setShowAdditionalMetrics] = useState(false);
 
-  // API base URL - matches the Django URL configuration
-  const API_BASE_URL = "http://localhost:8000/api";
-
+  // Legacy callback support — notify parent when centralized data arrives.
+  // (Kept for legacy callers that rely on it; new shell pages don't use it.)
   useEffect(() => {
-    if (ticker) {
-      fetchCompanyEssentials(ticker);
+    if (data && onCompanyDataReceived) {
+      onCompanyDataReceived(data);
     }
-  }, [ticker]);
+  }, [data, onCompanyDataReceived]);
 
-  const fetchCompanyEssentials = async (stockTicker) => {
-    if (!stockTicker || !stockTicker.trim()) return;
+  const companyData = data;
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      // Updated API endpoint to match the new URL pattern
-      const response = await axios.get(
-        `${API_BASE_URL}/company/${stockTicker.toUpperCase()}/essentials/`
-      );
-      const data = response.data;
-
-      setCompanyData(data);
-
-      // Pass data to parent component if callback provided
-      if (onCompanyDataReceived) {
-        onCompanyDataReceived(data);
-      }
-
-      console.log("Company essentials loaded:", data.ticker);
-    } catch (err) {
-      console.error("Error fetching company essentials:", err);
-
-      let errorMessage = "Unable to fetch company essentials.";
-
-      if (err.response?.status === 404) {
-        errorMessage = `Company data not found for "${stockTicker}".`;
-      } else if (err.response?.status === 400) {
-        errorMessage = "Invalid ticker format.";
-      } else if (err.response?.data?.error) {
-        errorMessage = err.response.data.error;
-      } else if (!err.response) {
-        errorMessage = "Network error. Please check your connection.";
-      }
-
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formatValue = (value, type = "number") => {
-    if (value === null || value === undefined || value === "N/A") return "N/A";
-
-    if (type === "percentage") {
-      const numValue = parseFloat(value);
-      if (isNaN(numValue)) return "N/A";
-      return `${numValue >= 0 ? "+" : ""}${numValue.toFixed(2)}%`;
-    }
-
-    return value;
-  };
+  if (!companyData) {
+    return null;
+  }
 
   const getValueClass = (value) => {
     if (value === null || value === undefined || value === "N/A") return "";
@@ -77,44 +34,6 @@ const CompanyEssentials = ({ ticker, onCompanyDataReceived = null }) => {
     if (isNaN(numValue)) return "";
     return numValue >= 0 ? "positive" : "negative";
   };
-
-  if (loading) {
-    return (
-      <div className="company-essentials">
-        <div className="essentials-header">
-          <h3>📊 Company Essentials</h3>
-        </div>
-        <div className="essentials-loading">
-          <div className="loading-spinner"></div>
-          <p>Loading company data...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="company-essentials">
-        <div className="essentials-header">
-          <h3>📊 Company Essentials</h3>
-        </div>
-        <div className="essentials-error">
-          <span className="error-icon">⚠️</span>
-          <p>{error}</p>
-          <button
-            className="retry-btn"
-            onClick={() => fetchCompanyEssentials(ticker)}
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (!companyData) {
-    return null;
-  }
 
   const {
     essentials,
@@ -126,7 +45,6 @@ const CompanyEssentials = ({ ticker, onCompanyDataReceived = null }) => {
     company_info,
   } = companyData;
   const currencySymbol = currency?.symbol || "$";
-  const currencyCode = currency?.code || "USD";
 
   return (
     <div className="company-essentials">

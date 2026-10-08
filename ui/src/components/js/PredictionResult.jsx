@@ -266,7 +266,7 @@ const PredictionResult = ({
                   </span>
                 </div>
                 <div className="price-row">
-                  <span className="label">Expected Return:</span>
+                  <span className="label">Projected Move:</span>
                   <span
                     className={`value ${
                       prediction.expected_return >= 0 ? "positive" : "negative"
@@ -279,8 +279,8 @@ const PredictionResult = ({
               </div>
 
               <div className="model-info">
-                <div className="accuracy-badge">
-                  Model Accuracy: {prediction.model_accuracy}%
+                <div className="accuracy-badge" title="Backend-reported training score for the current experimental model. This is not a validated out-of-sample performance figure and does not guarantee future results.">
+                  Reported Training Score: {prediction.model_accuracy}%
                 </div>
               </div>
             </div>
@@ -288,10 +288,13 @@ const PredictionResult = ({
         ))}
       </div>
 
-      {/* Overall Summary */}
+      {/* Overall Summary — model opinion, never investment advice */}
       {analysis?.recommendation && (
         <div className="overall-summary">
-          <h3>📊 Overall Assessment</h3>
+          <h3>📊 Model Assessment (Experimental)</h3>
+          <p className="summary-disclaimer">
+            This is unvalidated experimental model output — not investment advice.
+          </p>
           <div className="summary-content">
             <div
               className={`overall-recommendation ${analysis.recommendation.overall.toLowerCase()}`}

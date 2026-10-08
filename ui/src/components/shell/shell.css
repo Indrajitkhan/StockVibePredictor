@@ -1,0 +1,262 @@
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * App Shell — topbar, sidebar, bottom tabs, layout grid
+ * ══════════════════════════════════════════════════════════════════════
+ */
+
+.sv-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--sv-bg);
+}
+
+/* ─── Topbar ─── */
+.sv-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--sv-space-6);
+  height: var(--sv-header-height);
+  padding: 0 var(--sv-space-6);
+  background: rgba(11, 15, 20, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--sv-border);
+}
+
+.sv-brand {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sv-text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sv-brand:hover {
+  text-decoration: none;
+}
+
+.sv-brand-accent {
+  color: var(--sv-accent-hover);
+}
+
+.sv-topbar-search {
+  flex: 1;
+  max-width: 420px;
+}
+
+.sv-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sv-space-4);
+  margin-left: auto;
+}
+
+/* ─── Global search ─── */
+.sv-search {
+  position: relative;
+  width: 100%;
+}
+
+.sv-search form {
+  position: relative;
+}
+
+.sv-search-icon {
+  position: absolute;
+  left: var(--sv-space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sv-text-muted);
+  font-size: 1.05rem;
+  pointer-events: none;
+}
+
+.sv-search-input {
+  width: 100%;
+  padding: var(--sv-space-2) var(--sv-space-4) var(--sv-space-2)
+    calc(var(--sv-space-3) * 2 + 16px);
+  font-size: 0.875rem;
+  color: var(--sv-text-primary);
+  background: var(--sv-surface);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+  transition: border-color var(--sv-transition), background var(--sv-transition);
+}
+
+.sv-search-input::placeholder {
+  color: var(--sv-text-muted);
+}
+
+.sv-search-input:focus {
+  outline: none;
+  border-color: var(--sv-accent);
+  background: var(--sv-surface-elevated);
+}
+
+.sv-search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: var(--sv-space-1);
+  list-style: none;
+  background: var(--sv-surface-elevated);
+  border: 1px solid var(--sv-border-strong);
+  border-radius: var(--sv-radius-md);
+  box-shadow: var(--sv-shadow-lg);
+  z-index: 50;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.sv-search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sv-space-4);
+  width: 100%;
+  padding: var(--sv-space-2) var(--sv-space-3);
+  text-align: left;
+  border-radius: var(--sv-radius-sm);
+  color: var(--sv-text-secondary);
+}
+
+.sv-search-item:hover,
+.sv-search-item.highlighted {
+  background: var(--sv-surface-hover);
+  color: var(--sv-text-primary);
+}
+
+.sv-search-symbol {
+  color: var(--sv-text-primary);
+  font-weight: 600;
+  min-width: 64px;
+}
+
+.sv-search-name {
+  font-size: 0.8125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Shell body grid ─── */
+.sv-shell-body {
+  display: grid;
+  grid-template-columns: var(--sv-sidebar-width) 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.sv-shell-main {
+  min-width: 0; /* critical: prevents horizontal overflow from wide children */
+  padding: var(--sv-space-6);
+  max-width: var(--sv-content-max);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Sidebar ─── */
+.sv-sidebar {
+  border-right: 1px solid var(--sv-border);
+  background: var(--sv-bg-raised);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--sv-space-4) var(--sv-space-3);
+  position: sticky;
+  top: var(--sv-header-height);
+  height: calc(100vh - var(--sv-header-height));
+  overflow-y: auto;
+}
+
+.sv-sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sv-sidebar-link {
+  display: block;
+  padding: var(--sv-space-2) var(--sv-space-3);
+  border-radius: var(--sv-radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sv-text-secondary);
+  text-decoration: none;
+  transition: background var(--sv-transition), color var(--sv-transition);
+}
+
+.sv-sidebar-link:hover {
+  background: var(--sv-surface-hover);
+  color: var(--sv-text-primary);
+  text-decoration: none;
+}
+
+.sv-sidebar-link.active {
+  background: var(--sv-accent-subtle);
+  color: var(--sv-accent-hover);
+}
+
+/* ─── Bottom tabs (mobile) ─── */
+.sv-bottom-tabs {
+  display: none;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .sv-shell-body {
+    grid-template-columns: 1fr;
+  }
+
+  .sv-sidebar {
+    display: none;
+  }
+
+  .sv-bottom-tabs {
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    z-index: 40;
+    border-top: 1px solid var(--sv-border);
+    background: rgba(11, 15, 20, 0.92);
+    backdrop-filter: blur(8px);
+  }
+
+  .sv-bottom-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sv-space-3) var(--sv-space-2);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--sv-text-muted);
+    text-decoration: none;
+  }
+
+  .sv-bottom-tab.active {
+    color: var(--sv-accent-hover);
+  }
+
+  .sv-topbar {
+    padding: 0 var(--sv-space-4);
+    gap: var(--sv-space-4);
+  }
+
+  .sv-topbar-right .sv-badge {
+    display: none; /* health badge collapses on mobile; footer still informs */
+  }
+
+  .sv-shell-main {
+    padding: var(--sv-space-4);
+  }
+}
