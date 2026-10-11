@@ -195,7 +195,7 @@ const PredictionResult = ({
   return (
     <div className="prediction-result">
       <div className="prediction-header">
-        <h2>🎯 Predictions for {getCompanyName(ticker)}</h2>
+        <h2>Experimental model output · {getCompanyName(ticker)}</h2>
         <div className="prediction-summary">
           <span>
             {sortedPredictions.length} timeframe
@@ -291,7 +291,7 @@ const PredictionResult = ({
       {/* Overall Summary — model opinion, never investment advice */}
       {analysis?.recommendation && (
         <div className="overall-summary">
-          <h3>📊 Model Assessment (Experimental)</h3>
+          <h3>Model assessment (experimental)</h3>
           <p className="summary-disclaimer">
             This is unvalidated experimental model output — not investment advice.
           </p>
@@ -317,7 +317,7 @@ const PredictionResult = ({
 
       {/* Consensus View */}
       <div className="consensus-view">
-        <h4>🎭 Consensus Across Timeframes</h4>
+        <h4>Consensus across timeframes</h4>
         <div className="consensus-bars">
           {(() => {
             const upCount = sortedPredictions.filter(

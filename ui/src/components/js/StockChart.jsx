@@ -43,15 +43,15 @@ const StockChart = ({ data, ticker }) => {
         {
           label: `${ticker} Price`,
           data: data.map((record) => record.Close),
-          borderColor: "#22c55e",
-          backgroundColor: "rgba(34, 197, 94, 0.05)",
+          borderColor: "#60a5fa",
+          backgroundColor: "rgba(96, 165, 250, 0.12)",
           borderWidth: 2,
           fill: true,
           tension: 0.1,
           pointRadius: 0,
           pointHoverRadius: 4,
-          pointBackgroundColor: "#22c55e",
-          pointBorderColor: "#ffffff",
+          pointBackgroundColor: "#60a5fa",
+          pointBorderColor: "#0b0f14",
           pointBorderWidth: 2,
         },
       ],
@@ -69,8 +69,8 @@ const StockChart = ({ data, ticker }) => {
         {
           label: "Volume",
           data: data.map((record) => record.Volume),
-          backgroundColor: "#ef4444",
-          borderColor: "#dc2626",
+          backgroundColor: "rgba(125, 138, 153, 0.65)",
+          borderColor: "#7d8a99",
           borderWidth: 1,
         },
       ],
@@ -89,22 +89,23 @@ const StockChart = ({ data, ticker }) => {
         position: "top",
         labels: {
           usePointStyle: true,
-          padding: 15,
+          padding: 12,
+          color: "#b6c2cf",
           font: {
             size: 12,
-            weight: "600",
+            weight: "500",
           },
         },
       },
       title: {
         display: true,
-        text: `${ticker} - Price Chart 📈`,
+        text: `${ticker} · Price`,
         font: {
-          size: 16,
-          weight: "bold",
+          size: 14,
+          weight: "600",
         },
-        padding: 15,
-        color: "#1f2937",
+        padding: 12,
+        color: "#f1f5f9",
       },
       tooltip: {
         backgroundColor: "rgba(17, 24, 39, 0.95)",
@@ -159,15 +160,15 @@ const StockChart = ({ data, ticker }) => {
             weight: "600",
             size: 12,
           },
-          color: "#4b5563",
+          color: "#7d8a99",
         },
         grid: {
           display: true,
-          color: "rgba(107, 114, 128, 0.2)",
+          color: "rgba(35, 45, 57, 0.9)",
         },
         ticks: {
           maxTicksLimit: 8,
-          color: "#6b7280",
+          color: "#7d8a99",
           font: {
             size: 11,
           },
@@ -182,14 +183,14 @@ const StockChart = ({ data, ticker }) => {
             weight: "600",
             size: 12,
           },
-          color: "#4b5563",
+          color: "#7d8a99",
         },
         grid: {
           display: true,
-          color: "rgba(107, 114, 128, 0.2)",
+          color: "rgba(35, 45, 57, 0.9)",
         },
         ticks: {
-          color: "#6b7280",
+          color: "#7d8a99",
           font: {
             size: 11,
           },
@@ -213,22 +214,23 @@ const StockChart = ({ data, ticker }) => {
         position: "top",
         labels: {
           usePointStyle: true,
-          padding: 15,
+          padding: 12,
+          color: "#b6c2cf",
           font: {
             size: 12,
-            weight: "600",
+            weight: "500",
           },
         },
       },
       title: {
         display: true,
-        text: `${ticker} - Volume Chart 📊`,
+        text: `${ticker} · Volume`,
         font: {
-          size: 16,
-          weight: "bold",
+          size: 14,
+          weight: "600",
         },
-        padding: 15,
-        color: "#1f2937",
+        padding: 12,
+        color: "#f1f5f9",
       },
       tooltip: {
         backgroundColor: "rgba(17, 24, 39, 0.95)",
@@ -283,15 +285,15 @@ const StockChart = ({ data, ticker }) => {
             weight: "600",
             size: 12,
           },
-          color: "#4b5563",
+          color: "#7d8a99",
         },
         grid: {
           display: true,
-          color: "rgba(107, 114, 128, 0.2)",
+          color: "rgba(35, 45, 57, 0.9)",
         },
         ticks: {
           maxTicksLimit: 8,
-          color: "#6b7280",
+          color: "#7d8a99",
           font: {
             size: 11,
           },
@@ -306,14 +308,14 @@ const StockChart = ({ data, ticker }) => {
             weight: "600",
             size: 12,
           },
-          color: "#4b5563",
+          color: "#7d8a99",
         },
         grid: {
           display: true,
-          color: "rgba(107, 114, 128, 0.2)",
+          color: "rgba(35, 45, 57, 0.9)",
         },
         ticks: {
-          color: "#6b7280",
+          color: "#7d8a99",
           font: {
             size: 11,
           },
@@ -351,7 +353,7 @@ const StockChart = ({ data, ticker }) => {
   return (
     <div className="stock-chart-container">
       <div className="chart-header">
-        <h2 className="chart-title">📈 {ticker} Stock Analysis</h2>
+        <h2 className="chart-title">{ticker} price and volume</h2>
         {stats && (
           <div className="price-stats">
             <div className="stat-item current-price">
@@ -402,9 +404,8 @@ const StockChart = ({ data, ticker }) => {
 
       <div className="chart-info">
         <p>
-          📊 Professional charts showing separate price and volume analysis. The
-          AI model analyzes patterns, trends, and technical indicators from this
-          historical data.
+          Historical price and volume for the selected timeframe. This chart is
+          observational and is not a trading signal.
         </p>
       </div>
     </div>

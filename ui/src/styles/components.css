@@ -7,9 +7,9 @@
 
 /* ─── Page scaffold ─── */
 .sv-page {
-  padding: var(--sv-space-6);
-  max-width: var(--sv-content-max);
-  margin: 0 auto;
+  padding: 0;
+  max-width: none;
+  margin: 0;
   width: 100%;
 }
 
@@ -323,7 +323,7 @@
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   .sv-page {
-    padding: var(--sv-space-4);
+    padding: 0;
   }
 
   .sv-card {

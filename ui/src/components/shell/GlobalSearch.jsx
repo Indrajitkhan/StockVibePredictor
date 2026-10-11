@@ -88,7 +88,7 @@ const GlobalSearch = () => {
         />
       </form>
 
-      {open && results.length > 0 && (
+      {open && query.trim().length >= 1 && results.length > 0 && (
         <ul className="sv-search-results" role="listbox" aria-label="Search suggestions">
           {results.map((r, i) => (
             <li key={`${r.symbol}-${i}`} role="option" aria-selected={i === highlighted}>
@@ -104,6 +104,11 @@ const GlobalSearch = () => {
             </li>
           ))}
         </ul>
+      )}
+      {open && query.trim().length >= 1 && results.length === 0 && (
+        <div className="sv-search-results sv-search-empty" role="status">
+          No matching symbol. Press Enter to open {query.trim().toUpperCase()} anyway.
+        </div>
       )}
     </div>
   );

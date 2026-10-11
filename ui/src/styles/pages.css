@@ -9,6 +9,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: var(--sv-space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sv-index-grid > li {
+  list-style: none;
+  margin: 0;
+  min-width: 0;
 }
 
 .sv-index-tile {
@@ -103,6 +112,7 @@
 
 .sv-watch-add-row .sv-search-input {
   flex: 1;
+  padding-left: var(--sv-space-4);
 }
 
 /* ─── Markets table ─── */
@@ -233,46 +243,388 @@
   gap: var(--sv-space-5);
 }
 
-/* ─── Reused legacy component skinning (minimal, token-based) ─── */
+/* ─── Reused legacy component skinning (token-based, nested in shell) ─── */
 
-/* CompanyEssentials inside new shell */
-.company-essentials {
+.sv-card .stock-chart-container,
+.sv-card .prediction-result,
+.sv-card .company-essentials {
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+  border-radius: 0;
+  animation: none;
+  overflow: visible;
   color: var(--sv-text-secondary);
 }
 
-.company-essentials .essentials-header h2 {
+.sv-card .chart-header,
+.sv-card .prediction-header {
+  background: transparent;
+  padding: 0 0 var(--sv-space-5);
+  color: var(--sv-text-primary);
+  text-align: left;
+}
+
+.sv-card .chart-title,
+.sv-card .prediction-header h2,
+.sv-card .overall-summary h3,
+.sv-card .consensus-view h4,
+.sv-card .essentials-header h2,
+.sv-card .company-title h2 {
+  margin: 0;
+  font: var(--sv-text-subheading);
+  color: var(--sv-text-primary);
+  text-align: left;
+}
+
+.sv-card .prediction-summary,
+.sv-card .chart-info p,
+.sv-card .summary-disclaimer {
+  color: var(--sv-text-muted);
+  font-size: 0.8125rem;
+}
+
+.sv-card .price-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--sv-space-3);
+}
+
+.sv-card .stat-item {
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+  padding: var(--sv-space-3) var(--sv-space-4);
+  text-align: left;
+  backdrop-filter: none;
+  transition: none;
+}
+
+.sv-card .stat-item:hover {
+  transform: none;
+}
+
+.sv-card .stat-label {
+  color: var(--sv-text-muted);
+  font: var(--sv-text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sv-card .stat-value,
+.sv-card .current-price .stat-value {
+  color: var(--sv-text-primary);
+  font: var(--sv-text-numeric);
+}
+
+.sv-card .price-change.positive .stat-value {
+  color: var(--sv-positive);
+}
+
+.sv-card .price-change.negative .stat-value {
+  color: var(--sv-negative);
+}
+
+.sv-card .charts-grid {
+  padding: 0;
+  gap: var(--sv-space-4);
+}
+
+.sv-card .chart-wrapper {
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+  box-shadow: none;
+  height: 320px;
+  padding: var(--sv-space-4);
+}
+
+.sv-card .chart-wrapper:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.sv-card .price-chart,
+.sv-card .volume-chart {
+  border-left: none;
+}
+
+.sv-card .chart-info {
+  background: transparent;
+  border-top: 1px solid var(--sv-border);
+  padding: var(--sv-space-4) 0 0;
+  text-align: left;
+}
+
+.sv-card .predictions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sv-space-4);
+  margin-bottom: var(--sv-space-6);
+}
+
+.sv-card .prediction-card {
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+  padding: var(--sv-space-4);
+  box-shadow: none;
+}
+
+.sv-card .prediction-card:hover,
+.sv-card .prediction-card::before {
+  transform: none;
+  box-shadow: none;
+  background: none;
+  height: auto;
+}
+
+.sv-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sv-space-4);
+  padding-bottom: var(--sv-space-3);
+  border-bottom: 1px solid var(--sv-border);
+}
+
+.sv-card .timeframe-title {
+  margin: 0;
+  font: var(--sv-text-subheading);
   color: var(--sv-text-primary);
 }
 
-.company-essentials .essential-item label {
+.sv-card .model-badge {
+  font: var(--sv-text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px var(--sv-space-2);
+  border-radius: var(--sv-radius-full);
+  border: 1px solid var(--sv-border);
+  background: var(--sv-surface);
   color: var(--sv-text-muted);
 }
 
-.company-essentials .essential-item .value {
+.sv-card .prediction-main {
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  padding: 0;
+  margin-bottom: var(--sv-space-4);
+  display: block;
+  text-align: left;
+}
+
+.sv-card .prediction-icon,
+.sv-card .direction-icon {
+  animation: none;
+  font-size: 1rem;
+}
+
+.sv-card .direction-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sv-space-2);
+  padding: var(--sv-space-2) var(--sv-space-3);
+  border-radius: var(--sv-radius-md);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.sv-card .direction-indicator.up {
+  background: var(--sv-positive-subtle);
+  color: var(--sv-positive);
+}
+
+.sv-card .direction-indicator.down {
+  background: var(--sv-negative-subtle);
+  color: var(--sv-negative);
+}
+
+.sv-card .confidence-label,
+.sv-card .price-row .label {
+  color: var(--sv-text-muted);
+  font-size: 0.75rem;
+}
+
+.sv-card .confidence-bar {
+  background: var(--sv-border);
+  height: 6px;
+}
+
+.sv-card .confidence-fill.high {
+  background: var(--sv-positive);
+}
+
+.sv-card .confidence-fill.medium {
+  background: var(--sv-warning);
+}
+
+.sv-card .confidence-fill.low {
+  background: var(--sv-negative);
+}
+
+.sv-card .prediction-details {
+  display: block;
+  margin-bottom: 0;
+  border-top: 1px solid var(--sv-border);
+  padding-top: var(--sv-space-3);
+}
+
+.sv-card .price-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sv-space-3);
+  padding: var(--sv-space-1) 0;
+}
+
+.sv-card .price-row .value,
+.sv-card .price-row .value.positive,
+.sv-card .price-row .value.negative {
+  font-family: var(--sv-font-mono);
+  font-variant-numeric: tabular-nums;
   color: var(--sv-text-primary);
 }
 
-/* PredictionResult inside new shell */
-.prediction-result {
+.sv-card .price-row .value.positive {
+  color: var(--sv-positive);
+}
+
+.sv-card .price-row .value.negative {
+  color: var(--sv-negative);
+}
+
+.sv-card .accuracy-badge {
+  display: inline-block;
+  margin-top: var(--sv-space-3);
+  padding: 2px var(--sv-space-3);
+  font: var(--sv-text-caption);
+  color: var(--sv-text-muted);
+  background: var(--sv-surface);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-full);
+}
+
+.sv-card .overall-summary,
+.sv-card .consensus-view {
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius-md);
+  padding: var(--sv-space-4);
+  margin: var(--sv-space-4) 0 0;
+  text-align: left;
+  box-shadow: none;
+}
+
+.sv-card .overall-recommendation {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sv-space-2);
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--sv-text-primary);
+  font: var(--sv-text-subheading);
+}
+
+.sv-card .summary-details,
+.sv-card .consensus-label,
+.sv-card .consensus-legend {
+  color: var(--sv-text-muted);
+  font-size: 0.8125rem;
+}
+
+.sv-card .consensus-bar {
+  display: flex;
+  height: 6px;
+  border-radius: var(--sv-radius-full);
+  overflow: hidden;
+  background: var(--sv-border);
+  margin: var(--sv-space-2) 0;
+}
+
+.sv-card .bullish-portion {
+  background: var(--sv-positive);
+}
+
+.sv-card .bearish-portion {
+  background: var(--sv-negative);
+}
+
+.sv-card .essentials-header {
+  border-bottom: 1px solid var(--sv-border);
+  margin-bottom: var(--sv-space-5);
+  padding-bottom: var(--sv-space-4);
+}
+
+.sv-card .company-title h3,
+.sv-card .essential-item label,
+.sv-card .metric-item label,
+.sv-card .last-updated {
+  color: var(--sv-text-muted);
+}
+
+.sv-card .current-price .price,
+.sv-card .essential-item .value,
+.sv-card .metric-item .value {
+  color: var(--sv-text-primary);
+}
+
+.sv-card .essential-item,
+.sv-card .metric-item,
+.sv-card .price-stat,
+.sv-card .additional-metrics,
+.sv-card .price-summary,
+.sv-card .company-info-summary {
+  background: var(--sv-bg-raised);
+  border: 1px solid var(--sv-border);
+  box-shadow: none;
   color: var(--sv-text-secondary);
 }
 
-.prediction-result .prediction-header h2,
-.prediction-result .overall-summary h3 {
-  color: var(--sv-text-primary);
+.sv-card .essential-item:hover,
+.sv-card .metric-item:hover {
+  background: var(--sv-surface-hover);
+  transform: none;
+  border-color: var(--sv-border-strong);
 }
 
-/* StockChart container inside new shell */
-.stock-chart-container {
+.sv-card .price-change.positive {
+  background: var(--sv-positive-subtle);
+  color: var(--sv-positive);
+}
+
+.sv-card .price-change.negative {
+  background: var(--sv-negative-subtle);
+  color: var(--sv-negative);
+}
+
+.sv-card .sentiment-panel,
+.sv-card .risk-panel {
   color: var(--sv-text-secondary);
 }
 
-.stock-chart-container .chart-header h2 {
+.sv-card .sentiment-panel h3,
+.sv-card .risk-panel h3,
+.sv-card .sentiment-factors h5,
+.sv-card .risk-factors h5,
+.sv-card .risk-mitigation h5 {
   color: var(--sv-text-primary);
+  font: var(--sv-text-subheading);
 }
 
-.stock-chart-container .price-stats .stat-item .stat-value {
-  color: var(--sv-text-primary);
+.sv-card .panel-header {
+  cursor: default;
+}
+
+.sv-table th:nth-child(n + 2),
+.sv-table td:nth-child(n + 2) {
+  text-align: right;
+}
+
+.sv-table th:last-child,
+.sv-table td:last-child {
+  text-align: right;
 }
 
 /* ─── Responsive ─── */

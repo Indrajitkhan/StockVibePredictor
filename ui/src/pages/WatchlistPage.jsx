@@ -123,7 +123,7 @@ const WatchlistPage = () => {
               placeholder="e.g. AAPL or Apple"
               value={input}
               onChange={(e) => {
-                setInput(e.target.value.toUpperCase());
+                setInput(e.target.value);
                 setFeedback(null);
               }}
               maxLength={12}
