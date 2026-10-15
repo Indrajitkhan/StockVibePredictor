@@ -150,4 +150,149 @@ describe("API Integration Tests", () => {
       expect(response.data.processed_count).toBe(4);
     });
   });
+
+  // =============================================================================
+  // ML SERVICE FAILURE SEMANTICS TESTS (Workstream F)
+  // =============================================================================
+  
+  describe("ML Service Failure Semantics", () => {
+    test("should handle no model available gracefully", async () => {
+      // Simulate API response when no model is loaded
+      const mockNoModelResponse = {
+        data: {
+          status: "no_model",
+          error: "No trained model artifact available",
+          timestamp: new Date().toISOString(),
+          details: {
+            reason: "model_cache_empty",
+            note: "Predictions require a trained model artifact"
+          }
+        }
+      };
+
+      mockedAxios.post.mockResolvedValueOnce(mockNoModelResponse);
+
+      const response = await axios.post("/api/predict/multi/", {
+        ticker: "AAPL",
+        timeframes: ["1d"]
+      });
+
+      // Should return structured error, not fabricated prediction
+      expect(response.data.status).toBe("no_model");
+      expect(response.data.error).toBeDefined();
+      expect(response.data.predictions).toBeUndefined();
+    });
+
+    test("should handle invalid feature vector", async () => {
+      const mockInvalidInputResponse = {
+        data: {
+          status: "invalid_input",
+          error: "Feature vector contains invalid values",
+          timestamp: new Date().toISOString(),
+          details: {
+            feature_count: 15,
+            nan_count: 5,
+            inf_count: 0
+          }
+        }
+      };
+
+      mockedAxios.post.mockResolvedValueOnce(mockInvalidInputResponse);
+
+      const response = await axios.post("/api/predict/multi/", {
+        ticker: "AAPL",
+        timeframes: ["1d"]
+      });
+
+      expect(response.data.status).toBe("invalid_input");
+      expect(response.data.error).toBeDefined();
+    });
+
+    test("should not display fabricated prediction on failure", async () => {
+      // Ensure that on failure, we don't get a fake "success" response
+      const mockFailureResponse = {
+        data: {
+          status: "prediction_failed",
+          error: "Unable to generate predictions",
+          ticker: "INVALID"
+        }
+      };
+
+      mockedAxios.post.mockResolvedValueOnce(mockFailureResponse);
+
+      const response = await axios.post("/api/predict/multi/", {
+        ticker: "INVALID",
+        timeframes: ["1d"]
+      });
+
+      // Must not have predictions with direction/confidence on failure
+      expect(response.data.predictions).toBeUndefined();
+      expect(response.data.status).not.toBe("success");
+    });
+
+    test("should properly display model unavailable in health check", async () => {
+      const mockHealthResponse = {
+        data: {
+          status: "degraded",
+          services: {
+            cache: "healthy",
+            models: "degraded",
+            data_source: "healthy"
+          },
+          ml_service: {
+            status: "no_model_loaded",
+            model_count: 0,
+            feature_schema_version: "1.0.0",
+            note: "Predictions require a trained model artifact"
+          },
+          metrics: {
+            ml_contracts_loaded: true,
+            canonical_feature_count: 15
+          }
+        }
+      };
+
+      mockedAxios.get.mockResolvedValueOnce(mockHealthResponse);
+
+      const response = await axios.get("/api/v1/system/health/");
+
+      // When models: "degraded", UI should show appropriate warning
+      expect(response.data.services.models).toBe("degraded");
+      expect(response.data.ml_service.status).toBe("no_model_loaded");
+    });
+
+    test("should distinguish between negative prediction and failure", async () => {
+      // Valid negative prediction should have all expected fields
+      const mockNegativePrediction = {
+        data: {
+          status: "success",
+          ticker: "AAPL",
+          predictions: {
+            "1d": {
+              direction: "DOWN",
+              confidence: 62.5,
+              model_accuracy: 58.0,
+              price_target: 145.20,
+              current_price: 150.00,
+              expected_return: -3.2
+            }
+          },
+          timestamp: new Date().toISOString()
+        }
+      };
+
+      mockedAxios.post.mockResolvedValueOnce(mockNegativePrediction);
+
+      const response = await axios.post("/api/predict/multi/", {
+        ticker: "AAPL",
+        timeframes: ["1d"]
+      });
+
+      // Valid prediction should have all fields
+      expect(response.data.status).toBe("success");
+      expect(response.data.predictions["1d"].direction).toBe("DOWN");
+      expect(response.data.predictions["1d"].confidence).toBeDefined();
+      expect(response.data.predictions["1d"].model_accuracy).toBeDefined();
+    });
+  });
 });

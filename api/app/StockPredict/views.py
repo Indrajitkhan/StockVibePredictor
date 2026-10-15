@@ -47,6 +47,12 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from .services.DataService import StockDataProcessor
 from .services.CacheManager import CacheManager
 from .config.ChartConfig import TIMEFRAME_CONFIGS
+from .ml_contracts import (
+    CANONICAL_FEATURES, CANONICAL_FEATURE_SCHEMA,
+    MLServiceStatus, create_error_response, create_prediction_response,
+    ModelNotAvailableError, InvalidFeatureVectorError,
+    compute_artifact_checksum, validate_artifact_metadata
+)
 
 # Additional imports for technical indicators
 import atexit
@@ -3494,6 +3500,8 @@ def system_health(request):
                 "model_cache_size": len(model_cache),
                 "prediction_cache_size": len(prediction_cache),
                 "available_timeframes": list(TIMEFRAMES.keys()),
+                "ml_contracts_loaded": True,
+                "canonical_feature_count": len(CANONICAL_FEATURES) if CANONICAL_FEATURES else 0,
             },
         }
 
@@ -3507,11 +3515,28 @@ def system_health(request):
         except:
             health_status["services"]["cache"] = "unhealthy"
 
-        # Check models
-        if len(model_cache) > 0:
+        # Check models - enhanced ML service status
+        model_count = len(model_cache)
+        model_details = {
+            "loaded_count": model_count,
+            "model_keys": list(model_cache.keys()) if model_count > 0 else [],
+            "canonical_features_available": CANONICAL_FEATURES is not None,
+            "feature_count": len(CANONICAL_FEATURES) if CANONICAL_FEATURES else 0,
+            "contracts_module_loaded": True,
+        }
+        
+        if model_count > 0:
             health_status["services"]["models"] = "healthy"
         else:
             health_status["services"]["models"] = "degraded"
+        
+        # Add detailed ML status
+        health_status["ml_service"] = {
+            "status": "no_model_loaded" if model_count == 0 else "model_available",
+            "model_count": model_count,
+            "feature_schema_version": "1.0.0",
+            "note": "Predictions require a trained model artifact" if model_count == 0 else "Ready for predictions"
+        }
 
         # Check data source
         try:
